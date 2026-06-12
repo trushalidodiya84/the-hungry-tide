@@ -42,18 +42,17 @@ var ecologyLayer = L.layerGroup().addTo(map);
 
 /* Sub Layers */
 
-var dolphinLayer = L.layerGroup().addTo(map);
+var dolphinLayer = L.layerGroup();
 
-var tigerLayer = L.layerGroup().addTo(map);
+var tigerLayer = L.layerGroup();
 
-var mangroveLayer = L.layerGroup().addTo(map);
+var mangroveLayer = L.layerGroup();
 
-var tidalPoolLayer = L.layerGroup().addTo(map);
+var tidalPoolLayer = L.layerGroup();
 
-var ecologicalCorridorLayer = L.layerGroup().addTo(map);
+var ecologicalCorridorLayer = L.layerGroup();
 
-var stormLayer = L.layerGroup().addTo(map);
-
+var stormLayer = L.layerGroup();
     
 
 /* Migration = Red */
@@ -62,24 +61,24 @@ var migrationLayer = L.featureGroup().addTo(map);
 /* Memory = Blue */
 var memoryLayer = L.featureGroup().addTo(map);
 
+/* ================= ECOLOGY SUBLAYERS ================= */
 
+ecologyLayer.addLayer(dolphinLayer);
+
+ecologyLayer.addLayer(tigerLayer);
+
+ecologyLayer.addLayer(mangroveLayer);
+
+ecologyLayer.addLayer(tidalPoolLayer);
+
+ecologyLayer.addLayer(ecologicalCorridorLayer);
+
+ecologyLayer.addLayer(stormLayer);
 /* ================= LAYER CONTROL ================= */
 L.control.layers(
 null,
 {
     "🟢 Ecological Habitat Networks": ecologyLayer,
-
-    "🐬 Dolphin Habitats": dolphinLayer,
-
-    "🐯 Tiger Habitats": tigerLayer,
-
-    "🌿 Mangrove Zones": mangroveLayer,
-
-    "🌊 Tidal Pools": tidalPoolLayer,
-
-    "🔄 Ecological Corridors": ecologicalCorridorLayer,
-
-    "⛈ Storm Affected Regions": stormLayer,
 
     "🔴 Migration & Mobility Networks": migrationLayer,
 
