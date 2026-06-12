@@ -15,7 +15,17 @@ href="https://cdn.jsdelivr.net/npm/leaflet.control.layers.tree@1.1.0/L.Control.L
     height:95vh;
 }
 </style>
+/* Tree Layer Styling */
 
+.leaflet-layerstree-closed:before {
+    content: "▶ ";
+    font-size: 12px;
+}
+
+.leaflet-layerstree-opened:before {
+    content: "▼ ";
+    font-size: 12px;
+}
 </head>
 <body>
 
