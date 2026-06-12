@@ -77,19 +77,58 @@ ecologyLayer.addLayer(tidalPoolLayer);
 ecologyLayer.addLayer(ecologicalCorridorLayer);
 
 ecologyLayer.addLayer(stormLayer);
-/* ================= LAYER CONTROL ================= */
-L.control.layers(
-null,
-{
-    "🟢 Ecological Habitat Networks": ecologyLayer,
+var overlaysTree = {
 
-    "🔴 Migration & Mobility Networks": migrationLayer,
+  label: "Thematic Layers",
 
-    "🔵 Spatial & Cultural Memory": memoryLayer
-},
-{
-    collapsed:false
-}
+  children: [
+
+    {
+      label: "🟢 Ecological Habitat Networks",
+      children: [
+
+        { label: "🐬 Dolphin Habitats", layer: dolphinLayer },
+
+        { label: "🐯 Tiger Habitats", layer: tigerLayer },
+
+        { label: "🌿 Mangrove Zones", layer: mangroveLayer },
+
+        { label: "🌊 Tidal Pools", layer: tidalPoolLayer },
+
+        { label: "🔄 Ecological Corridors", layer: ecologicalCorridorLayer },
+
+        { label: "⛈ Storm Affected Regions", layer: stormLayer }
+
+      ]
+    },
+
+    {
+      label: "🔴 Migration & Mobility Networks",
+      children: [
+
+        { label: "Character Routes", layer: migrationLayer }
+
+      ]
+    },
+
+    {
+      label: "🔵 Spatial & Cultural Memory",
+      children: [
+
+        { label: "Memory Sites", layer: memoryLayer }
+
+      ]
+    }
+
+  ]
+};
+
+L.control.layers.tree(
+    null,
+    overlaysTree,
+    {
+        collapsed:false
+    }
 ).addTo(map);
 
 </script>
