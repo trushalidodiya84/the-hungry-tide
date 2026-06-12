@@ -6,26 +6,13 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/leaflet.control.layers.tree@1.1.0/L.Control.Layers.Tree.css">
 
-<script src="https://cdn.jsdelivr.net/npm/leaflet.control.layers.tree@1.1.0/L.Control.Layers.Tree.js"></script>
 <style>
 #map{
     height:95vh;
 }
 </style>
-/* Tree Layer Styling */
 
-.leaflet-layerstree-closed:before {
-    content: "▶ ";
-    font-size: 12px;
-}
-
-.leaflet-layerstree-opened:before {
-    content: "▼ ";
-    font-size: 12px;
-}
 </head>
 <body>
 
@@ -45,15 +32,15 @@ L.tileLayer(
  attribution:'© OpenStreetMap © CARTO'
 }
 ).addTo(map);
-
+    
 /* ================= MAIN THEMATIC LAYERS ================= */
-
-/* Ecology = Green */
-/* ================= ECOLOGICAL HABITAT NETWORKS ================= */
 
 var ecologyLayer = L.layerGroup().addTo(map);
 
-/* Sub Layers */
+var migrationLayer = L.layerGroup().addTo(map);
+
+var memoryLayer = L.layerGroup().addTo(map);
+/* ================= ECOLOGY SUBLAYERS ================= */
 
 var dolphinLayer = L.layerGroup();
 
@@ -66,15 +53,8 @@ var tidalPoolLayer = L.layerGroup();
 var ecologicalCorridorLayer = L.layerGroup();
 
 var stormLayer = L.layerGroup();
-    
 
-/* Migration = Red */
-var migrationLayer = L.layerGroup().addTo(map);
-
-/* Memory = Blue */
-var memoryLayer = L.layerGroup().addTo(map);
-
-/* ================= ECOLOGY SUBLAYERS ================= */
+/* Attach to Ecology */
 
 ecologyLayer.addLayer(dolphinLayer);
 
@@ -87,60 +67,21 @@ ecologyLayer.addLayer(tidalPoolLayer);
 ecologyLayer.addLayer(ecologicalCorridorLayer);
 
 ecologyLayer.addLayer(stormLayer);
-var overlaysTree = {
+    /* ================= LAYER CONTROL ================= */
 
-  label: "Thematic Layers",
+L.control.layers(
+null,
+{
+    "🟢 Ecological Habitat Networks": ecologyLayer,
 
-  children: [
+    "🔴 Migration & Mobility Networks": migrationLayer,
 
-    {
-      label: "🟢 Ecological Habitat Networks",
-      children: [
-
-        { label: "🐬 Dolphin Habitats", layer: dolphinLayer },
-
-        { label: "🐯 Tiger Habitats", layer: tigerLayer },
-
-        { label: "🌿 Mangrove Zones", layer: mangroveLayer },
-
-        { label: "🌊 Tidal Pools", layer: tidalPoolLayer },
-
-        { label: "🔄 Ecological Corridors", layer: ecologicalCorridorLayer },
-
-        { label: "⛈ Storm Affected Regions", layer: stormLayer }
-
-      ]
-    },
-
-    {
-      label: "🔴 Migration & Mobility Networks",
-      children: [
-
-        { label: "Character Routes", layer: migrationLayer }
-
-      ]
-    },
-
-    {
-      label: "🔵 Spatial & Cultural Memory",
-      children: [
-
-        { label: "Memory Sites", layer: memoryLayer }
-
-      ]
-    }
-
-  ]
-};
-
-L.control.layers.tree(
-    null,
-    overlaysTree,
-    {
-        collapsed:false
-    }
+    "🔵 Spatial & Cultural Memory": memoryLayer
+},
+{
+    collapsed:false
+}
 ).addTo(map);
-
 </script>
 
 </body>
