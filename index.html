@@ -36,7 +36,25 @@ L.tileLayer(
 /* ================= MAIN THEMATIC LAYERS ================= */
 
 /* Ecology = Green */
-var ecologyLayer = L.featureGroup().addTo(map);
+/* ================= ECOLOGICAL HABITAT NETWORKS ================= */
+
+var ecologyLayer = L.layerGroup().addTo(map);
+
+/* Sub Layers */
+
+var dolphinLayer = L.layerGroup().addTo(map);
+
+var tigerLayer = L.layerGroup().addTo(map);
+
+var mangroveLayer = L.layerGroup().addTo(map);
+
+var tidalPoolLayer = L.layerGroup().addTo(map);
+
+var ecologicalCorridorLayer = L.layerGroup().addTo(map);
+
+var stormLayer = L.layerGroup().addTo(map);
+
+    
 
 /* Migration = Red */
 var migrationLayer = L.featureGroup().addTo(map);
@@ -46,12 +64,25 @@ var memoryLayer = L.featureGroup().addTo(map);
 
 
 /* ================= LAYER CONTROL ================= */
-
 L.control.layers(
 null,
 {
     "🟢 Ecological Habitat Networks": ecologyLayer,
+
+    "🐬 Dolphin Habitats": dolphinLayer,
+
+    "🐯 Tiger Habitats": tigerLayer,
+
+    "🌿 Mangrove Zones": mangroveLayer,
+
+    "🌊 Tidal Pools": tidalPoolLayer,
+
+    "🔄 Ecological Corridors": ecologicalCorridorLayer,
+
+    "⛈ Storm Affected Regions": stormLayer,
+
     "🔴 Migration & Mobility Networks": migrationLayer,
+
     "🔵 Spatial & Cultural Memory": memoryLayer
 },
 {
