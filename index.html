@@ -64,6 +64,41 @@ L.polygon([
 "<b>🐬 Coastal Irrawaddy Dolphin Distribution</b><br>" +
 "Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
 );
+
+/* 🐬 Shushuk: Symbolic Connection of the Sindhu and Ganga */
+
+L.polyline([
+    [28.0, 70.0],   // Indus Basin (Sindhu)
+    [25.5, 82.0],   // Ganga Basin
+],{
+    color:"#3182bd",
+    weight:3,
+    dashArray:"8,6",
+    opacity:0.8
+}).addTo(dolphinLayer)
+.bindPopup(
+"<b>🐬 Shushuk: The Dolphin Connection</b><br>" +
+"In Nirmal's ecological imagination, the Sindhu and the Ganga were once cojoined through the Shushuk (river dolphin), symbolizing a shared aquatic ecology across river systems."
+);
+
+/* River Nodes */
+
+L.circleMarker([28.0,70.0],{
+    radius:8,
+    color:"#08519c",
+    fillColor:"#6baed6",
+    fillOpacity:0.9
+}).addTo(dolphinLayer)
+.bindPopup("<b>🐬 Sindhu (Indus River)</b>");
+
+L.circleMarker([25.5,82.0],{
+    radius:8,
+    color:"#08519c",
+    fillColor:"#6baed6",
+    fillOpacity:0.9
+}).addTo(dolphinLayer)
+.bindPopup("<b>🐬 Ganga River</b>");
+    
 var tigerLayer = L.layerGroup();
 
 var mangroveLayer = L.layerGroup();
