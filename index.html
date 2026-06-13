@@ -65,24 +65,25 @@ L.polygon([
 "Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
 );
 
-/* Ganga River */
+/* 🐬 Ganga River */
 
 L.polyline([
-    [30.9,79.1],
-    [29.5,80.0],
-    [27.5,81.5],
-    [25.5,83.0],
-    [23.0,88.0]
+    [30.99,79.07],   // Gangotri
+    [30.0,78.0],
+    [28.6,77.2],
+    [26.8,80.9],
+    [25.4,81.8],
+    [25.3,83.0],
+    [24.8,87.9],
+    [22.5,88.3]
 ],{
-    color:"blue",
-    weight:4,
-    opacity:0.8
+    color:"#1f78b4",
+    weight:4
 }).addTo(dolphinLayer)
 .bindPopup(
-"<b>Ganga River 🐬</b><br>" +
-"Historic habitat of the river dolphin."
+"<b>🐬 Ganga River Dolphin Habitat</b><br>" +
+"The Ganga river system historically supported populations of the Shushuk (river dolphin)." 
 );
-    
 var tigerLayer = L.layerGroup();
 
 var mangroveLayer = L.layerGroup();
