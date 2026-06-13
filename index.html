@@ -43,6 +43,84 @@ var memoryLayer = L.layerGroup().addTo(map);
 /* ================= ECOLOGY SUBLAYERS ================= */
 
 var dolphinLayer = L.layerGroup();
+    /* ================= IRRAWADDY DOLPHIN HABITAT DISTRIBUTION ================= */
+
+/* Coastal Distribution Zone */
+
+L.polygon([
+    [22.8,87.8],
+    [22.6,89.5],
+    [21.8,90.2],
+    [20.8,90.0],
+    [20.6,88.2],
+    [21.5,87.5]
+],{
+    color:"#1f78b4",
+    fillColor:"#7fcdbb",
+    fillOpacity:0.30,
+    weight:2
+}).addTo(dolphinLayer)
+.bindPopup(
+"<b>Coastal Irrawaddy Dolphin Habitat</b><br>" +
+"Coastal populations inhabit saline estuarine and near-shore waters. " +
+"They range widely along coastlines and may remain in favourable areas for extended periods before shifting to other estuarine zones."
+);
+
+/* Deep-Water Habitat Nodes */
+
+var habitatNodes = [
+
+{
+name:"Deep-Water Refuge Pool A",
+coord:[22.05,89.10]
+},
+
+{
+name:"Deep-Water Refuge Pool B",
+coord:[21.85,89.28]
+},
+
+{
+name:"Deep-Water Refuge Pool C",
+coord:[21.70,89.42]
+}
+
+];
+
+habitatNodes.forEach(function(site){
+
+L.circleMarker(site.coord,{
+    radius:8,
+    color:"#08519c",
+    fillColor:"#6baed6",
+    fillOpacity:0.9,
+    weight:2
+})
+.addTo(dolphinLayer)
+.bindPopup(
+"<b>"+site.name+"</b><br>" +
+"Representative deep-water refuge habitat. During dry periods, riverine Irrawaddy dolphins return to deep pools created by riverbed geology and hydrological conditions."
+);
+
+});
+
+/* Ecological Connectivity */
+
+L.polyline([
+    [22.05,89.10],
+    [21.85,89.28],
+    [21.70,89.42]
+],{
+    color:"#3182bd",
+    weight:3,
+    dashArray:"8,6",
+    opacity:0.8
+})
+.addTo(dolphinLayer)
+.bindPopup(
+"<b>Habitat Connectivity Network</b><br>" +
+"Riverine populations move between deep-water refuges, tributaries and floodplain habitats in response to seasonal hydrological changes."
+);
 
 var tigerLayer = L.layerGroup();
 
