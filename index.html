@@ -63,6 +63,28 @@ L.polygon([
 "<b>Coastal Irrawaddy Dolphin Distribution</b><br>" +
 "Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
 );
+
+/* Freshwater Irrawaddy Dolphin Refugia */
+
+L.polygon([
+    [31.0, 72.0],   // Indus
+    [26.0, 88.0],   // Ganga-Brahmaputra
+    [19.0, 96.0],   // Irrawaddy
+    [14.0, 106.0],  // Mekong
+    [11.0, 104.0],  // Tonle Sap region
+    [8.0, 98.0]
+],{
+    color:"#08519c",
+    fillColor:"#9ecae1",
+    fillOpacity:0.25,
+    weight:2,
+    dashArray:"6,4"
+}).addTo(dolphinLayer)
+.bindPopup(
+"<b>Freshwater Irrawaddy Dolphin Populations</b><br>" +
+"Freshwater populations are comparatively rare, with only a limited number remaining in the major river systems of Asia."
+);
+
 var tigerLayer = L.layerGroup();
 
 var mangroveLayer = L.layerGroup();
