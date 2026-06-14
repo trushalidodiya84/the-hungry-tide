@@ -58,7 +58,7 @@ L.polygon([
     color:"#1f78b4",
     fillColor:"#7fcdbb",
     fillOpacity:0.25,
-    weight:0.1
+    weight:2
 }).addTo(dolphinLayer)
 .bindPopup(
 "<b>🐬 Coastal Irrawaddy Dolphin Distribution</b><br>" +
@@ -74,7 +74,7 @@ fetch('Ganga.geojson')
     L.geoJSON(data,{
         style:{
             color:"#1f78b4",
-            weight:4
+            weight:1
         }
     })
     .bindPopup(
