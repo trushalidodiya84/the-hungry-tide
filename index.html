@@ -65,6 +65,8 @@ L.polygon([
 "Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
 );
 
+
+    var riverFiles = [
 /* 🐬 Ganga River GeoJSON */
 
 fetch('Ganga.geojson')
@@ -77,13 +79,36 @@ fetch('Ganga.geojson')
             weight:1
         }
     })
-    .bindPopup(
-        "<b>🐬 Ganga River Dolphin Habitat</b><br>" +
-        "The Ganga river system historically supported populations of the Shushuk (river dolphin)."
-    )
-    .addTo(dolphinLayer);
+   
+[
+"Indus.geojson",
+"🐬 Indus River",
+"The Sindhu (Indus) river system was historically associated with river dolphin populations."
+],
 
-});
+[
+"Irrawaddy.geojson",
+"🐬 Irrawaddy River",
+"One of the principal freshwater habitats of the Irrawaddy dolphin in Southeast Asia."
+],
+
+[
+"Mekong.geojson",
+"🐬 Mekong River",
+"A major refuge for the remaining freshwater populations of the Irrawaddy dolphin."
+],
+
+[
+"Brahmaputra.geojson",
+"🐬 Brahmaputra River",
+"Part of the larger riverine ecological network connected to South Asian freshwater dolphin habitats."
+]
+
+];
+    .bindPopup(
+"<b>"+river[1]+"</b><br>" +
+river[2]
+)
 var tigerLayer = L.layerGroup();
 
 var mangroveLayer = L.layerGroup();
