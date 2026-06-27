@@ -142,6 +142,28 @@ ecologyLayer.addLayer(dolphinLayer);
 ecologyLayer.addLayer(tigerLayer);
 
 ecologyLayer.addLayer(mangroveLayer);
+    /* ================= MANGROVE HABITAT ================= */
+
+L.polygon([
+    [22.35,88.55],
+    [22.30,89.25],
+    [22.10,89.60],
+    [21.75,89.70],
+    [21.50,89.45],
+    [21.45,88.90],
+    [21.65,88.55],
+    [22.00,88.45]
+],{
+    color:"#228B22",
+    fillColor:"#32CD32",
+    fillOpacity:0.20,
+    weight:2
+})
+.addTo(mangroveLayer)
+.bindPopup(
+"<b>🌿 Sundarbans Mangrove Ecosystem</b><br>" +
+"The world's largest mangrove forest. A dynamic ecological zone shaped by tides, sedimentation, salinity, and biodiversity. The mangrove habitat forms the ecological foundation of Amitav Ghosh's <i>The Hungry Tide</i>."
+);
 
 ecologyLayer.addLayer(tidalPoolLayer);
 
