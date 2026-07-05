@@ -525,7 +525,107 @@ var piyaFamilyMigration = L.polyline([
 });
 
 migrationLayer.addLayer(piyaFamilyMigration);    
-    
+
+if(feature.properties.name === "Bangladesh"){
+
+    L.geoJSON(feature,{
+
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#8B0000",
+                fillColor:"#FF6B6B",
+                fillOpacity:0.8,
+                weight:2
+            });
+        },
+
+        onEachFeature: function(feature, layer){
+
+            layer.bindPopup(`
+<b>🚶 Bangladesh</b><br><br>
+
+Bangladesh represents the point of origin for many refugees whose journeys form a central migration narrative in <i>The Hungry Tide</i>.
+
+<br><br>
+
+Following Partition and later political upheavals, thousands of Bengali Hindus were displaced from East Pakistan (later Bangladesh) and sought refuge in India.
+
+<br><br>
+
+Their migration eventually led to government resettlement schemes in Central India and later to Morichjhapi in the Sundarbans.
+
+<br><br>
+
+Bangladesh symbolizes the beginning of a long history of displacement, exile, and the search for belonging.
+`);
+        }
+
+    }).addTo(migrationLayer);
+
+}
+    if(feature.properties.name === "Raipur"){
+
+    L.geoJSON(feature,{
+
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#8B0000",
+                fillColor:"#FF6B6B",
+                fillOpacity:0.8,
+                weight:2
+            });
+        },
+
+        onEachFeature: function(feature, layer){
+
+            layer.bindPopup(`
+<b>🚶 Raipur Refugee Camp</b><br><br>
+
+Raipur served as an important refugee resettlement centre associated with the Dandakaranya Project.
+
+<br><br>
+
+Refugees displaced from East Pakistan/Bangladesh were relocated here by the Indian government as part of a rehabilitation programme.
+
+<br><br>
+
+Many refugees felt culturally and geographically disconnected from Bengal and viewed the camps as temporary spaces rather than permanent homes.
+
+<br><br>
+
+For many settlers, Raipur became an important stage in the migration journey that eventually led to Morichjhapi.
+`);
+        }
+
+    }).addTo(migrationLayer);
+
+}
+
+    fetch("Dandakaranya.geojson")
+.then(response => response.json())
+.then(data => {
+
+    L.geoJSON(data,{
+
+        style:{
+            color:"#8B4513",
+            weight:2,
+            fillOpacity:0.3
+        },
+
+        onEachFeature:function(feature,layer){
+
+            layer.bindPopup(`
+            ...
+            `);
+
+        }
+
+    }).addTo(migrationLayer);
+
+});
 L.control.layers(
 null,
 {
