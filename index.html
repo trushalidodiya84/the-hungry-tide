@@ -233,7 +233,125 @@ fetch("All places.geojson")
     });
 
 });
-/* ================= MALTA RIVER ================= */
+
+    /* ================= MORICHHJHAPI : ECOLOGY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Morichjhapi"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#006400",
+                        fillColor:"#32CD32",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🌿 Morichjhapi</b><br><br>
+
+                    A settlement island within the Sundarbans ecosystem. Morichjhapi highlights the tension between environmental conservation, forest management, and human habitation in a fragile mangrove landscape.
+                    `);
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
+    /* ================= MORICHHJHAPI : MIGRATION ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Morichjhapi"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF4444",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🚶 Morichjhapi</b><br><br>
+
+                    Morichjhapi became a destination for refugees displaced from East Pakistan/Bangladesh and later resettled through Dandakaranya. It symbolizes migration, displacement, and the search for belonging.
+                    `);
+
+                }
+
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+});
+    /* ================= MORICHHJHAPI : MEMORY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Morichjhapi"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>📖 Morichjhapi</b><br><br>
+
+                    Through Nirmal's journal and Kusum's memories, Morichjhapi becomes a site of remembrance, preserving histories of displacement, suffering, resistance, and loss.
+                    `);
+
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});
+    /* ================= MALTA RIVER ================= */
 
 fetch("Malta River.geojson")
 .then(response => response.json())
