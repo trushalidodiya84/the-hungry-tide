@@ -253,20 +253,22 @@ fetch("Malta River.geojson")
     .addTo(ecologyLayer);
 
 });
-  /* ================= GARJANTOLA ================= */
+
+    /* ================= GARJANTOLA ================= */
+
 fetch("Garjantola.geojson")
 .then(response => response.json())
 .then(data => {
 
-    L.geoJSON(data,{
+    L.geoJSON(data, {
 
         pointToLayer: function(feature, latlng){
             return L.circleMarker(latlng,{
-                radius: 8,
-                color: "#006400",
-                fillColor: "#32CD32",
-                fillOpacity: 0.8,
-                weight: 2
+                radius:10,
+                color:"#006400",
+                fillColor:"#32CD32",
+                fillOpacity:0.8,
+                weight:2
             });
         },
 
@@ -279,11 +281,11 @@ fetch("Garjantola.geojson")
 
                 <br><br>
 
-                The site is situated within the tidal mangrove landscape of the Sundarbans and represents a transition zone between inhabited islands and the forest-edge wilderness.
+                Situated near the forest-edge waterways of the Sundarbans, Garjantola represents a transition zone between inhabited islands and the mangrove wilderness.
 
                 <br><br>
 
-                The name may derive from the Garjan mangrove tree (<i>Rhizophora apiculata</i>), a species characteristic of the Sundarbans, or from the “garjan” (roar) of tigers associated with the domain of Dokkhin Rai.
+                The name may derive from the Garjan mangrove tree (<i>Rhizophora apiculata</i>) or from the "garjan" (roar) of tigers associated with the domain of Dokkhin Rai.
 
                 <br><br>
 
@@ -295,6 +297,7 @@ fetch("Garjantola.geojson")
     }).addTo(ecologyLayer);
 
 });
+    
 L.control.layers(
 null,
 {
