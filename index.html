@@ -567,7 +567,56 @@ Dandakaranya therefore represents a crucial stage in the migration history of th
     }).addTo(migrationLayer);
 
 });
-    
+/* ================= BANGLADESH : MIGRATION ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Bangladesh"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF6B6B",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>🚶 Bangladesh</b><br><br>
+
+Bangladesh represents the point of origin for many refugees whose journeys form a central migration narrative in <i>The Hungry Tide</i>.
+
+<br><br>
+
+Following the Partition of India in 1947 and later political upheavals in East Pakistan (now Bangladesh), thousands of Bengali Hindus were displaced from their homes and sought refuge in India.
+
+<br><br>
+
+Many of these refugees were later relocated to government resettlement camps in the Dandakaranya region of Central India. Dissatisfied with life in the camps and longing to return to Bengal, thousands migrated again and eventually settled in Morichjhapi in 1979.
+
+<br><br>
+
+Bangladesh therefore marks the beginning of a migration route that links displacement, exile, resettlement, and the search for belonging in <i>The Hungry Tide</i>.
+`);
+                }
+
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+});    
 L.control.layers(
 null,
 {
