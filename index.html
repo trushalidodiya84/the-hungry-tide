@@ -488,6 +488,41 @@ fetch("Garjantola.geojson")
 
 });
 
+   layer.bindPopup(`
+<b>🚶 Seattle, USA</b><br><br>
+
+Seattle represents the final stage of Piya Roy's family migration journey. After being displaced from Burma during the upheavals of the Second World War and resettling in India, her family later migrated to the United States.
+
+<br><br>
+
+Piya was born and raised in Seattle, growing up far from the riverine landscapes of South Asia. Yet her later research on dolphins in the Sundarbans reconnects her with the ecological and cultural geographies of her family's past.
+
+<br><br>
+
+Seattle thus symbolizes diasporic identity, transnational mobility, and the complex ways migration shapes personal and cultural memory in <i>The Hungry Tide</i>.
+`);
+    /* ================= PIYA FAMILY MIGRATION ================= */
+
+var piyaFamilyMigration = L.polyline([
+    [21.24210346970345, 96.43350227643321],   // Burma
+    [47.60594060998454, -122.33119513137272]  // Seattle
+],{
+    color:"#FF4444",
+    weight:3,
+    dashArray:"8,8"
+});
+
+piyaFamilyMigration.bindPopup(`
+<b>🚶 Piya's Family Migration Route</b><br><br>
+
+Piya's grandparents were Bengali settlers in Burma (Myanmar). During the upheavals of the Second World War, they migrated to India as refugees and later settled in the United States.
+
+<br><br>
+
+The route symbolizes transnational migration, displacement, and diasporic identity in <i>The Hungry Tide</i>.
+`);
+
+migrationLayer.addLayer(piyaFamilyMigration);
     var piyaFamilyMigration = L.polyline([
     [21.24210346970345, 96.43350227643321],   // Burma
     [22.55819943765848, 88.28923271685082],   // Kolkata
