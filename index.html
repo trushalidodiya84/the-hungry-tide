@@ -487,6 +487,29 @@ fetch("Garjantola.geojson")
     }).addTo(ecologyLayer);
 
 });
+
+    var piyaFamilyMigration = L.polyline([
+    [21.24210346970345, 96.43350227643321],   // Burma
+    [22.55819943765848, 88.28923271685082],   // Kolkata
+    [47.60594060998454, -122.33119513137272]  // Seattle
+],{
+    color:"#FF4444",
+    weight:3,
+    dashArray:"8,8"
+});
+    piyaFamilyMigration.bindPopup(`
+<b>🚶 Piya's Family Migration Route</b><br><br>
+
+Burma (Myanmar) → Calcutta (India) → Seattle (USA)
+
+<br><br>
+
+Piya's grandparents were Bengali settlers in Burma. During the upheavals of the Second World War, the family migrated to India as refugees and later settled in the United States.
+
+<br><br>
+
+This route illustrates a transnational history of displacement and migration that connects South Asia to the global Bengali diaspora. Piya's later return to the Sundarbans represents a symbolic reconnection with the landscapes and histories from which her family had once been displaced.
+`);
     
 L.control.layers(
 null,
