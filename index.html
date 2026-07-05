@@ -668,6 +668,69 @@ In <i>The Hungry Tide</i>, the history of refugee migration to Morichjhapi is cl
     });
 
 });
+    /* ================= REFUGEE MIGRATION ROUTES ================= */
+
+/* Bangladesh → Raipur */
+
+var route1 = L.polyline([
+    [23.6850, 90.3563],   // Bangladesh
+    [21.2514, 81.6296]    // Raipur
+],{
+    color:"#FF4444",
+    weight:3,
+    dashArray:"6,6"
+});
+
+route1.bindPopup(`
+<b>🚶 Refugee Migration Route I</b><br><br>
+Bangladesh → Raipur
+<br><br>
+Following displacement from East Pakistan (later Bangladesh), many refugee families were transported to Central India.
+`);
+
+migrationLayer.addLayer(route1);
+
+
+/* Raipur → Dandakaranya */
+
+var route2 = L.polyline([
+    [21.2514, 81.6296],   // Raipur
+    [19.0, 82.0]          // Dandakaranya region
+],{
+    color:"#FF4444",
+    weight:3,
+    dashArray:"6,6"
+});
+
+route2.bindPopup(`
+<b>🚶 Refugee Migration Route II</b><br><br>
+Raipur → Dandakaranya
+<br><br>
+Refugees were relocated from transit centres to rehabilitation camps throughout the Dandakaranya Project area.
+`);
+
+migrationLayer.addLayer(route2);
+
+
+/* Dandakaranya → Morichjhapi */
+
+var route3 = L.polyline([
+    [19.0, 82.0],         // Dandakaranya
+    [22.10, 88.93]        // Morichjhapi
+],{
+    color:"#FF4444",
+    weight:3,
+    dashArray:"6,6"
+});
+
+route3.bindPopup(`
+<b>🚶 Refugee Migration Route III</b><br><br>
+Dandakaranya → Morichjhapi
+<br><br>
+In 1979 thousands of refugees left Dandakaranya and travelled to the Sundarbans, establishing a settlement at Morichjhapi.
+`);
+
+migrationLayer.addLayer(route3);
     
 L.control.layers(
 null,
