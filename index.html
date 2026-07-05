@@ -223,19 +223,50 @@ fetch("All places.geojson")
                         "In 1867 a devastating cyclone struck the settlement and the port never recovered. " +
                         "The episode illustrates the conflict between colonial ambition and the ecological realities of the Sundarbans."
                     );
-layer.bindPopup(`
-<b>🌿 Assam</b><br><br>
 
-Assam is associated with the Brahmaputra River, one of South Asia's major river systems and an important habitat for freshwater biodiversity, including the Gangetic River Dolphin (<i>Platanista gangetica</i>).
+                }
 
-<br><br>
+            }).addTo(ecologyLayer);
 
-In <i>The Hungry Tide</i>, Piya's mother is from Assam and lived near the banks of the Brahmaputra. Although Piya grew up outside India, this connection symbolically links her family history to the riverine landscapes of South Asia.
+        }
 
-<br><br>
+    });
 
-The Brahmaputra's dynamic channels, seasonal floods, and aquatic ecosystems provide an ecological parallel to the tidal waterways of the Sundarbans. Through Assam, the novel connects different river worlds that shape human lives, memory, and non-human habitats.
-`);
+});
+    /* ================= ASSAM : ECOLOGY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Assam"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#006400",
+                        fillColor:"#32CD32",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🌿 Assam</b><br><br>
+
+                    Assam is associated with the Brahmaputra River, one of South Asia's major river systems and an important habitat for freshwater biodiversity, including the Gangetic River Dolphin.
+
+                    <br><br>
+
+                    In <i>The Hungry Tide</i>, Piya's mother is from Assam and lived near the banks of the Brahmaputra, linking Piya's family history to the riverine ecologies of South Asia.
+                    `);
+
                 }
 
             }).addTo(ecologyLayer);
