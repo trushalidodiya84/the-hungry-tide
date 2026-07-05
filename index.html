@@ -416,8 +416,46 @@ Morichjhapi stands as a powerful reminder of forgotten histories within the Sund
         }
 
     });
+if(feature.properties.name === "Bangladesh"){
 
+    L.geoJSON(feature,{
+
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#8B0000",
+                fillColor:"#FF6B6B",
+                fillOpacity:0.8,
+                weight:2
+            });
+        },
+
+        onEachFeature: function(feature, layer){
+
+            layer.bindPopup(`
+<b>🚶 Bangladesh</b><br><br>
+
+Bangladesh represents the point of origin for many refugees whose journeys form a central migration narrative in <i>The Hungry Tide</i>.
+
+<br><br>
+
+Following Partition and subsequent political upheavals, thousands of Bengali Hindus were displaced from East Pakistan (later Bangladesh) and sought refuge in India.
+
+<br><br>
+
+Their migration eventually led to government resettlement schemes in Central India and later to Morichjhapi in the Sundarbans.
+
+<br><br>
+
+Bangladesh symbolizes the beginning of a long history of displacement, exile, and the search for belonging.
+`);
+        }
+
+    }).addTo(migrationLayer);
+
+}
 });
+    
  
     /* ================= MALTA RIVER ================= */
 
@@ -566,6 +604,7 @@ Dandakaranya therefore represents a crucial stage in the migration history of th
     }).addTo(migrationLayer);
 
 });
+    
 L.control.layers(
 null,
 {
