@@ -617,6 +617,58 @@ Bangladesh therefore marks the beginning of a migration route that links displac
     });
 
 });    
+
+    /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Raipur"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF4444",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>🚶 Raipur Refugee Camp</b><br><br>
+
+Raipur served as an important administrative centre within the Dandakaranya rehabilitation scheme established for refugees displaced from East Pakistan (later Bangladesh).
+
+<br><br>
+
+After Partition, thousands of Bengali refugees were transported to camps across Central India. Raipur functioned as a major transit and administrative hub through which many refugee families passed before being settled in different parts of the Dandakaranya region.
+
+<br><br>
+
+For many refugees, the journey to Raipur marked a second displacement. Removed from Bengal's familiar language, culture, rivers, and agricultural environment, they faced difficult living conditions and an uncertain future.
+
+<br><br>
+
+In <i>The Hungry Tide</i>, the history of refugee migration to Morichjhapi is closely connected to the larger Dandakaranya resettlement programme. Raipur therefore represents an important stage in the migration route from Bangladesh to Dandakaranya and eventually to Morichjhapi.
+`);
+                }
+
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+});
+    
 L.control.layers(
 null,
 {
