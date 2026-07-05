@@ -416,7 +416,15 @@ Morichjhapi stands as a powerful reminder of forgotten histories within the Sund
         }
 
     });
-if(feature.properties.name === "Bangladesh"){
+
+});
+    
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+        if(feature.properties.name === "Bangladesh"){
 
     L.geoJSON(feature,{
 
@@ -454,9 +462,6 @@ Bangladesh symbolizes the beginning of a long history of displacement, exile, an
     }).addTo(migrationLayer);
 
 }
-});
-    
- 
     /* ================= MALTA RIVER ================= */
 
 fetch("Malta River.geojson")
