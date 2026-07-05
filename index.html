@@ -192,7 +192,47 @@ ecologyLayer.addLayer(ecologicalCorridorLayer);
 
 ecologyLayer.addLayer(stormLayer);
     /* ================= LAYER CONTROL ================= */
+/* ================= CANNING : ENVIRONMENTAL HISTORY ================= */
 
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Canning"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B4513",
+                        fillColor:"#CD853F",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(
+                        "<b>⛈️ Port Canning: Ecology versus Empire</b><br>" +
+                        "A colonial port project established on the Matla River. " +
+                        "Henry Piddington warned that the site was vulnerable to cyclones and tidal surges and emphasized the protective role of the Sundarbans mangroves. " +
+                        "In 1867 a devastating cyclone struck the settlement and the port never recovered. " +
+                        "The episode illustrates the conflict between colonial ambition and the ecological realities of the Sundarbans."
+                    );
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
 L.control.layers(
 null,
 {
