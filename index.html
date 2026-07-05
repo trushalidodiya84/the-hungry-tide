@@ -253,26 +253,49 @@ fetch("Malta River.geojson")
     .addTo(ecologyLayer);
 
 });
-    var garjantola = L.marker([22.05, 88.85])
-.bindPopup(`
-<b>🌿 Garjantola</b><br><br>
+  /* ================= GARJANTOLA ================= */
 
-An ecologically significant site in the Sundarbans associated with tidal pools, dolphin habitat, and Bon Bibi traditions. In <i>The Hungry Tide</i>, Garjantola serves as an important field site for Piya's dolphin research and reflects local ecological knowledge.
+fetch("Garjantola.geojson")
+.then(response => response.json())
+.then(data => {
 
-<br><br>
+    L.geoJSON(data,{
 
-<b>Possible Origins of the Name:</b>
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng,{
+                radius: 8,
+                color: "#006400",
+                fillColor: "#32CD32",
+                fillOpacity: 0.8,
+                weight: 2
+            });
+        },
 
-<ul>
-<li><b>Garjan Tree (Rhizophora apiculata):</b> The name may derive from the Garjan mangrove tree, a species adapted to the tidal forests of the Sundarbans. These trees help stabilize riverbanks, protect embankments from tidal surges, and support the region's biodiversity.</li>
+        onEachFeature: function(feature, layer){
 
-<li><b>Garjan (Roar):</b> The name may also refer to the roar of tigers, reflecting the area's proximity to wilderness associated with Dokkhin Rai, the tiger deity of Sundarbans folklore.</li>
-</ul>
+            layer.bindPopup(`
+                <b>🌿 Garjantola</b><br><br>
 
-Garjantola thus represents a convergence of mangrove ecology, tiger habitat, mythology, and cultural memory within the tide country.
-`);
+                An ecologically significant locality associated with dolphin habitat, tidal pools, and Bon Bibi traditions in <i>The Hungry Tide</i>.
 
-ecologyLayer.addLayer(garjantola);
+                <br><br>
+
+                The site is situated within the tidal mangrove landscape of the Sundarbans and represents a transition zone between inhabited islands and the forest-edge wilderness.
+
+                <br><br>
+
+                The name may derive from the Garjan mangrove tree (<i>Rhizophora apiculata</i>), a species characteristic of the Sundarbans, or from the “garjan” (roar) of tigers associated with the domain of Dokkhin Rai.
+
+                <br><br>
+
+                Garjantola embodies the intersection of mangrove ecology, dolphin habitat, mythology, and cultural memory in the tide country.
+            `);
+
+        }
+
+    }).addTo(ecologyLayer);
+
+});
 L.control.layers(
 null,
 {
