@@ -234,123 +234,47 @@ fetch("All places.geojson")
 
 });
 
-    /* ================= MORICHJHAPI : ECOLOGY ================= */
+  layer.bindPopup(`
+<b>🌿 Morichjhapi</b><br><br>
 
-fetch("All places.geojson")
-.then(response => response.json())
-.then(data => {
+Located near Lusibari on the banks of the Bagna River, Morichjhapi was a forested island within the Sundarbans Reserved Forest. The island became the site of a major conflict between human settlement and environmental conservation.
 
-    data.features.forEach(function(feature){
+<br><br>
 
-        if(feature.properties.name === "Morichjhapi"){
+In 1979, thousands of refugees displaced from East Pakistan/Bangladesh and later resettled in Dandakaranya migrated to Morichjhapi in search of land and livelihood. However, the authorities declared the island a protected forest reserved for tiger conservation and ordered the settlers' eviction.
 
-            L.geoJSON(feature,{
+<br><br>
 
-                pointToLayer: function(feature, latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#006400",
-                        fillColor:"#32CD32",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-                },
+Morichjhapi highlights the complex relationship between ecology, conservation policies, human survival, and the fragile mangrove environment of the Sundarbans. In <i>The Hungry Tide</i>, it serves as a powerful example of how environmental space is shaped by both natural forces and political decisions.
+`);
 
-                onEachFeature: function(feature, layer){
+    layer.bindPopup(`
+<b>🚶 Morichjhapi</b><br><br>
 
-                    layer.bindPopup(`
-                    <b>🌿 Morichjhapi</b><br><br>
+In 1979, thousands of refugees displaced by Partition and later confined to government resettlement camps in Dandakaranya migrated to Morichjhapi in the hope of rebuilding their lives in Bengal.
 
-                    A settlement island within the Sundarbans ecosystem. Morichjhapi highlights the tension between environmental conservation, forest management, and human habitation in a fragile mangrove landscape.
-                    `);
+<br><br>
 
-                }
+The island became a symbol of displacement, migration, exile, and the search for homeland. The settlers attempted to create a self-sustaining community, dividing the island into zones and cultivating the land.
 
-            }).addTo(ecologyLayer);
+<br><br>
 
-        }
+Morichjhapi represents one of the most significant migration narratives in <i>The Hungry Tide</i>, linking Partition, refugee movements, and the struggle for belonging.
+`);
 
-    });
+    layer.bindPopup(`
+<b>📖 Morichjhapi</b><br><br>
 
-});
-    /* ================= MORICHJHAPI : MIGRATION ================= */
+Morichjhapi is a site of historical and cultural memory in <i>The Hungry Tide</i>. Through Nirmal's journals, Kusum's experiences, and the recollections of local inhabitants, the island preserves memories of displacement, suffering, resistance, and loss.
 
-fetch("All places.geojson")
-.then(response => response.json())
-.then(data => {
+<br><br>
 
-    data.features.forEach(function(feature){
+Nirmal believed that the events at Morichjhapi should leave 'some trace, some hold upon the memory of the world.' His writings transform the island into a memorial landscape where personal stories intersect with larger histories of Partition and state violence.
 
-        if(feature.properties.name === "Morichjhapi"){
+<br><br>
 
-            L.geoJSON(feature,{
-
-                pointToLayer: function(feature, latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#8B0000",
-                        fillColor:"#FF4444",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-                },
-
-                onEachFeature: function(feature, layer){
-
-                    layer.bindPopup(`
-                    <b>🚶 Morichjhapi</b><br><br>
-
-                    Morichjhapi became a destination for refugees displaced from East Pakistan/Bangladesh and later resettled through Dandakaranya. It symbolizes migration, displacement, and the search for belonging.
-                    `);
-
-                }
-
-            }).addTo(migrationLayer);
-
-        }
-
-    });
-
-});
-    /* ================= MORICHJHAPI : MEMORY ================= */
-
-fetch("All places.geojson")
-.then(response => response.json())
-.then(data => {
-
-    data.features.forEach(function(feature){
-
-        if(feature.properties.name === "Morichjhapi"){
-
-            L.geoJSON(feature,{
-
-                pointToLayer: function(feature, latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#00008B",
-                        fillColor:"#4169E1",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-                },
-
-                onEachFeature: function(feature, layer){
-
-                    layer.bindPopup(`
-                    <b>📖 Morichjhapi</b><br><br>
-
-                    Through Nirmal's journal and Kusum's memories, Morichjhapi becomes a site of remembrance, preserving histories of displacement, suffering, resistance, and loss.
-                    `);
-
-                }
-
-            }).addTo(memoryLayer);
-
-        }
-
-    });
-
-});
+Morichjhapi stands as a powerful reminder of forgotten histories within the Sundarbans.
+`);
   
     /* ================= MALTA RIVER ================= */
 
