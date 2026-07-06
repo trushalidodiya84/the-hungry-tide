@@ -818,7 +818,40 @@ The episode reveals how poverty, widowhood, and social vulnerability exposed man
     });
 
 });
+/* ================= SATJELIA → SONAGACHHI : TRAFFICKING ROUTE ================= */
 
+var kusumMotherRoute = L.polyline([
+    [22.15620, 88.87887],   // Satjelia
+    [22.33491, 88.39903]    // Sonagachhi
+],{
+    color:"#8B0000",
+    weight:3,
+    dashArray:"8,8"
+});
+
+kusumMotherRoute.bindPopup(`
+<b>🚶 Gendered Migration and Trafficking Route</b><br><br>
+
+Satjelia → Sonagachhi
+
+<br><br>
+
+After the death of her husband, Kusum's mother became economically vulnerable. Dilip Choudhury promised her employment in Calcutta and persuaded her to leave Satjelia.
+
+<br><br>
+
+Instead of receiving legitimate work, she was trafficked into a brothel in Sonagachhi, one of the largest red-light districts in Calcutta. Dilip concealed the truth from Kusum and the villagers, claiming that she was employed in a respectable household.
+
+<br><br>
+
+This route illustrates how poverty, widowhood, and social marginalization exposed many women from the Sundarbans to trafficking networks linking remote islands with urban centres.
+
+<br><br>
+
+In <i>The Hungry Tide</i>, this episode reveals the gendered dimensions of migration, displacement, and exploitation that often remain absent from official histories.
+`);
+
+migrationLayer.addLayer(kusumMotherRoute);
     
     
 L.control.layers(
