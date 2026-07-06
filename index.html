@@ -877,7 +877,9 @@ fetch("All places.geojson")
 
                 onEachFeature: function(feature, layer){
 
-           layer.bindPopup(`
+                    layer.bindPopup(`
+<b>📖 Lusibari</b><br><br>
+
 <b>📖 Lusibari</b><br><br>
 
 Lusibari is one of the principal inhabited islands of the Sundarbans and a central setting in <i>The Hungry Tide</i>. Situated amidst a network of rivers and tidal channels, it embodies the intertwined histories of settlement, migration, memory, and survival in the tide country.
@@ -908,6 +910,8 @@ Through the histories of Hamilton, Nirmal, and Nilima, Lusibari emerges as a pla
         }
 
     });
+
+});
     
 L.control.layers(
 null,
