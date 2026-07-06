@@ -853,7 +853,64 @@ In <i>The Hungry Tide</i>, this episode reveals the gendered dimensions of migra
 
 migrationLayer.addLayer(kusumMotherRoute);
     
-    
+/* ================= LUSIBARI : MEMORY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Lusibari"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>📖 Lusibari</b><br><br>
+
+Lusibari is the southernmost inhabited island in <i>The Hungry Tide</i>. Located near the Raimangal River and surrounded by a network of rivers and tidal channels, it forms one of the principal settings of the novel.
+
+<br><br>
+
+The island was founded as part of Sir Daniel Hamilton's cooperative settlement project. In 1903, Hamilton purchased nearly 10,000 acres of the tide country, including Gosaba, Satjelia, Rangabelia, Lusibari, Jameshpur, Annapur, and Emilybari. At the time, the region consisted largely of mudflats and mangrove forests, with no embankments, roads, or permanent settlements.
+
+<br><br>
+
+Hamilton envisioned a new society based on cooperation rather than social hierarchy. Settlers from Bengal, Orissa, and the Santhal Parganas were welcomed on the condition that caste and communal divisions would be left behind. His goal was to create a community where people would work together and not exploit one another.
+
+<br><br>
+
+Life in Lusibari remained difficult. Settlers faced cyclones, tidal floods, tigers, crocodiles, and venomous snakes. The island's survival depended upon embankments (badh) that protected settlements from the twice-daily tides. Hamilton even introduced a local cooperative currency and discussed his ideas with figures such as Gandhi and Tagore.
+
+<br><br>
+
+People arrived in successive waves: the original settlers of the 1920s, refugees after Partition in 1947, and migrants following the Bangladesh War of 1971. Through these histories, Lusibari became a site of settlement, migration, memory, and resilience in the Sundarbans.
+
+<br><br>
+
+As Nirmal observes, Lusibari embodies both the aspirations of human settlement and the persistent power of the tide country, whose rivers, tides, and storms continually reshape the landscape.
+`);
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});    
 L.control.layers(
 null,
 {
