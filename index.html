@@ -721,6 +721,105 @@ In 1979 thousands of refugees left Dandakaranya and travelled to the Sundarbans,
 `);
 
 migrationLayer.addLayer(route3);
+    /* ================= SATJELIA : MEMORY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Satjelia"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>📖 Satjelia</b><br><br>
+
+Satjelia is one of the inhabited islands of the Sundarbans and serves as an important site of social memory in <i>The Hungry Tide</i>. It is associated with the life of Kusum, whose experiences reveal the hardships faced by marginalized communities in the tide country.
+
+<br><br>
+
+Kusum's father died while collecting firewood in a protected forest area. The family received no compensation, leaving her mother vulnerable to poverty and exploitation.
+
+<br><br>
+
+After being promised employment in Calcutta by Dilip Choudhury, Kusum's mother left Satjelia in search of work. Instead, she was trafficked into a brothel in Sonagachhi. Kusum remained behind and was later brought to Lusibari, where she was placed under the protection of the Women's Union.
+
+<br><br>
+
+Satjelia preserves memories of environmental hardship, gendered vulnerability, and community resilience in the Sundarbans.
+`);
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});
+
+    /* ================= SONAGACHHI : MIGRATION ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Sonagachhi"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF4444",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>🚶 Sonagachhi</b><br><br>
+
+Located in North Calcutta, Sonagachhi became one of South Asia's largest red-light districts during the colonial and postcolonial periods.
+
+<br><br>
+
+In <i>The Hungry Tide</i>, Kusum's mother was deceived by promises of employment and transported from the Sundarbans to Calcutta, where she was sold into prostitution.
+
+<br><br>
+
+The episode reveals how poverty, widowhood, and social vulnerability exposed many women from the Sundarbans to trafficking networks that connected remote islands with urban centres.
+`);
+                }
+
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+});
+
+    
     
 L.control.layers(
 null,
