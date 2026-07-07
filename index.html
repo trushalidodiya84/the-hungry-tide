@@ -911,6 +911,61 @@ Through the histories of Hamilton, Nirmal, and Nilima, Lusibari emerges as a pla
     });
 
 });
+    /* ================= KUMIRMARI : MEMORY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Kumirmari"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+<b>📖 Kumirmari</b><br><br>
+
+Kumirmari occupies an important place in the memory narrative of <i>The Hungry Tide</i>. After retiring from teaching, Nirmal accepted an invitation to visit a school in Kumirmari and travelled there with Horen.
+
+<br><br>
+
+During the journey, Nirmal read passages from François Bernier's seventeenth-century travel account. Horen connected Bernier's descriptions of moonlit rainbows, salt-makers, storms, and river journeys to places within the Sundarbans, blending historical records with local memory and knowledge.
+
+<br><br>
+
+It was in Kumirmari that Nirmal first heard of the refugee settlement at Morichjhapi. Thousands of refugees displaced from East Pakistan and later resettled in Dandakaranya had begun migrating to the island in search of land and belonging.
+
+<br><br>
+
+The news awakened Nirmal's curiosity and idealism. The stories he heard in Kumirmari eventually led him to visit Morichjhapi, where he witnessed the refugees' efforts to build a cooperative settlement and later documented the tragedy that followed.
+
+<br><br>
+
+Kumirmari therefore serves as a threshold between memory and history, linking Nirmal's intellectual journey to the larger story of Morichjhapi.
+`);
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});
+    
 L.control.layers(
 null,
 {
