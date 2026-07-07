@@ -1042,6 +1042,124 @@ The journey brings together scientific inquiry, traditional ecological knowledge
 `);
 
 ecologyLayer.addLayer(piyaDolphinRoute);
+/* ================= GERAFITOLA : MEMORY OF TRAVEL AND LANDSCAPE ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Gerafitola"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🌙 Gerafitola: Memory, Travel and Environmental Knowledge</b><br><br>
+
+                    During a journey through the tide country, Nirmal read passages from François Bernier's seventeenth-century travel narrative to Horen.
+
+                    <br><br>
+
+                    Bernier, who travelled in Mughal India during the reign of Aurangzeb, described witnessing a rare lunar rainbow. Horen immediately recognized the location and suggested that Bernier must have been at Gerafitola, the only place in the region where such a spectacle could be seen during a full moon.
+
+                    <br><br>
+
+                    The episode connects historical travel writing, local ecological knowledge, and cultural memory. Horen's interpretation demonstrates how the landscape preserves memories across generations.
+
+                    <br><br>
+
+                    Gerafitola also appears in Piya and Fokir's dolphin expedition. Here Piya observed unusual behaviour among Gangetic Dolphins (Platanista gangetica), prompting her to reflect on scientific research linking dolphin behaviour to environmental change and approaching storms.
+
+                    <br><br>
+
+                    <b>Themes:</b> Cultural Memory, Travel Narratives, Environmental Knowledge, Dolphins, Ecology.
+                    `);
+
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});
+    /* ================= GERAFITOLA : ECOLOGY AND ENVIRONMENTAL OBSERVATION ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Gerafitola"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#2E7D32",
+                        fillColor:"#66BB6A",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🐬 Gerafitola: Dolphins and Environmental Knowledge</b><br><br>
+
+                    During their expedition through the Sundarbans, Piya and Fokir stopped at Gerafitola while tracking river dolphins.
+
+                    <br><br>
+
+                    Here Piya observed a Gangetic Dolphin (<i>Platanista gangetica</i>) displaying unusual behaviour. Unable to explain the movement patterns, she recalled the research of Georges Pilleri, whose studies suggested that river dolphins are highly sensitive to changes in atmospheric pressure.
+
+                    <br><br>
+
+                    The unusual behaviour of the dolphins became an important ecological indicator, helping Piya recognize the environmental changes that signalled the approach of a severe cyclone.
+
+                    <br><br>
+
+                    Gerafitola demonstrates the close relationship between animal behaviour, environmental change, and scientific observation in <i>The Hungry Tide</i>.
+
+                    <br><br>
+
+                    Nirmal and Horen also associate this place with François Bernier's seventeenth-century travel narrative describing a rare moon rainbow, linking the landscape to historical memory and local knowledge.
+
+                    <br><br>
+
+                    <b>Themes:</b> Ecology, River Dolphins, Environmental Change, Scientific Observation, Traditional Knowledge.
+                    `);
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
     
 L.control.layers(
 null,
