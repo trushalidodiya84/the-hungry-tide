@@ -1076,6 +1076,45 @@ Gerafitola also appears in Nirmal and Horen's journey. While reading François B
 `);
 
 gerafitola.addTo(ecologyLayer);
+
+    /* ================= GERAFITOLA : ECOLOGY AND ENVIRONMENTAL OBSERVATION ================= */
+
+var gerafitola = L.circleMarker([21.81000, 89.04000],{
+    radius:8,
+    color:"#2E7D32",
+    fillColor:"#66BB6A",
+    fillOpacity:0.8,
+    weight:2
+});
+
+gerafitola.bindPopup(`
+<b>🐬 Gerafitola: Dolphins and Environmental Knowledge</b><br><br>
+
+During their expedition through the Sundarbans, Piya and Fokir stopped at Gerafitola while tracking river dolphins.
+
+<br><br>
+
+Here Piya observed a Gangetic Dolphin (<i>Platanista gangetica</i>) displaying unusual behaviour. Unable to explain the movement patterns, she recalled the research of Georges Pilleri, whose studies suggested that river dolphins are highly sensitive to changes in atmospheric pressure.
+
+<br><br>
+
+The unusual behaviour of the dolphins became an important ecological indicator, helping Piya recognize the environmental changes that signalled the approach of a severe cyclone.
+
+<br><br>
+
+Gerafitola demonstrates the close relationship between animal behaviour, environmental change, and scientific observation in <i>The Hungry Tide</i>.
+
+<br><br>
+
+Nirmal and Horen also associate this place with François Bernier's seventeenth-century travel narrative describing a rare moon rainbow. Horen believed that Bernier's account referred to Gerafitola, one of the few places in the tide country where such a phenomenon could be witnessed during a full moon.
+
+<br><br>
+
+<b>Themes:</b> Ecology, River Dolphins, Environmental Change, Scientific Observation, Traditional Knowledge, Cultural Memory.
+`);
+
+gerafitola.addTo(ecologyLayer);
+
     
 L.control.layers(
 null,
