@@ -965,6 +965,41 @@ Kumirmari therefore serves as a threshold between memory and history, linking Ni
     });
 
 });
+   /* ================= NIRMAL'S JOURNEY : MEMORY ROUTE ================= */
+
+var nirmalJourney = L.polyline([
+    [22.08918, 88.90773],   // Lusibari
+    [22.20608, 88.93613],   // Kumirmari
+    [22.10555, 88.93424]    // Morichjhapi
+],{
+    color:"#4169E1",
+    weight:3,
+    dashArray:"8,8"
+});
+
+nirmalJourney.bindPopup(`
+<b>📖 Nirmal's Journey</b><br><br>
+
+Lusibari → Kumirmari → Morichjhapi
+
+<br><br>
+
+After retiring from teaching, Nirmal travelled from Lusibari to Kumirmari with Horen. During this journey he listened to local stories of the tide country and read passages from François Bernier's seventeenth-century travel narrative.
+
+<br><br>
+
+It was in Kumirmari that Nirmal first heard of the refugee settlement at Morichjhapi. The stories of thousands of refugees attempting to build a new life in the Sundarbans deeply moved him.
+
+<br><br>
+
+His subsequent visits to Morichjhapi transformed him from an observer into a witness. Through his notebooks and letters, Nirmal preserved the memory of the settlers' hopes, struggles, and eventual tragedy.
+
+<br><br>
+
+This route traces the intellectual and emotional journey that led Nirmal to document one of the most significant historical events represented in <i>The Hungry Tide</i>.
+`);
+
+memoryLayer.addLayer(nirmalJourney);
     
 L.control.layers(
 null,
