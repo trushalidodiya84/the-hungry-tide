@@ -1001,12 +1001,13 @@ This route traces the intellectual and emotional journey that led Nirmal to docu
 `);
 
 memoryLayer.addLayer(nirmalJourney);
-   /* ================= PIYA'S DOLPHIN EXPEDITION ================= */
+  
+/* ================= PIYA'S DOLPHIN EXPEDITION ================= */
 
 var piyaDolphinRoute = L.polyline([
-    [LUSIBARI_LAT, LUSIBARI_LON],
-    [GARJANTOLA_LAT, GARJANTOLA_LON],
-    [SEA_LAT, SEA_LON]
+    [22.08918, 88.90773],   // Lusibari
+    [21.93696, 88.90604],   // Garjantola
+    [21.75236, 89.05097]    // Mohona / Near the Sea
 ],{
     color:"#2E7D32",
     weight:4,
@@ -1016,23 +1017,27 @@ var piyaDolphinRoute = L.polyline([
 piyaDolphinRoute.bindPopup(`
 <b>🐬 Piya's Dolphin Expedition</b><br><br>
 
-Lusibari → Garjantola → Mohona (Near the Sea)
+<b>Route:</b> Lusibari → Garjantola → Mohona (Near the Sea)
 
 <br><br>
 
-This route traces Piya Roy's ecological fieldwork in the Sundarbans. Assisted by Fokir, she follows the movements of river dolphins and records their behaviour within the interconnected rivers, khals, and estuarine waters of the tide country.
+This route traces Piya Roy's ecological fieldwork in the Sundarbans. Assisted by Fokir, she follows the movements of river dolphins and studies their behaviour within the intricate network of rivers, khals, and estuarine waters that shape the tide country.
 
 <br><br>
 
-At Garjantola, Piya encounters a mother dolphin and calf and begins to understand the ecological knowledge possessed by local fishing communities.
+At Garjantola, Piya encounters a mother dolphin and calf and begins to understand the ecological knowledge possessed by local fishing communities. Fokir's intimate understanding of the waterways and dolphin habitats complements Piya's scientific research.
 
 <br><br>
 
-As the journey progresses toward the sea, observations of dolphin behaviour provide clues about changing environmental conditions and the approaching cyclone that ultimately transforms the lives of both Piya and Fokir.
+As the expedition moves toward the open waters near the sea, Piya records unusual dolphin behaviour and reflects on earlier scientific studies of river dolphins. These observations eventually alert her to changing environmental conditions and the approach of a devastating cyclone.
 
 <br><br>
 
-The expedition brings together scientific research, traditional ecological knowledge, and the dynamic ecology of the Sundarbans.
+The journey brings together scientific inquiry, traditional ecological knowledge, animal migration, and the fragile ecology of the Sundarbans. It also marks the development of the relationship between Piya and Fokir through their shared engagement with the riverine landscape.
+
+<br><br>
+
+<b>Themes:</b> Ecology, Dolphin Migration, Traditional Ecological Knowledge, Environmental Change, Human–Nature Relationships.
 `);
 
 ecologyLayer.addLayer(piyaDolphinRoute);
