@@ -1001,6 +1001,41 @@ This route traces the intellectual and emotional journey that led Nirmal to docu
 `);
 
 memoryLayer.addLayer(nirmalJourney);
+   /* ================= PIYA'S DOLPHIN EXPEDITION ================= */
+
+var piyaDolphinRoute = L.polyline([
+    [LUSIBARI_LAT, LUSIBARI_LON],
+    [GARJANTOLA_LAT, GARJANTOLA_LON],
+    [SEA_LAT, SEA_LON]
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"8,8"
+});
+
+piyaDolphinRoute.bindPopup(`
+<b>🐬 Piya's Dolphin Expedition</b><br><br>
+
+Lusibari → Garjantola → Mohona (Near the Sea)
+
+<br><br>
+
+This route traces Piya Roy's ecological fieldwork in the Sundarbans. Assisted by Fokir, she follows the movements of river dolphins and records their behaviour within the interconnected rivers, khals, and estuarine waters of the tide country.
+
+<br><br>
+
+At Garjantola, Piya encounters a mother dolphin and calf and begins to understand the ecological knowledge possessed by local fishing communities.
+
+<br><br>
+
+As the journey progresses toward the sea, observations of dolphin behaviour provide clues about changing environmental conditions and the approaching cyclone that ultimately transforms the lives of both Piya and Fokir.
+
+<br><br>
+
+The expedition brings together scientific research, traditional ecological knowledge, and the dynamic ecology of the Sundarbans.
+`);
+
+ecologyLayer.addLayer(piyaDolphinRoute);
     
 L.control.layers(
 null,
