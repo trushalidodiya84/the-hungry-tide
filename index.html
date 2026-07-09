@@ -1277,39 +1277,9 @@ fetch("Salt Lake.geojson")
 
     });
 
-});
-
-var encounterZone = L.circleMarker([22.00796,88.73735],{
-    radius:8,
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0.8,
-    weight:2
-});
-
-encounterZone.bindPopup(`
-<b>🐬 Probable Encounter Zone</b><br><br>
-
-This marker represents an approximate location where Piya Roy may have encountered Fokir and Tutul while accompanying a Forest Department expedition in the Sundarbans.<br><br>
-
-The novel does not specify the exact location. However, the encounter occurs after Piya leaves Canning and before she reaches Lusibari with Fokir.<br><br>
-
-Fokir and Tutul are fishing in a restricted area when they are stopped by a forest guard. After Fokir rescues Piya from the river, she abandons the official expedition and chooses to travel with him.<br><br>
-
-This encounter marks the beginning of Piya's reliance on traditional ecological knowledge and leads to her first successful dolphin observations.<br><br>
-
-<b>Themes:</b> Traditional Ecological Knowledge, Dolphin Research, Human–Environment Interaction.
-`);
 
 
-    encounterZone.addTo(ecologyLayer);
 
-            ];
-        }
-
-    });
-
-});
     
 L.control.layers(
 null,
