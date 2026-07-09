@@ -1421,6 +1421,57 @@ ecologyLayer.addLayer(piyaRiverRoute);
     fillOpacity:0.9,
     weight:2
 });
+/* ================= DHAKURIA STATION ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "DHakuria Station"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B4513",
+                        fillColor:"#CD853F",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🚉 Dhakuria Station</b><br><br>
+
+                    Dhakuria Station marks the beginning of Piya Roy's journey into the Sundarbans.
+
+                    <br><br>
+
+                    It is here that Piya first meets Kanai Dutt while travelling toward Canning. Their encounter initiates one of the central narrative journeys of <i>The Hungry Tide</i>.
+
+                    <br><br>
+
+                    As part of Kolkata's suburban railway network, Dhakuria functions as the point of departure from the metropolitan city into the ecological landscape of the tide country.
+
+                    <br><br>
+
+                    <b>Themes:</b> Mobility, Transition, Encounter, Gateway Journey.
+                    `);
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
     
 L.control.layers(
 null,
