@@ -1306,6 +1306,70 @@ The shift illustrates how ecological transformations continuously reshape patter
 `);
 
 basanti.addTo(ecologyLayer);
+
+    /* ================= KOLKATA TO LUSIBARI VIA CANNING ================= */
+
+var canningRoute = L.polyline([
+    [22.5726, 88.3639],   // Kolkata
+    [22.3149, 88.6627],   // Canning
+    [22.08918, 88.90773]  // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"10,6"
+});
+
+canningRoute.bindPopup(`
+<b>🚤 Kolkata → Canning → Lusibari</b><br><br>
+
+This was one of the traditional routes connecting Kolkata with the inhabited islands of the Sundarbans.
+
+<br><br>
+
+Canning developed as an important gateway to the delta. However, changing environmental conditions, reduced water flow, and siltation in the Matla River gradually affected navigation along this route.
+
+<br><br>
+
+The route illustrates how ecological transformations influence mobility and transportation networks in the tide country.
+
+<br><br>
+
+<b>Themes:</b> Ecology, River Change, Mobility, Environmental Transformation.
+`);
+
+ecologyLayer.addLayer(canningRoute);
+
+    /* ================= KOLKATA TO LUSIBARI VIA BASANTI ================= */
+
+var basantiRoute = L.polyline([
+    [22.5726, 88.3639],               // Kolkata
+    [22.199772592165157, 88.71183157294148], // Basanti
+    [22.08918, 88.90773]              // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"5,5"
+});
+
+basantiRoute.bindPopup(`
+<b>🚤 Kolkata → Basanti → Lusibari</b><br><br>
+
+As ecological changes altered the navigability of the Matla River, routes through Basanti became increasingly important for reaching the islands of the Sundarbans.
+
+<br><br>
+
+The route demonstrates how local communities adapted to changing environmental conditions by using alternative waterways and transportation networks.
+
+<br><br>
+
+In <i>The Hungry Tide</i>, such shifts reflect the dynamic relationship between human movement and the evolving ecology of the delta.
+
+<br><br>
+
+<b>Themes:</b> Ecology, Adaptation, River Networks, Human Mobility, Environmental Change.
+`);
+
+ecologyLayer.addLayer(basantiRoute);
     
 L.control.layers(
 null,
