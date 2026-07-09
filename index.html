@@ -1114,7 +1114,64 @@ Nirmal and Horen also associate this place with François Bernier's seventeenth-
 `);
 
 gerafitola.addTo(ecologyLayer);
+/* ================= GOSABA : HAMILTON ESTATE ================= */
 
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Gosaba"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🏝️ Gosaba: Hamilton's Cooperative Settlement</b><br><br>
+
+                    Gosaba formed the centre of Sir Daniel Hamilton's ambitious settlement project in the Sundarbans. Beginning in 1903, Hamilton purchased thousands of acres of forested land and established a cooperative community that included Gosaba, Satjelia, Rangabelia, Lusibari, Jameshpur, Annapur, and Emilybari.
+
+                    <br><br>
+
+                    The settlement sought to create a self-sufficient society based on cooperation rather than caste hierarchy. Settlers arrived from different regions of Bengal, Orissa, and the Santhal Parganas, transforming the mangrove wilderness into inhabited land through collective labour.
+
+                    <br><br>
+
+                    Gosaba became an important centre of administration, agriculture, trade, and community life within the Hamilton Estate. The project represented an early experiment in rural reconstruction and social reform in the tide country.
+
+                    <br><br>
+
+                    In <i>The Hungry Tide</i>, the history of Hamilton's settlement survives as part of the cultural memory of the Sundarbans, reflecting the region's long history of migration, settlement, and adaptation to a challenging environment.
+
+                    <br><br>
+
+                    <b>Themes:</b> Settlement, Cultural Memory, Migration, Cooperative Society, Hamilton Estate.
+                    `);
+
+                }
+
+            }).addTo(memoryLayer);
+
+        }
+
+    });
+
+});
+    
     
 L.control.layers(
 null,
