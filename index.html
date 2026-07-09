@@ -1346,11 +1346,40 @@ fetch("All places.geojson")
     });
 
 });    
-/* ================= PIYA'S JOURNEY INTO THE TIDE COUNTRY ================= */
+/* ================= PIYA'S RAILWAY JOURNEY ================= */
 
-var piyaJourney = L.polyline([
+var piyaRailRoute = L.polyline([
     [22.50812, 88.37256],   // Dhakuria Station
     [22.40272, 88.49161],   // Champahati
+    [22.31490, 88.66270]    // Canning
+],{
+    color:"#8B4513",
+    weight:4
+});
+
+piyaRailRoute.bindPopup(`
+<b>🚉 Piya's Railway Journey</b><br><br>
+
+Dhakuria Station → Champahati → Canning
+
+<br><br>
+
+Piya's entry into the Sundarbans begins through the suburban railway network of Kolkata. Meeting Kanai Dutt at Dhakuria Station, she travels via Champahati toward Canning, the principal gateway to the tide country.
+
+<br><br>
+
+This route represents the transition from metropolitan space to the ecological frontier of the Sundarbans.
+
+<br><br>
+
+<b>Themes:</b> Mobility, Transition, Gateway to the Sundarbans.
+`);
+
+ecologyLayer.addLayer(piyaRailRoute);
+
+    /* ================= PIYA'S RIVER JOURNEY ================= */
+
+var piyaRiverRoute = L.polyline([
     [22.31490, 88.66270],   // Canning
     [22.00796, 88.73735],   // Encounter Zone
     [21.93696, 88.90604],   // Garjantola
@@ -1361,37 +1390,37 @@ var piyaJourney = L.polyline([
     dashArray:"8,8"
 });
 
-piyaJourney.bindPopup(`
-<b>🐬 Piya's Journey into the Tide Country</b><br><br>
+piyaRiverRoute.bindPopup(`
+<b>🐬 Piya's River Journey</b><br><br>
 
-<b>Route:</b> Dhakuria Station → Champahati → Canning → Encounter Zone → Garjantola → Lusibari
-
-<br><br>
-
-Piya Roy's journey into the Sundarbans begins at Dhakuria Station, where she meets Kanai Dutt while travelling toward Canning through the suburban railway network of Kolkata.
+Canning → Encounter Zone → Garjantola → Lusibari
 
 <br><br>
 
-Passing through Champahati and reaching Canning, the principal gateway to the Sundarbans, Piya joins a Forest Department expedition to conduct research on the Irrawaddy Dolphin and the ecological networks of the tide country.
+After reaching Canning, Piya enters the waterways of the Sundarbans with a Forest Department expedition.
 
 <br><br>
 
-While travelling through the waterways she encounters Fokir and Tutul in a restricted fishing zone. Following an accident in the river, Fokir rescues her, leading Piya to abandon the official expedition and rely instead on local ecological knowledge.
+Her encounter with Fokir transforms the journey from an official scientific survey into an exploration guided by traditional ecological knowledge.
 
 <br><br>
 
-Guided by Fokir, she reaches Garjantola, an important dolphin habitat associated with Bon Bibi traditions and traditional ecological knowledge, before eventually arriving at Lusibari.
+Travelling through the rivers and tidal channels, she reaches Garjantola and later Lusibari, gaining a deeper understanding of the ecology and culture of the tide country.
 
 <br><br>
 
-This journey marks Piya's transition from an outside researcher to a participant-observer whose understanding of the Sundarbans is shaped by both scientific inquiry and local knowledge.
-
-<br><br>
-
-<b>Themes:</b> Ecology, Mobility, Dolphin Research, Traditional Ecological Knowledge, Human–Environment Interaction.
+<b>Themes:</b> Ecology, Dolphin Research, Traditional Ecological Knowledge, Human–Environment Interaction.
 `);
 
-ecologyLayer.addLayer(piyaJourney);
+ecologyLayer.addLayer(piyaRiverRoute);
+
+    var canningGateway = L.circleMarker([22.31490,88.66270],{
+    radius:10,
+    color:"#000",
+    fillColor:"#FFD700",
+    fillOpacity:0.9,
+    weight:2
+});
     
 L.control.layers(
 null,
