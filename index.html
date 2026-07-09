@@ -1273,6 +1273,39 @@ fetch("Salt Lake.geojson")
     }).addTo(ecologyLayer);
 
 });
+/* ================= BASANTI : CHANGING RIVER ROUTES ================= */
+
+var basanti = L.circleMarker([22.199772592165157, 88.71183157294148],{
+    radius:8,
+    color:"#2E7D32",
+    fillColor:"#66BB6A",
+    fillOpacity:0.8,
+    weight:2
+});
+
+basanti.bindPopup(`
+<b>🌿 Basanti: Ecology and Changing Waterways</b><br><br>
+
+Basanti represents the changing ecological conditions of the Sundarbans and their impact on human mobility.
+
+<br><br>
+
+When Kanai travels to Lusibari, it is noted that the traditional route through Canning had become increasingly difficult due to the declining navigability of the Matla River. Reduced water flow, siltation, and environmental change altered long-established transportation networks within the delta.
+
+<br><br>
+
+As a result, routes through Basanti became more practical for reaching the inhabited islands of the tide country.
+
+<br><br>
+
+The shift illustrates how ecological transformations continuously reshape patterns of movement, communication, and settlement in the Sundarbans.
+
+<br><br>
+
+<b>Themes:</b> Ecology, River Change, Mobility, Environmental Transformation, Human Adaptation.
+`);
+
+basanti.addTo(ecologyLayer);
     
 L.control.layers(
 null,
