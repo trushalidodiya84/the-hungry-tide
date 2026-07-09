@@ -1273,46 +1273,13 @@ fetch("Salt Lake.geojson")
     }).addTo(ecologyLayer);
 
 });
-/* ================= BASANTI : CHANGING RIVER ROUTES ================= */
-
-var basanti = L.circleMarker([22.199772592165157, 88.71183157294148],{
-    radius:8,
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0.8,
-    weight:2
-});
-
-basanti.bindPopup(`
-<b>🌿 Basanti: Ecology and Changing Waterways</b><br><br>
-
-Basanti represents the changing ecological conditions of the Sundarbans and their impact on human mobility.
-
-<br><br>
-
-When Kanai travels to Lusibari, it is noted that the traditional route through Canning had become increasingly difficult due to the declining navigability of the Matla River. Reduced water flow, siltation, and environmental change altered long-established transportation networks within the delta.
-
-<br><br>
-
-As a result, routes through Basanti became more practical for reaching the inhabited islands of the tide country.
-
-<br><br>
-
-The shift illustrates how ecological transformations continuously reshape patterns of movement, communication, and settlement in the Sundarbans.
-
-<br><br>
-
-<b>Themes:</b> Ecology, River Change, Mobility, Environmental Transformation, Human Adaptation.
-`);
-
-basanti.addTo(ecologyLayer);
-
-    /* ================= KOLKATA TO LUSIBARI VIA CANNING ================= */
+/* ================= DHAKURIA TO LUSIBARI VIA CANNING ================= */
 
 var canningRoute = L.polyline([
-    [22.5726, 88.3639],   // Kolkata
-    [22.3149, 88.6627],   // Canning
-    [22.08918, 88.90773]  // Lusibari
+    [DHAKURIA_LAT, DHAKURIA_LON],   // Dhakuria Station
+    [CHAMPAHATI_LAT, CHAMPAHATI_LON], // Champahati
+    [22.3149, 88.6627],            // Canning
+    [22.08918, 88.90773]           // Lusibari
 ],{
     color:"#2E7D32",
     weight:4,
@@ -1320,29 +1287,30 @@ var canningRoute = L.polyline([
 });
 
 canningRoute.bindPopup(`
-<b>🚤 Kolkata → Canning → Lusibari</b><br><br>
+<b>🚤 Piya's Journey via Canning</b><br><br>
 
-This was one of the traditional routes connecting Kolkata with the inhabited islands of the Sundarbans.
-
-<br><br>
-
-Canning developed as an important gateway to the delta. However, changing environmental conditions, reduced water flow, and siltation in the Matla River gradually affected navigation along this route.
+Dhakuria Station → Champahati → Canning → Lusibari
 
 <br><br>
 
-The route illustrates how ecological transformations influence mobility and transportation networks in the tide country.
+This route traces Piya Roy's journey from Kolkata into the Sundarbans. After meeting Kanai Dutt at Dhakuria Station, she travelled through Champahati and Canning before entering the tide country.
 
 <br><br>
 
-<b>Themes:</b> Ecology, River Change, Mobility, Environmental Transformation.
+Canning historically served as a major gateway to the Sundarbans, although changing ecological conditions and declining navigability of the Matla River affected this route over time.
+
+<br><br>
+
+<b>Themes:</b> Mobility, Ecology, River Change, Environmental Transformation.
 `);
 
 ecologyLayer.addLayer(canningRoute);
 
-    /* ================= KOLKATA TO LUSIBARI VIA BASANTI ================= */
+    /* ================= DHAKURIA TO LUSIBARI VIA BASANTI ================= */
 
 var basantiRoute = L.polyline([
-    [22.5726, 88.3639],               // Kolkata
+    [DHAKURIA_LAT, DHAKURIA_LON],      // Dhakuria Station
+    [CHAMPAHATI_LAT, CHAMPAHATI_LON], // Champahati
     [22.199772592165157, 88.71183157294148], // Basanti
     [22.08918, 88.90773]              // Lusibari
 ],{
@@ -1352,17 +1320,17 @@ var basantiRoute = L.polyline([
 });
 
 basantiRoute.bindPopup(`
-<b>🚤 Kolkata → Basanti → Lusibari</b><br><br>
+<b>🚤 Piya's Journey via Basanti</b><br><br>
 
-As ecological changes altered the navigability of the Matla River, routes through Basanti became increasingly important for reaching the islands of the Sundarbans.
-
-<br><br>
-
-The route demonstrates how local communities adapted to changing environmental conditions by using alternative waterways and transportation networks.
+Dhakuria Station → Champahati → Basanti → Lusibari
 
 <br><br>
 
-In <i>The Hungry Tide</i>, such shifts reflect the dynamic relationship between human movement and the evolving ecology of the delta.
+As ecological changes altered river channels and transportation networks in the Sundarbans, routes through Basanti became increasingly important for reaching the islands of the tide country.
+
+<br><br>
+
+The route illustrates how environmental transformations reshape human movement and access to the delta landscape.
 
 <br><br>
 
@@ -1370,7 +1338,7 @@ In <i>The Hungry Tide</i>, such shifts reflect the dynamic relationship between 
 `);
 
 ecologyLayer.addLayer(basantiRoute);
- /* ================= DHAKURIA STATION : BEGINNING OF PIYA'S JOURNEY ================= */
+    
 
 fetch("All places.geojson")
 .then(response => response.json())
@@ -1476,6 +1444,8 @@ fetch("All places.geojson")
     });
 
 });
+
+    
 L.control.layers(
 null,
 {
