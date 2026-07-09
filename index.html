@@ -1230,52 +1230,6 @@ fetch("All places.geojson")
     });
 
 });
-/* ================= SALT LAKE : THE LOST HISTORY OF THE IRRAWADDY DOLPHIN ================= */
-
-fetch("Salt Lake.geojson")
-.then(response => response.json())
-.then(data => {
-
-    L.geoJSON(data, {
-
-        style: {
-            color: "#2E7D32",
-            weight: 2,
-            fillColor: "#66BB6A",
-            fillOpacity: 0.4
-        },
-
-        onEachFeature: function(feature, layer){
-
-            layer.bindPopup(`
-            <b>🌊 Salt Lake: The Lost History of the Irrawaddy Dolphin</b><br><br>
-
-            In 1852, an unusually high tide flooded the wetlands surrounding Calcutta. As the waters receded, reports spread of a large marine creature trapped within the Salt Lake wetlands.
-
-            <br><br>
-
-            Edward Blyth, Superintendent of the Calcutta Botanical Garden, investigated the animal and identified it as a pilot whale. Later discoveries revealed that the specimen belonged to the genus <i>Orcaella</i>, now known as the Irrawaddy Dolphin (<i>Orcaella brevirostris</i>).
-
-            <br><br>
-
-            While researching dolphin history, Piya reflects on this episode as a significant moment in the scientific understanding of South Asia's aquatic mammals.
-
-            <br><br>
-
-            Salt Lake demonstrates how tidal movements, changing environments, and scientific interpretation shape human knowledge of the natural world.
-
-            <br><br>
-
-            <b>Themes:</b> Ecology, Cetacean History, Irrawaddy Dolphin, Environmental Change, Scientific Discovery.
-            `);
-
-        }
-
-    }).addTo(ecologyLayer);
-
-        }
-
-    });
 
     
 L.control.layers(
