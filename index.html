@@ -1305,38 +1305,39 @@ This encounter marks the beginning of Piya's reliance on traditional ecological 
 
     });
 
-    if(dhakuriaCoords && champahatiCoords){
+  fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
 
-        var piyaJourney = L.polyline([
-            dhakuriaCoords,
-            champahatiCoords,
-            [22.3149, 88.6627],
-            [22.00796, 88.73735],
-            [21.93696, 88.90604],
-            [22.08918, 88.90773]
-        ],{
-            color:"#2E7D32",
-            weight:4,
-            dashArray:"8,8"
-        });
+    data.features.forEach(function(feature){
 
-        piyaJourney.bindPopup(`
-        <b>🐬 Piya's First Journey in the Tide Country</b><br><br>
+        if(feature.properties.name === "Champahati"){
 
-        Route: Dhakuria Station → Champahati → Canning → Encounter Zone → Garjantola → Lusibari<br><br>
+            console.log(feature);
 
-        Piya Roy meets Kanai Dutt at Dhakuria Station while travelling to Canning via Champahati. After receiving Forest Department permission for dolphin research, she embarks on an expedition that leads to her encounter with Fokir and Tutul.<br><br>
+            L.geoJSON(feature,{
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:10,
+                        color:"red",
+                        fillColor:"yellow",
+                        fillOpacity:1,
+                        weight:3
+                    });
+                },
 
-        Guided by Fokir's traditional ecological knowledge, Piya travels through the waterways toward Garjantola before arriving at Lusibari.<br><br>
+                onEachFeature: function(feature, layer){
+                    layer.bindPopup(`
+                        <b>Champahati</b><br>
+                        Test Marker
+                    `);
+                }
 
-        <b>Themes:</b> Ecology, Mobility, Traditional Ecological Knowledge, Dolphin Research.
-        `);
+            }).addTo(map);   // NOT ecologyLayer
+        }
 
-        ecologyLayer.addLayer(piyaJourney);
-    }
+    });
 
-});
-    
 });
     
 L.control.layers(
