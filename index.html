@@ -1172,6 +1172,63 @@ fetch("All places.geojson")
 
 });
     
+/* ================= KOLKATA BOTANICAL GARDEN : HISTORY OF CETACEAN RESEARCH ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Kolkata Botanical Garden"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#2E7D32",
+                        fillColor:"#66BB6A",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+
+                },
+
+                onEachFeature: function(feature, layer){
+
+                    layer.bindPopup(`
+                    <b>🐬 Kolkata Botanical Garden: Origins of Dolphin Research</b><br><br>
+
+                    In the nineteenth century, the Botanical Garden in Calcutta became an important centre for natural history and zoological research.
+
+                    <br><br>
+
+                    William Roxburgh, one of the Garden's leading naturalists, published a landmark study in 1801 describing the Gangetic Dolphin. He named the species <i>Delphinus gangeticus</i>, one of the earliest scientific descriptions of a river dolphin.
+
+                    <br><br>
+
+                    Later zoological research revealed that the animal belonged to the genus <i>Platanista</i>, and it came to be classified as <i>Platanista gangetica</i>.
+
+                    <br><br>
+
+                    For Piya Roy, this history represents the beginning of a long scientific effort to understand the dolphins of the Ganges–Brahmaputra delta and the waters of the Sundarbans.
+
+                    <br><br>
+
+                    <b>Themes:</b> Ecology, Cetacean Research, Scientific Knowledge, Gangetic Dolphin, Environmental History.
+                    `);
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
     
 L.control.layers(
 null,
