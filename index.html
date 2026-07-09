@@ -1274,7 +1274,27 @@ fetch("Salt Lake.geojson")
     }).addTo(ecologyLayer);
 
 });
-    
+var encounterZone = L.circleMarker([22.00796, 88.73735],{
+    radius:8,
+    color:"#2E7D32",
+    fillColor:"#66BB6A",
+    fillOpacity:0.8,
+    weight:2
+});
+
+encounterZone.bindPopup(`
+<b>🐬 Encounter Zone (Approximate)</b><br><br>
+
+This marker represents the probable area where Piya Roy encounters Fokir and Tutul during her first dolphin survey in the Sundarbans.<br><br>
+
+After obtaining permission from the Forest Department at Canning, Piya joins an official expedition accompanied by a forest guard and Mejda. The expedition fails to locate dolphins until she encounters Fokir, whose knowledge of the waterways transforms her research.<br><br>
+
+Following an accident in the river, Fokir rescues Piya. She chooses to leave the official expedition and accompany him instead.<br><br>
+
+<b>Themes:</b> Traditional Ecological Knowledge, Ecology, Human–Environment Interaction.
+`);
+
+encounterZone.addTo(ecologyLayer);    
     
 L.control.layers(
 null,
