@@ -1351,7 +1351,34 @@ encounterZone.addTo(ecologyLayer);
 
 });
 
-    
+var piyaJourney = L.polyline([
+    [DHAKURIA_LAT, DHAKURIA_LON],
+    [CHAMPAHATI_LAT, CHAMPAHATI_LON],
+    [22.3149, 88.6627],          // Canning
+    [22.00796, 88.73735],        // Encounter Zone
+    [21.93696, 88.90604],        // Garjantola
+    [22.08918, 88.90773]         // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"8,8"
+});
+
+piyaJourney.bindPopup(`
+<b>🐬 Piya's First Journey in the Tide Country</b><br><br>
+
+<b>Route:</b> Dhakuria Station → Champahati → Canning → Encounter Zone → Garjantola → Lusibari<br><br>
+
+Piya Roy meets Kanai Dutt at Dhakuria Station while travelling to Canning via Champahati. After obtaining permission from the Forest Department, she begins her dolphin research in the Sundarbans.<br><br>
+
+During an unsuccessful expedition with a forest guard and Mejda, she encounters Fokir and Tutul in restricted fishing waters. After Fokir rescues her from the river, Piya decides to accompany him instead of the official expedition.<br><br>
+
+Guided by Fokir's traditional ecological knowledge, she travels through the waterways toward the Garjantola pools, where dolphin sightings become possible, before eventually reaching Lusibari.<br><br>
+
+<b>Themes:</b> Ecology, Mobility, Traditional Ecological Knowledge, Dolphin Research.
+`);
+
+ecologyLayer.addLayer(piyaJourney);    
     
 L.control.layers(
 null,
