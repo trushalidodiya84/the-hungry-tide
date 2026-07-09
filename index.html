@@ -1346,7 +1346,53 @@ fetch("All places.geojson")
     });
 
 });    
-  
+/* ================= PIYA'S JOURNEY INTO THE TIDE COUNTRY ================= */
+
+var piyaJourney = L.polyline([
+    [22.50812, 88.37256],   // Dhakuria Station
+    [22.40272, 88.49161],   // Champahati
+    [22.31490, 88.66270],   // Canning
+    [22.00796, 88.73735],   // Encounter Zone
+    [21.93696, 88.90604],   // Garjantola
+    [22.08918, 88.90773]    // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"8,8"
+});
+
+piyaJourney.bindPopup(`
+<b>🐬 Piya's Journey into the Tide Country</b><br><br>
+
+<b>Route:</b> Dhakuria Station → Champahati → Canning → Encounter Zone → Garjantola → Lusibari
+
+<br><br>
+
+Piya Roy's journey into the Sundarbans begins at Dhakuria Station, where she meets Kanai Dutt while travelling toward Canning through the suburban railway network of Kolkata.
+
+<br><br>
+
+Passing through Champahati and reaching Canning, the principal gateway to the Sundarbans, Piya joins a Forest Department expedition to conduct research on the Irrawaddy Dolphin and the ecological networks of the tide country.
+
+<br><br>
+
+While travelling through the waterways she encounters Fokir and Tutul in a restricted fishing zone. Following an accident in the river, Fokir rescues her, leading Piya to abandon the official expedition and rely instead on local ecological knowledge.
+
+<br><br>
+
+Guided by Fokir, she reaches Garjantola, an important dolphin habitat associated with Bon Bibi traditions and traditional ecological knowledge, before eventually arriving at Lusibari.
+
+<br><br>
+
+This journey marks Piya's transition from an outside researcher to a participant-observer whose understanding of the Sundarbans is shaped by both scientific inquiry and local knowledge.
+
+<br><br>
+
+<b>Themes:</b> Ecology, Mobility, Dolphin Research, Traditional Ecological Knowledge, Human–Environment Interaction.
+`);
+
+ecologyLayer.addLayer(piyaJourney);
+    
 L.control.layers(
 null,
 {
