@@ -1273,38 +1273,7 @@ fetch("Salt Lake.geojson")
     }).addTo(ecologyLayer);
 
 });
-/* ================= DHAKURIA TO LUSIBARI VIA CANNING ================= */
 
-var canningRoute = L.polyline([
-    [DHAKURIA_LAT, DHAKURIA_LON],   // Dhakuria Station
-    [CHAMPAHATI_LAT, CHAMPAHATI_LON], // Champahati
-    [22.3149, 88.6627],            // Canning
-    [22.08918, 88.90773]           // Lusibari
-],{
-    color:"#2E7D32",
-    weight:4,
-    dashArray:"10,6"
-});
-
-canningRoute.bindPopup(`
-<b>🚤 Piya's Journey via Canning</b><br><br>
-
-Dhakuria Station → Champahati → Canning → Lusibari
-
-<br><br>
-
-This route traces Piya Roy's journey from Kolkata into the Sundarbans. After meeting Kanai Dutt at Dhakuria Station, she travelled through Champahati and Canning before entering the tide country.
-
-<br><br>
-
-Canning historically served as a major gateway to the Sundarbans, although changing ecological conditions and declining navigability of the Matla River affected this route over time.
-
-<br><br>
-
-<b>Themes:</b> Mobility, Ecology, River Change, Environmental Transformation.
-`);
-
-ecologyLayer.addLayer(canningRoute);
 
     /* ================= DHAKURIA TO LUSIBARI VIA BASANTI ================= */
 
@@ -1391,94 +1360,6 @@ fetch("All places.geojson")
     });
 
 });
-    /* ================= CHAMPAHATI : GATEWAY TO THE SUNDARBANS ================= */
-
-fetch("All places.geojson")
-.then(response => response.json())
-.then(data => {
-
-    data.features.forEach(function(feature){
-
-        if(feature.properties.name === "Champahati"){
-
-            L.geoJSON(feature,{
-
-                pointToLayer: function(feature, latlng){
-
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#2E7D32",
-                        fillColor:"#66BB6A",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-
-                },
-
-                onEachFeature: function(feature, layer){
-
-                    layer.bindPopup(`
-                    <b>🚉 Champahati: Transit Point to the Tide Country</b><br><br>
-
-                    Champahati lies on the railway route connecting Kolkata and Canning.
-
-                    <br><br>
-
-                    As Piya travels toward the Sundarbans, she passes through Champahati on her way to obtain permission from the Forest Department before beginning her ecological research.
-
-                    <br><br>
-
-                    The station represents an important transition between the metropolitan region and the ecological landscape of the tide country.
-
-                    `);
-
-                }
-
-            }).addTo(ecologyLayer);
-
-        }
-
-    });
-
-});
-/* ================= CALCUTTA TO LUSIBARI VIA CANNING ================= */
-
-var canningRoute = L.polyline([
-    [CALCUTTA_LAT, CALCUTTA_LON],      // Calcutta
-    [DHAKURIA_LAT, DHAKURIA_LON],      // Dhakuria Station
-    [CHAMPAHATI_LAT, CHAMPAHATI_LON],  // Champahati
-    [22.3149, 88.6627],                // Canning
-    [22.08918, 88.90773]               // Lusibari
-],{
-    color:"#2E7D32",
-    weight:4,
-    dashArray:"10,6"
-});
-
-canningRoute.bindPopup(`
-<b>🚤 Calcutta to Lusibari via Canning</b><br><br>
-
-Calcutta → Dhakuria Station → Champahati → Canning → Lusibari
-
-<br><br>
-
-This route traces Piya Roy's journey from Calcutta into the Sundarbans. While waiting at Dhakuria Station for a train to Canning via Champahati, she met Kanai Dutt for the first time.
-
-<br><br>
-
-The journey moves from the urban landscape of Calcutta through the suburban railway network and finally into the riverine world of the Sundarbans.
-
-<br><br>
-
-Historically, Canning functioned as an important gateway to the delta, although ecological changes and declining navigability of the Matla River later affected transportation through this route.
-
-<br><br>
-
-<b>Themes:</b> Mobility, Ecology, Environmental Change, Urban–Rural Transition.
-`);
-
-ecologyLayer.addLayer(canningRoute);
-    
     
 L.control.layers(
 null,
