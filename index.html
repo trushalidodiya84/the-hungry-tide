@@ -1444,7 +1444,44 @@ fetch("All places.geojson")
     });
 
 });
+/* ================= CALCUTTA TO LUSIBARI VIA CANNING ================= */
 
+var canningRoute = L.polyline([
+    [CALCUTTA_LAT, CALCUTTA_LON],      // Calcutta
+    [DHAKURIA_LAT, DHAKURIA_LON],      // Dhakuria Station
+    [CHAMPAHATI_LAT, CHAMPAHATI_LON],  // Champahati
+    [22.3149, 88.6627],                // Canning
+    [22.08918, 88.90773]               // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4,
+    dashArray:"10,6"
+});
+
+canningRoute.bindPopup(`
+<b>🚤 Calcutta to Lusibari via Canning</b><br><br>
+
+Calcutta → Dhakuria Station → Champahati → Canning → Lusibari
+
+<br><br>
+
+This route traces Piya Roy's journey from Calcutta into the Sundarbans. While waiting at Dhakuria Station for a train to Canning via Champahati, she met Kanai Dutt for the first time.
+
+<br><br>
+
+The journey moves from the urban landscape of Calcutta through the suburban railway network and finally into the riverine world of the Sundarbans.
+
+<br><br>
+
+Historically, Canning functioned as an important gateway to the delta, although ecological changes and declining navigability of the Matla River later affected transportation through this route.
+
+<br><br>
+
+<b>Themes:</b> Mobility, Ecology, Environmental Change, Urban–Rural Transition.
+`);
+
+ecologyLayer.addLayer(canningRoute);
+    
     
 L.control.layers(
 null,
