@@ -1505,6 +1505,79 @@ In <i>The Hungry Tide</i>, Basanti illustrates how mobility in the Sundarbans is
 `);
 
 basanti.addTo(ecologyLayer);
+
+    /* ================= KANAI'S JOURNEY TO LUSIBARI ================= */
+
+var kanaiJourney = L.polyline([
+    [22.55820, 88.28923],   // Kolkata
+    [22.50812, 88.37256],   // Dhakuria Station
+    [22.31490, 88.66270],   // Canning
+    [22.08918, 88.90773]    // Lusibari
+],{
+    color:"#8B4513",
+    weight:4,
+    dashArray:"8,8"
+});
+
+kanaiJourney.bindPopup(`
+<b>🚉 Kanai's Journey to Lusibari</b><br><br>
+
+<b>Route:</b> Kolkata → Dhakuria Station → Canning → Lusibari
+
+<br><br>
+
+Kanai Dutt travels from Kolkata to the Sundarbans after receiving an invitation from Nilima. His journey begins in the city and continues through Dhakuria Station toward Canning, the traditional gateway to the tide country.
+
+<br><br>
+
+At Dhakuria Station he encounters Piya Roy, whose research expedition becomes intertwined with his own visit to Lusibari.
+
+<br><br>
+
+The route illustrates the movement from metropolitan Kolkata into the riverine world of the Sundarbans, linking urban modernity with the ecological and cultural landscape of the tide country.
+
+<br><br>
+
+<b>Themes:</b> Mobility, Transition, Urban–Rural Connection, Gateway to the Sundarbans.
+`);
+
+memoryLayer.addLayer(kanaiJourney);
+
+    /* ================= ALTERNATIVE ROUTE VIA BASANTI ================= */
+
+var basantiRoute = L.polyline([
+    [22.55820, 88.28923],   // Kolkata
+    [22.50812, 88.37256],   // Dhakuria Station
+    [22.19717, 88.71239],   // Basanti
+    [22.08918, 88.90773]    // Lusibari
+],{
+    color:"#2E7D32",
+    weight:4
+});
+
+basantiRoute.bindPopup(`
+<b>🌿 Alternative Route via Basanti</b><br><br>
+
+<b>Route:</b> Kolkata → Dhakuria Station → Basanti → Lusibari
+
+<br><br>
+
+While travelling to the Sundarbans, Kanai learns that ecological changes have altered the navigability of traditional waterways associated with the Canning route.
+
+<br><br>
+
+Basanti emerges as a more practical gateway to Lusibari. The route reflects how mobility within the Sundarbans is shaped by changing river systems, tidal conditions, and environmental transformations.
+
+<br><br>
+
+Rather than simply representing movement through space, the route illustrates the influence of ecological processes on human travel and connectivity.
+
+<br><br>
+
+<b>Themes:</b> Ecology, Mobility, Environmental Change, River Networks, Spatial Adaptation.
+`);
+
+ecologyLayer.addLayer(basantiRoute);
     
 L.control.layers(
 null,
