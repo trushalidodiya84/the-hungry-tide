@@ -1606,7 +1606,36 @@ Their journey symbolizes the movement of stories, beliefs, and cultural traditio
 <b>Themes:</b> Mythic Migration, Sacred Geography, Cultural Exchange.
 `);
     medina.addTo(mythLayer);
-    
+
+fetch("Bhatir Desh.geojson")
+.then(response => response.json())
+.then(data => {
+
+    var bhatirDeshLayer = L.geoJSON(data,{
+        style:{
+            color:"#DAA520",
+            weight:2,
+            fillColor:"#FFD700",
+            fillOpacity:0.15
+        }
+    }).addTo(mythLayer);
+
+    // Get center of polygon
+    var bhatirDeshCenter = bhatirDeshLayer.getBounds().getCenter();
+
+    // Bon Bibi route
+    var bonBibiRoute = L.polyline([
+        [24.5247,39.5692], // Medina
+        [bhatirDeshCenter.lat,bhatirDeshCenter.lng]
+    ],{
+        color:"#DAA520",
+        weight:4,
+        dashArray:"10,6"
+    });
+
+    bonBibiRoute.addTo(mythLayer);
+
+});
 L.control.layers(
 null,
 {
