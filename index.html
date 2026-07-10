@@ -1472,6 +1472,39 @@ fetch("All places.geojson")
     });
 
 });
+/* ================= BASANTI ================= */
+
+var basanti = L.circleMarker([22.19717, 88.71239],{
+    radius:8,
+    color:"#2E7D32",
+    fillColor:"#66BB6A",
+    fillOpacity:0.8,
+    weight:2
+});
+
+basanti.bindPopup(`
+<b>🌿 Basanti</b><br><br>
+
+Basanti functions as an important gateway to the inhabited islands of the Sundarbans.
+
+<br><br>
+
+While travelling to Lusibari, Kanai learns that the traditional route from Canning has become increasingly difficult because of ecological changes affecting the waterways.
+
+<br><br>
+
+The reduced navigability of channels associated with the Matla River system and changing environmental conditions have made travel through Basanti a more practical alternative.
+
+<br><br>
+
+In <i>The Hungry Tide</i>, Basanti illustrates how mobility in the Sundarbans is shaped by ecological processes such as sedimentation, tidal dynamics, and changing river flows.
+
+<br><br>
+
+<b>Themes:</b> Ecology, Mobility, Environmental Change, River Networks.
+`);
+
+basanti.addTo(ecologyLayer);
     
 L.control.layers(
 null,
