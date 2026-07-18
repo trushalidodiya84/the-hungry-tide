@@ -168,30 +168,47 @@ ecologyLayer.addLayer(dolphinLayer);
 ecologyLayer.addLayer(tigerLayer);
 
 ecologyLayer.addLayer(mangroveLayer);
-    /* ================= MANGROVE HABITAT ================= */
+   
 
-L.polygon([
-    [22.35,88.55],
-    [22.30,89.25],
-    [22.10,89.60],
-    [21.75,89.70],
-    [21.50,89.45],
-    [21.45,88.90],
-    [21.65,88.55],
-    [22.00,88.45]
-],{
-    color:"#2E7D32",
-fillColor:"#66BB6A",
-    fillOpacity:0.20,
-    weight:2
-})
-.addTo(mangroveLayer)
-.bindPopup(
-"<b>🌿 Sundarbans Mangrove Ecosystem</b><br>" +
-"The world's largest mangrove forest. A dynamic ecological zone shaped by tides, sedimentation, salinity, and biodiversity. The mangrove habitat forms the ecological foundation of Amitav Ghosh's <i>The Hungry Tide</i>."
-);
+/* ================= SUNDARBANS MANGROVE ECOSYSTEM ================= */
 
-ecologyLayer.addLayer(tidalPoolLayer);
+fetch("Sundarbans Mangrove Ecosystem.geojson")
+.then(response => response.json())
+.then(data => {
+
+    var mangroveLayer = L.geoJSON(data, {
+
+        style: {
+            color: "#2E7D32",
+            weight: 2,
+            fillColor: "#66BB6A",
+            fillOpacity: 0.15,
+            dashArray: "5,5"
+        },
+
+        onEachFeature: function(feature, layer) {
+
+            layer.bindPopup(`
+                <b>🌿 Sundarbans Mangrove Ecosystem</b><br><br>
+
+                The Sundarbans is the world's largest contiguous mangrove forest, spanning the delta of the Ganga, Brahmaputra, and Meghna rivers. Characterized by tidal rivers, mudflats, and dense mangrove vegetation, it supports a unique and fragile ecosystem rich in biodiversity.
+
+                <br><br>
+
+                In <i>The Hungry Tide</i>, the mangrove ecosystem is not merely a backdrop but an active ecological force that shapes human lives, livelihoods, and relationships with nature. Its shifting tides, forests, and waterways influence migration, settlement, survival, and cultural beliefs throughout the novel.
+
+                <br><br>
+
+                <b>Themes:</b> Mangrove Ecology, Biodiversity, Human–Nature Relationship, Environmental Change.
+            `);
+
+        }
+
+    });
+
+    tidalPoolLayer.addLayer(mangroveLayer);
+
+});
     /* ================= TIDE COUNTRY ================= */
 
 L.polygon([
