@@ -1636,6 +1636,8 @@ fetch("Bhatir Desh.geojson")
 .then(data => {
 
     var bhatirDeshLayer = L.geoJSON(data,{
+        interactive: false,
+
         style:{
             color:"#DAA520",
             weight:2,
