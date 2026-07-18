@@ -1605,17 +1605,20 @@ Rather than simply representing movement through space, the route illustrates th
 
 ecologyLayer.addLayer(basantiRoute);
 
-    var medina = L.circleMarker([24.5247,39.5692],{
-    radius:8,
-    color:"#B8860B",
-    fillColor:"#FFD700",
-    fillOpacity:0.8,
-    weight:2
+ /* ================= MEDINA ================= */
+
+var medina = L.circleMarker([25.1014, 39.1560], {
+    radius: 8,
+    color: "#B8860B",
+    fillColor: "#FFD700",
+    fillOpacity: 0.9,
+    weight: 2
 });
-    medina.bindPopup(`
+
+medina.bindPopup(`
 <b>🕌 Medina (Arabia)</b><br><br>
 
-According to the legend of Bon Bibi, the story begins in Medina, Arabia. Bon Bibi and her twin brother Shah Jangoli were born here and were chosen for a divine mission.
+According to the legend of <i>Bon Bibi</i>, the story begins in Medina, Arabia. Bon Bibi and her twin brother Shah Jangoli were born here and were chosen for a divine mission.
 
 <br><br>
 
@@ -1629,7 +1632,8 @@ Their journey symbolizes the movement of stories, beliefs, and cultural traditio
 
 <b>Themes:</b> Mythic Migration, Sacred Geography, Cultural Exchange.
 `);
-    medina.addTo(mythLayer);
+
+medina.addTo(mythLayer);
 
 fetch("Bhatir Desh.geojson")
 .then(response => response.json())
