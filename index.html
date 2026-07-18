@@ -635,6 +635,48 @@ Bangladesh therefore marks the beginning of a migration route that links displac
 
 });    
 
+ /* ================= PARTITION MIGRATION NETWORK ================= */
+
+fetch("Bangladesh Partition Migration Network.geojson")
+.then(response => response.json())
+.then(data => {
+
+    var partitionMigration = L.geoJSON(data, {
+
+        style: function(feature) {
+            return {
+                color: "#B22222",      // Dark Red
+                weight: 3,
+                opacity: 0.9,
+                dashArray: "1,7",      // Small dotted pattern
+                lineCap: "round",
+                lineJoin: "round"
+            };
+        },
+
+        onEachFeature: function(feature, layer) {
+
+            layer.bindPopup(`
+                <b>🚶 Bangladesh Partition Migration Network</b><br><br>
+
+                The Partition of British India (1947) and the subsequent political upheavals in East Pakistan (present-day Bangladesh) resulted in one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
+
+                <br><br>
+
+                This symbolic migration network illustrates the broad movement of refugees across the border rather than specific migration routes. It provides the historical context that informs the refugee narratives and cultural memory represented in <i>The Hungry Tide</i>.
+
+                <br><br>
+
+                <b>Themes:</b> Partition, Forced Migration, Displacement, Cultural Memory.
+            `);
+
+        }
+
+    });
+
+    partitionMigration.addTo(migrationLayer);
+
+});
     
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
