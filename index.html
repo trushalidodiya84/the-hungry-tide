@@ -634,7 +634,51 @@ Bangladesh therefore marks the beginning of a migration route that links displac
     });
 
 });    
+/* ================= PARTITION MIGRATION NETWORK ================= */
 
+var migrationStyle = {
+    color: "#B22222",
+    weight: 2.5,
+    opacity: 0.9,
+    dashArray: "5,8"
+};
+
+// Towards West Bengal
+L.polyline([
+    [23.6850, 90.3563],
+    [23.9000, 88.2000]
+], migrationStyle).addTo(migrationLayer);
+
+// Towards Northern India (Assam direction)
+L.polyline([
+    [23.6850, 90.3563],
+    [26.3000, 91.3000]
+], migrationStyle).addTo(migrationLayer);
+
+// Towards Tripura direction
+L.polyline([
+    [23.6850, 90.3563],
+    [23.9000, 91.6000]
+], migrationStyle).addTo(migrationLayer);
+
+// Additional migration flow
+L.polyline([
+    [23.6850, 90.3563],
+    [25.1000, 89.3000]
+], migrationStyle).addTo(migrationLayer);
+
+// Popup (attach to one line only)
+migrationLayer.getLayers()[0].bindPopup(`
+<b>🚶 Partition Migration Network</b><br><br>
+
+The Partition of British India (1947) and subsequent political upheavals in East Pakistan (present-day Bangladesh) triggered one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
+
+<br><br>
+
+These symbolic dotted lines represent the broad patterns of refugee migration and the large-scale movement of populations across the border, forming an important historical context for <i>The Hungry Tide</i>.
+
+`);
+    
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
 fetch("All places.geojson")
