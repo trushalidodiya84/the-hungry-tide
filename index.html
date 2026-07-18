@@ -42,64 +42,32 @@ var migrationLayer = L.layerGroup().addTo(map);
 var memoryLayer = L.layerGroup().addTo(map);
 
 var mythLayer = L.layerGroup().addTo(map);  
+    
+/* ================= ECOLOGY SUBLAYERS ================= */
 
-  /* ================= COASTAL IRRAWADDY DOLPHIN HABITAT ================= */
+var dolphinLayer = L.layerGroup();
 
-fetch("Dolphin Habitat Network.geojson")
-    .then(function(response) {
+    /* Coastal Irrawaddy Dolphin Distribution */
 
-        if (!response.ok) {
-            throw new Error("Unable to load Dolphin Habitat Network.geojson");
-        }
+L.polygon([
+    [20.0, 80.0],
+    [22.0, 95.0],
+    [18.0, 115.0],
+    [10.0, 135.0],
+    [-15.0, 140.0],
+    [-10.0, 105.0],
+    [5.0, 85.0]
+],{
+    color:"#2E7D32",
+fillColor:"#66BB6A",
+    fillOpacity:0.25,
+    weight:2
+}).addTo(dolphinLayer)
+.bindPopup(
+"<b>🐬 Coastal Irrawaddy Dolphin Distribution</b><br>" +
+"Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
+);
 
-        return response.json();
-
-    })
-    .then(function(data) {
-
-        var dolphinHabitat = L.geoJSON(data, {
-
-            style: {
-                color: "#2E7D32",
-                fillColor: "#66BB6A",
-                fillOpacity: 0.25,
-                weight: 2
-            },
-
-            onEachFeature: function(feature, layer) {
-
-                layer.bindPopup(`
-                    <b>🐬 Coastal Irrawaddy Dolphin Habitat Zone</b><br><br>
-
-                    This polygon represents the approximate coastal distribution of the Irrawaddy Dolphin (<i>Orcaella brevirostris</i>) across South and Southeast Asia.
-
-                    <br><br>
-
-                    The habitat extends from the eastern coast of India through Myanmar, Thailand, Cambodia, Vietnam, Malaysia, Indonesia, the Philippines, and northern Australia.
-
-                    <br><br>
-
-                    In <i>The Hungry Tide</i>, Piya initially expects to encounter the coastal population of Irrawaddy dolphins in the saline waters of the Sundarbans. Instead, she observes behaviour that reflects adaptation to the region's unique tidal ecology.
-
-                    <br><br>
-
-                    <b>Themes:</b> Marine Ecology, Species Distribution, Habitat Networks, Ecological Adaptation.
-                `);
-
-            }
-
-        });
-
-        dolphinHabitat.addTo(dolphinLayer);
-
-    })
-    .catch(function(error) {
-
-        console.error(error);
-        alert("Error loading Dolphin Habitat Network.geojson");
-
-    });
-  
 /* ================= DOLPHIN RIVER NETWORKS ================= */
 
 var riverFiles = [
