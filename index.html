@@ -1636,33 +1636,41 @@ fetch("Bhatir Desh.geojson")
 .then(response => response.json())
 .then(data => {
 
-    var bhatirDeshLayer = L.geoJSON(data,{
-        interactive: false,
+    var bhatirDeshLayer = L.geoJSON(data, {
 
-        style:{
-            color:"#DAA520",
-            weight:2,
-            fillColor:"#FFD700",
-            fillOpacity:0.15
+        style: {
+            color: "#DAA520",
+            weight: 2,
+            fillColor: "#FFD700",
+            fillOpacity: 0.15
+        },
+
+        onEachFeature: function(feature, layer) {
+
+            layer.bindPopup(`
+                <b>🌿 Bhatir Desh (Country of Eighteen Tides)</b><br><br>
+
+                Bhatir Desh, or the Country of Eighteen Tides, is the mythical landscape where the legend of Bon Bibi unfolds. In the folklore of the Sundarbans, Bon Bibi and her twin brother Shah Jangoli arrive here from Medina to establish harmony between humans and the natural world.
+
+                <br><br>
+
+                The region is portrayed as a sacred ecological space where human survival depends on respecting the balance between the forest, its wildlife, and supernatural guardians such as Bon Bibi and Dokkhin Rai.
+
+                <br><br>
+
+                In <i>The Hungry Tide</i>, this mythic landscape continues to shape the cultural memory, beliefs, and ecological consciousness of the island communities.
+
+                <br><br>
+
+                <b>Themes:</b> Sacred Geography, Mythic Landscape, Cultural Memory, Human–Nature Harmony.
+            `);
+
         }
+
     }).addTo(mythLayer);
 
-    // Get center of polygon
-    var bhatirDeshCenter = bhatirDeshLayer.getBounds().getCenter();
-
-    // Bon Bibi route
-    var bonBibiRoute = L.polyline([
-        [24.5247,39.5692], // Medina
-        [bhatirDeshCenter.lat,bhatirDeshCenter.lng]
-    ],{
-        color:"#DAA520",
-        weight:4,
-        dashArray:"10,6"
-    });
-
-    bonBibiRoute.addTo(mythLayer);
-
 });
+    
 L.control.layers(
 null,
 {
