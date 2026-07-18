@@ -170,37 +170,26 @@ ecologyLayer.addLayer(tigerLayer);
 ecologyLayer.addLayer(mangroveLayer);
    
 
-/* ================= SUNDARBANS MANGROVE ECOSYSTEM ================= */
-
 fetch("Sundarbans Mangrove Ecosystem.geojson")
 .then(response => response.json())
 .then(data => {
 
-    var mangroveLayer = L.geoJSON(data, {
-
-        style: {
-            color: "#2E7D32",
-            weight: 2,
-            fillColor: "#66BB6A",
-            fillOpacity: 0.15,
-            dashArray: "5,5"
+    var mangroveLayer = L.geoJSON(data,{
+        style:{
+            color:"#2E7D32",
+            weight:2,
+            fillColor:"#66BB6A",
+            fillOpacity:0.15,
+            dashArray:"5,5"
         },
 
-        onEachFeature: function(feature, layer) {
+        onEachFeature:function(feature, layer){
 
-            layer.bindPopup(`
-                <b>🌿 Sundarbans Mangrove Ecosystem</b><br><br>
-
-                The Sundarbans is the world's largest contiguous mangrove forest, spanning the delta of the Ganga, Brahmaputra, and Meghna rivers. Characterized by tidal rivers, mudflats, and dense mangrove vegetation, it supports a unique and fragile ecosystem rich in biodiversity.
-
-                <br><br>
-
-                In <i>The Hungry Tide</i>, the mangrove ecosystem is not merely a backdrop but an active ecological force that shapes human lives, livelihoods, and relationships with nature. Its shifting tides, forests, and waterways influence migration, settlement, survival, and cultural beliefs throughout the novel.
-
-                <br><br>
-
-                <b>Themes:</b> Mangrove Ecology, Biodiversity, Human–Nature Relationship, Environmental Change.
-            `);
+            layer.bindPopup(
+                "<b>🌿 Sundarbans Mangrove Ecosystem</b><br>" +
+                "The world's largest mangrove forest and the ecological heart of Amitav Ghosh's <i>The Hungry Tide</i>. " +
+                "Its tidal rivers, mudflats, mangrove forests, and rich biodiversity shape the novel's environmental and cultural landscape."
+            );
 
         }
 
