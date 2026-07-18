@@ -634,6 +634,48 @@ Bangladesh therefore marks the beginning of a migration route that links displac
     });
 
 });    
+/* ================= PARTITION MIGRATION NETWORK ================= */
+
+var migrationStyle = {
+    color: "#B22222",
+    weight: 2.5,
+    opacity: 0.9,
+    dashArray: "4,8"
+};
+
+// Bangladesh → West Bengal
+L.polyline([
+    [23.7, 90.3],
+    [23.5, 88.2]
+], migrationStyle).bindPopup(`
+<b>Partition Migration Network</b><br><br>
+Following the Partition of British India (1947) and later political upheavals in East Pakistan (present-day Bangladesh), millions of refugees crossed into eastern and northeastern India. These dotted lines represent the broad directions of refugee migration rather than individual travel routes.
+`).addTo(migrationLayer);
+
+// Bangladesh → Assam
+L.polyline([
+    [23.7, 90.3],
+    [26.2, 91.2]
+], migrationStyle).addTo(migrationLayer);
+
+// Bangladesh → Tripura
+L.polyline([
+    [23.7, 90.3],
+    [23.9, 91.7]
+], migrationStyle).addTo(migrationLayer);
+
+// Bangladesh → Meghalaya
+L.polyline([
+    [23.7, 90.3],
+    [25.6, 91.9]
+], migrationStyle).addTo(migrationLayer);
+
+// Bangladesh → Northern West Bengal
+L.polyline([
+    [23.7, 90.3],
+    [26.7, 88.5]
+], migrationStyle).addTo(migrationLayer);
+    
 
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
