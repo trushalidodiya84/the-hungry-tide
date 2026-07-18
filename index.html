@@ -43,7 +43,7 @@ var memoryLayer = L.layerGroup().addTo(map);
 
 var mythLayer = L.layerGroup().addTo(map);  
 
-    /* ================= COASTAL IRRAWADDY DOLPHIN HABITAT ================= */
+  /* ================= COASTAL IRRAWADDY DOLPHIN HABITAT ================= */
 
 fetch("Dolphin Habitat Network.geojson")
     .then(function(response) {
@@ -92,6 +92,13 @@ fetch("Dolphin Habitat Network.geojson")
 
         dolphinHabitat.addTo(dolphinLayer);
 
+    })
+    .catch(function(error) {
+
+        console.error(error);
+        alert("Error loading Dolphin Habitat Network.geojson");
+
+    });
   
 /* ================= DOLPHIN RIVER NETWORKS ================= */
 
