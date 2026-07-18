@@ -222,32 +222,7 @@ ecologyLayer.addLayer(ecologicalCorridorLayer);
 
 ecologyLayer.addLayer(stormLayer);
     
-    /* ================= TIDE COUNTRY ================= */
 
-L.polygon([
-    [22.40,88.60],
-    [22.30,89.50],
-    [21.90,89.80],
-    [21.45,89.60],
-    [21.35,88.80],
-    [21.60,88.40]
-],{
-    color:"#2E7D32",
-fillColor:"#66BB6A",
-    fillOpacity:0.15,
-    weight:2,
-    dashArray:"5,5"
-})
-.addTo(tidalPoolLayer)
-.bindPopup(
-"<b>🌊 Tide Country</b><br>" +
-"A dynamic estuarine landscape shaped by daily tides, erosion, sedimentation, and shifting waterways. The tide country is the central ecological space of Amitav Ghosh's <i>The Hungry Tide</i>."
-);
-
-ecologyLayer.addLayer(ecologicalCorridorLayer);
-
-ecologyLayer.addLayer(stormLayer);
-    
     /* ================= LAYER CONTROL ================= */
 /* ================= CANNING : ENVIRONMENTAL HISTORY ================= */
 
@@ -1770,8 +1745,7 @@ Rather than representing a historical migration, this route visualizes the trans
 `);
 
 medinaRoute.addTo(mythLayer);
-
-    /* ================= TIGER HABITAT ZONE ================= */
+/* ================= TIGER HABITAT ZONE ================= */
 
 L.polygon([
     [22.30,88.75],
@@ -1790,7 +1764,6 @@ L.polygon([
 })
 .addTo(ecologyLayer)
 .bindPopup(
-
 "<b>🐅 Tiger Habitat Zone</b><br><br>" +
 
 "The Sundarbans is one of the principal habitats of the Royal Bengal Tiger, where dense mangrove forests, tidal creeks, and river channels support one of the world's largest tiger populations. In <i>The Hungry Tide</i>, the tiger symbolizes both ecological power and the precarious relationship between humans and the natural world.<br><br>" +
@@ -1802,12 +1775,8 @@ L.polygon([
 
 "<b>Literary Significance</b><br>" +
 "• Kusum's father is killed by a tiger, illustrating the constant risks faced by communities living at the forest edge.<br>" +
-"• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country.""<b>Historical Context</b><br>" +
-"• Historical records note thousands of tiger-related deaths in nineteenth-century Lower Bengal.<br>" +
-"• Sir Daniel Hamilton encouraged settlement in Gosaba, Lusibari, Satjelia, Rangabelia, and neighbouring islands despite the persistent threat posed by tigers, crocodiles, tides, and cyclones.<br>" +
-"• Early settlers transformed mangrove forests into inhabited islands while continuously negotiating ecological risks.<br><br>" +
-
-    );
+"• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country."
+);
     
 L.control.layers(
 null,
