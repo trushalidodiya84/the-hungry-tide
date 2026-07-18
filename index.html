@@ -643,40 +643,39 @@ var migrationStyle = {
     dashArray: "5,8"
 };
 
-// Towards West Bengal
+// Flow 1
 L.polyline([
-    [23.6850, 90.3563],
-    [23.9000, 88.2000]
+    [23.6850, 90.3563],   // Bangladesh
+    [24.1000, 89.6000]    // Towards India
 ], migrationStyle).addTo(migrationLayer);
 
-// Towards Northern India (Assam direction)
+// Flow 2
 L.polyline([
     [23.6850, 90.3563],
-    [26.3000, 91.3000]
+    [24.6000, 89.9000]
 ], migrationStyle).addTo(migrationLayer);
 
-// Towards Tripura direction
+// Flow 3
 L.polyline([
     [23.6850, 90.3563],
-    [23.9000, 91.6000]
+    [25.0000, 90.2000]
 ], migrationStyle).addTo(migrationLayer);
 
-// Additional migration flow
+// Flow 4
 L.polyline([
     [23.6850, 90.3563],
-    [25.1000, 89.3000]
+    [23.9000, 90.8000]
 ], migrationStyle).addTo(migrationLayer);
 
-// Popup (attach to one line only)
+// Popup
 migrationLayer.getLayers()[0].bindPopup(`
 <b>🚶 Partition Migration Network</b><br><br>
 
-The Partition of British India (1947) and subsequent political upheavals in East Pakistan (present-day Bangladesh) triggered one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
+The Partition of British India (1947) and subsequent political upheavals in East Pakistan (present-day Bangladesh) triggered one of the largest episodes of forced migration in modern history. Millions of displaced people crossed the international border into India in search of safety and resettlement.
 
 <br><br>
 
-These symbolic dotted lines represent the broad patterns of refugee migration and the large-scale movement of populations across the border, forming an important historical context for <i>The Hungry Tide</i>.
-
+These symbolic dotted lines represent the broad movement of refugees across the border rather than specific migration routes.
 `);
     
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
@@ -1251,7 +1250,7 @@ fetch("All places.geojson")
 
     data.features.forEach(function(feature){
 
-        if(feature.properties.name === "Kolkata Botanica Garden"){
+        if(feature.properties.name === "Kolkata Botanic Garden"){
 
             L.geoJSON(feature,{
 
