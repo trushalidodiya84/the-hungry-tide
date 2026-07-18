@@ -1660,9 +1660,6 @@ fetch("Bhatir Desh.geojson")
 
                 In <i>The Hungry Tide</i>, this mythic landscape continues to shape the cultural memory, beliefs, and ecological consciousness of the island communities.
 
-                <br><br>
-
-                <b>Themes:</b> Sacred Geography, Mythic Landscape, Cultural Memory, Human–Nature Harmony.
             `);
 
         }
@@ -1670,6 +1667,37 @@ fetch("Bhatir Desh.geojson")
     }).addTo(mythLayer);
 
 });
+/* ================= MEDINA → BHATIR DESH ================= */
+
+var medinaRoute = L.polyline([
+    [25.1014, 39.1560],   // Medina
+    [21.90, 89.10]        // Approximate centre of Bhatir Desh
+], {
+    color: "#DAA520",
+    weight: 3,
+    opacity: 0.9,
+    dashArray: "8,6"
+});
+
+medinaRoute.bindPopup(`
+<b>🛤️ Mythic Journey: Medina → Bhatir Desh</b><br><br>
+
+According to the Bon Bibi legend, Bon Bibi and her twin brother Shah Jangoli journeyed from Medina, Arabia, to Bhatir Desh (the Country of Eighteen Tides) under divine command.
+
+<br><br>
+
+Their journey marks the symbolic movement of sacred beliefs across geographical boundaries, transforming the Sundarbans into a mythic landscape where human life, wildlife, and the forest exist in a delicate balance.
+
+<br><br>
+
+Rather than representing a historical migration, this route visualizes the transmission of mythology, cultural memory, and ecological ethics that continue to shape the identity of the Sundarbans and its communities.
+
+<br><br>
+
+<b>Themes:</b> Mythic Migration, Sacred Geography, Cultural Memory, Human–Nature Harmony.
+`);
+
+medinaRoute.addTo(mythLayer);
     
 L.control.layers(
 null,
