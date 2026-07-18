@@ -131,12 +131,12 @@ fetch(river[0])
 .then(response => response.json())
 .then(data => {
 
-L.geoJSON(data,{
-style:{
-color:"#1f78b4",
-weight:2,
-opacity:0.8
-}
+L.geoJSON(data, {
+    style: {
+        color: "#2E7D32",
+        weight: 2,
+        opacity: 0.8
+    }
 })
 .bindPopup(
 "<b>"+river[1]+"</b><br>" +
