@@ -1,0 +1,13 @@
+{
+"type": "FeatureCollection",
+"name": "Bangladesh Partition Migration Network",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.351032190265187, 24.175290581455201 ], [ 91.733366685646047, 23.771806311528884 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 2 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.370231280478791, 24.157774111025073 ], [ 92.501330294190979, 26.757686276825275 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 3 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.389430370692438, 24.175290581455201 ], [ 90.389430370692438, 24.175290581455201 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 3 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.370231280478791, 24.192804648296693 ], [ 86.165630523695299, 24.682217388231393 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 4 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.408629460906056, 24.192804648296693 ], [ 87.221580485444591, 22.908043630825293 ] ] ] } },
+{ "type": "Feature", "properties": { "id": 5 }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 90.351032190265187, 24.210316310243094 ], [ 88.584715890611847, 22.394218008991775 ] ] ] } }
+]
+}
