@@ -634,49 +634,7 @@ Bangladesh therefore marks the beginning of a migration route that links displac
     });
 
 });    
-/* ================= PARTITION MIGRATION NETWORK ================= */
 
-var migrationStyle = {
-    color: "#B22222",
-    weight: 2.5,
-    opacity: 0.9,
-    dashArray: "5,8"
-};
-
-// Flow 1
-L.polyline([
-    [23.6850, 90.3563],   // Bangladesh
-    [24.1000, 89.6000]    // Towards India
-], migrationStyle).addTo(migrationLayer);
-
-// Flow 2
-L.polyline([
-    [23.6850, 90.3563],
-    [24.6000, 89.9000]
-], migrationStyle).addTo(migrationLayer);
-
-// Flow 3
-L.polyline([
-    [23.6850, 90.3563],
-    [25.0000, 90.2000]
-], migrationStyle).addTo(migrationLayer);
-
-// Flow 4
-L.polyline([
-    [23.6850, 90.3563],
-    [23.9000, 90.8000]
-], migrationStyle).addTo(migrationLayer);
-
-// Popup
-migrationLayer.getLayers()[0].bindPopup(`
-<b>🚶 Partition Migration Network</b><br><br>
-
-The Partition of British India (1947) and subsequent political upheavals in East Pakistan (present-day Bangladesh) triggered one of the largest episodes of forced migration in modern history. Millions of displaced people crossed the international border into India in search of safety and resettlement.
-
-<br><br>
-
-These symbolic dotted lines represent the broad movement of refugees across the border rather than specific migration routes.
-`);
     
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
