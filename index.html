@@ -1751,7 +1751,7 @@ L.marker([22.57531, 88.36093])
 "• Piya arrives in Kolkata before beginning her journey into the Sundarbans."
 );
 
-    /* ================= VILLAGE NORTH TO MANDALAY ================= */
+   /* ================= VILLAGE NORTH TO MANDALAY ================= */
 
 fetch("All places.geojson")
 .then(response => response.json())
@@ -1765,26 +1765,40 @@ fetch("All places.geojson")
 
                 pointToLayer: function(feature, latlng){
                     return L.circleMarker(latlng,{
-                         radius: 8,
-                         color: "#2E7D32",
-                         fillColor: "#66BB6A",
-                         fillOpacity: 0.8,
-                         weight: 2
+                        radius:8,
+                        color:"#2E7D32",
+                        fillColor:"#66BB6A",
+                        fillOpacity:0.8,
+                        weight:2
                     });
                 },
 
-                onEachFeature: function(feature, layer){
-.bindPopup(
-"<b>🐬 Village North of Mandalay, Myanmar</b><br><br>" +
+                onEachFeature:function(feature, layer){
 
-"This village on the Irrawaddy River marks one of Piya Roy's earliest field experiences with river dolphins. Here she observes flood tides creating numerous shallow creeks and tidal pools where Irrawaddy dolphins gather to hunt fish.<br><br>" +
+                    layer.bindPopup(
+                        "<b>🐬 Village North of Mandalay, Myanmar</b><br><br>" +
 
-"<b>Literary Significance</b><br>" +
-"• Piya's observations in Myanmar shape her scientific understanding of dolphin behaviour.<br>" +
-"• The hunting behaviour witnessed in the tidal pools of the Irrawaddy River later helps her interpret similar ecological patterns in the Garjantola pools of the Sundarbans.<br>" +
-"• This ecological parallel establishes a transnational connection between the Irrawaddy River and the tide country, highlighting the shared habitats and adaptive behaviour of river dolphins."
-);
- villagenorthtomandalay.addTo(ecologyLayer);
+                        "This village on the Irrawaddy River marks one of Piya Roy's earliest field observations of the Irrawaddy dolphin. During her research, she observes flood tides creating numerous shallow creeks and tidal pools where Irrawaddy dolphins gather to hunt fish.<br><br>" +
+
+                        "<b>Ecological Significance</b><br>" +
+                        "• Flood tides create shallow pools and narrow creeks that become productive feeding grounds for Irrawaddy dolphins.<br>" +
+                        "• Piya observes dolphins driving fish into these confined waters before hunting, demonstrating their remarkable ecological adaptation.<br><br>" +
+
+                        "<b>Literary Significance</b><br>" +
+                        "• These observations shape Piya's scientific understanding of dolphin behaviour.<br>" +
+                        "• Later, she encounters similar tidal pools in the Garjantola region of the Sundarbans, where Irrawaddy dolphins display comparable hunting behaviour.<br>" +
+                        "• This ecological parallel establishes a transnational connection between the Irrawaddy River and the Sundarbans."
+                    );
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
             
 L.control.layers(
 null,
