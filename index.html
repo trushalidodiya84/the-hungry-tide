@@ -43,31 +43,48 @@ var memoryLayer = L.layerGroup().addTo(map);
 
 var mythLayer = L.layerGroup().addTo(map);  
     
-/* ================= ECOLOGY SUBLAYERS ================= */
+/* ================= COASTAL IRRAWADDY DOLPHIN HABITAT ================= */
 
-var dolphinLayer = L.layerGroup();
+fetch("Dolphin Habitat Zone.geojson")
+.then(response => response.json())
+.then(data => {
 
-    /* Coastal Irrawaddy Dolphin Distribution */
+    L.geoJSON(data, {
 
-L.polygon([
-    [20.0, 80.0],
-    [22.0, 95.0],
-    [18.0, 115.0],
-    [10.0, 135.0],
-    [-15.0, 140.0],
-    [-10.0, 105.0],
-    [5.0, 85.0]
-],{
-    color:"#2E7D32",
-fillColor:"#66BB6A",
-    fillOpacity:0.25,
-    weight:2
-}).addTo(dolphinLayer)
-.bindPopup(
-"<b>🐬 Coastal Irrawaddy Dolphin Distribution</b><br>" +
-"Coastal populations of <i>Orcaella brevirostris</i> occur across the waters of South and Southeast Asia and extend to Northern Australia."
-);
+        style: function(feature) {
+            return {
+                color: "#2E7D32",
+                fillColor: "#66BB6A",
+                fillOpacity: 0.25,
+                weight: 2
+            };
+        },
 
+        onEachFeature: function(feature, layer) {
+
+            layer.bindPopup(`
+                <b>🐬 Coastal Irrawaddy Dolphin Habitat Zone</b><br><br>
+
+                This polygon represents the approximate coastal distribution of the Irrawaddy Dolphin (<i>Orcaella brevirostris</i>) across South and Southeast Asia.
+
+                <br><br>
+
+                The habitat extends from the eastern coast of India through Myanmar, Thailand, Cambodia, Vietnam, Malaysia, Indonesia, the Philippines, and northern Australia.
+
+                <br><br>
+
+                In <i>The Hungry Tide</i>, Piya initially expects to encounter the coastal population of Irrawaddy dolphins in the saline waters of the Sundarbans. Instead, she observes behaviour that challenges existing scientific understanding and reveals remarkable ecological adaptation to the region's tidal environment.
+
+                <br><br>
+
+                <b>Themes:</b> Marine Ecology, Species Distribution, Habitat Networks, Ecological Adaptation.
+            `);
+
+        }
+
+    }).addTo(dolphinLayer);
+
+});
 /* ================= DOLPHIN RIVER NETWORKS ================= */
 
 var riverFiles = [
