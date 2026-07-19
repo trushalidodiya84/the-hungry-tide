@@ -2209,6 +2209,55 @@ baseMaps,
 }
 ).addTo(map);
 </script>
+    
+<div id="aboutModal" class="modal">
 
+<div class="modal-content">
+
+<span class="close">&times;</span>
+
+<h1>About the Project</h1>
+
+<h2><em>Migration and Ecology: A Digital Cartographic Study of Spatial and Cultural Memory in Amitav Ghosh's <i>The Hungry Tide</i></em></h2>
+
+<p>
+This interactive digital map has been developed as part of a doctoral research project in <strong>Digital Humanities</strong>. The project explores the spatial dimensions of Amitav Ghosh's <em>The Hungry Tide</em> by integrating literary analysis with digital cartography and Geographic Information Systems (GIS).
+</p>
+
+<p>
+The map serves as a visual interface to the novel's complex geographical landscape, enabling readers to examine the intricate relationships between ecology, migration, memory, and mythology within the Sundarbans.
+</p>
+
+<p style="text-align:center;margin-top:40px;">
+<strong>More project information will appear here.</strong>
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const aboutModal=document.getElementById("aboutModal");
+const aboutLink=document.getElementById("aboutLink");
+const closeBtn=document.querySelector(".close");
+
+aboutLink.onclick=function(e){
+    e.preventDefault();
+    aboutModal.style.display="block";
+}
+
+closeBtn.onclick=function(){
+    aboutModal.style.display="none";
+}
+
+window.onclick=function(e){
+    if(e.target==aboutModal){
+        aboutModal.style.display="none";
+    }
+}
+
+</script>
+    
 </body>
 </html>
