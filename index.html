@@ -169,7 +169,33 @@ ecologyLayer.addLayer(tigerLayer);
 
 ecologyLayer.addLayer(mangroveLayer);
    
+    /* ================= TIDE COUNTRY ================= */
 
+L.polygon([
+    [22.40,88.60],
+    [22.30,89.50],
+    [21.90,89.80],
+    [21.45,89.60],
+    [21.35,88.80],
+    [21.60,88.40]
+],{
+    color:"#2E7D32",
+fillColor:"#66BB6A",
+    fillOpacity:0.15,
+    weight:2,
+    dashArray:"5,5"
+})
+.addTo(tidalPoolLayer)
+.bindPopup(
+"<b>🌊 Tide Country</b><br>" +
+"A dynamic estuarine landscape shaped by daily tides, erosion, sedimentation, and shifting waterways. The tide country is the central ecological space of Amitav Ghosh's <i>The Hungry Tide</i>."
+);
+
+ecologyLayer.addLayer(ecologicalCorridorLayer);
+
+ecologyLayer.addLayer(stormLayer);
+
+    
 
 
     /* ================= MANGROVE HABITAT ================= */
@@ -196,32 +222,7 @@ fillColor:"#66BB6A",
 );
 
 ecologyLayer.addLayer(tidalPoolLayer);
-    /* ================= TIDE COUNTRY ================= */
 
-L.polygon([
-    [22.40,88.60],
-    [22.30,89.50],
-    [21.90,89.80],
-    [21.45,89.60],
-    [21.35,88.80],
-    [21.60,88.40]
-],{
-    color:"#2E7D32",
-fillColor:"#66BB6A",
-    fillOpacity:0.15,
-    weight:2,
-    dashArray:"5,5"
-})
-.addTo(tidalPoolLayer)
-.bindPopup(
-"<b>🌊 Tide Country</b><br>" +
-"A dynamic estuarine landscape shaped by daily tides, erosion, sedimentation, and shifting waterways. The tide country is the central ecological space of Amitav Ghosh's <i>The Hungry Tide</i>."
-);
-
-ecologyLayer.addLayer(ecologicalCorridorLayer);
-
-ecologyLayer.addLayer(stormLayer);
-    
 
     /* ================= LAYER CONTROL ================= */
 /* ================= CANNING : ENVIRONMENTAL HISTORY ================= */
