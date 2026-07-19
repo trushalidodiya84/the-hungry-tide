@@ -1038,7 +1038,39 @@ Kumirmari therefore serves as a threshold between memory and history, linking Ni
     });
 
 });
-   /* ================= NIRMAL'S JOURNEY : MEMORY ROUTE ================= */
+  /* ================= TIGER HABITAT ZONE ================= */
+
+L.polygon([
+    [22.30,88.75],
+    [22.28,89.20],
+    [22.05,89.45],
+    [21.82,89.40],
+    [21.70,89.10],
+    [21.78,88.78],
+    [22.05,88.65]
+],{
+    color:"#2E7D32",
+    fillColor:"#66BB6A",
+    fillOpacity:0,
+    weight:2,
+    dashArray:"6,4"
+})
+.addTo(ecologyLayer)
+.bindPopup(
+"<b>🐅 Tiger Habitat Zone</b><br><br>" +
+
+"The Sundarbans is one of the principal habitats of the Royal Bengal Tiger, where dense mangrove forests, tidal creeks, and river channels support one of the world's largest tiger populations. In <i>The Hungry Tide</i>, the tiger symbolizes both ecological power and the precarious relationship between humans and the natural world.<br><br>" +
+
+"<b>Ecological & Historical Context</b><br>" +
+"• Historical records compiled by J. Fayrer documented 4,218 deaths caused by tiger attacks in Lower Bengal between 1860 and 1866.<br>" +
+"• Human–tiger encounters were frequent, with one or two fatalities reported almost every month in some parts of the Sundarbans.<br>" +
+"• Unlike most big cats, Royal Bengal Tigers are strong swimmers and frequently cross tidal rivers, making water an unreliable refuge for local inhabitants.<br><br>" +
+
+"<b>Literary Significance</b><br>" +
+"• Kusum's father is killed by a tiger, illustrating the constant risks faced by communities living at the forest edge.<br>" +
+"• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country."
+);
+    /* ================= NIRMAL'S JOURNEY : MEMORY ROUTE ================= */
 
 var nirmalJourney = L.polyline([
     [22.08918, 88.90773],   // Lusibari
@@ -1702,38 +1734,7 @@ Rather than representing a historical migration, this route visualizes the trans
 `);
 
 medinaRoute.addTo(mythLayer);
-/* ================= TIGER HABITAT ZONE ================= */
 
-L.polygon([
-    [22.30,88.75],
-    [22.28,89.20],
-    [22.05,89.45],
-    [21.82,89.40],
-    [21.70,89.10],
-    [21.78,88.78],
-    [22.05,88.65]
-],{
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0,
-    weight:2,
-    dashArray:"6,4"
-})
-.addTo(ecologyLayer)
-.bindPopup(
-"<b>🐅 Tiger Habitat Zone</b><br><br>" +
-
-"The Sundarbans is one of the principal habitats of the Royal Bengal Tiger, where dense mangrove forests, tidal creeks, and river channels support one of the world's largest tiger populations. In <i>The Hungry Tide</i>, the tiger symbolizes both ecological power and the precarious relationship between humans and the natural world.<br><br>" +
-
-"<b>Ecological & Historical Context</b><br>" +
-"• Historical records compiled by J. Fayrer documented 4,218 deaths caused by tiger attacks in Lower Bengal between 1860 and 1866.<br>" +
-"• Human–tiger encounters were frequent, with one or two fatalities reported almost every month in some parts of the Sundarbans.<br>" +
-"• Unlike most big cats, Royal Bengal Tigers are strong swimmers and frequently cross tidal rivers, making water an unreliable refuge for local inhabitants.<br><br>" +
-
-"<b>Literary Significance</b><br>" +
-"• Kusum's father is killed by a tiger, illustrating the constant risks faced by communities living at the forest edge.<br>" +
-"• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country."
-);
 
     /* ================= KOLKATA ================= */
 
