@@ -119,16 +119,48 @@ html,body{
 
 <script>
 
-/* ================= BASE MAP ================= */
+/* ================= BASE MAPS ================= */
 
-var map = L.map('map').setView([22.0,89.0],6);
-
-L.tileLayer(
+// Standard (Default)
+var standard = L.tileLayer(
 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
 {
- attribution:'© OpenStreetMap © CARTO'
+    attribution:'© OpenStreetMap © CARTO'
 }
 ).addTo(map);
+
+// Waterways (Satellite)
+var waterways = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+{
+    attribution:'Tiles © Esri'
+}
+);
+
+// Forest & Terrain
+var forest = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+{
+    attribution:'Tiles © Esri'
+}
+);
+
+var standard = L.tileLayer(
+'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
+).addTo(map);
+
+var waterways = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+);
+
+var forest = L.tileLayer(
+'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
+);
+    var baseMaps = {
+    "🗺 Standard Map": standard,
+    "🌊 Waterways": waterways,
+    "🌿 Forest & Terrain": forest
+};
     
 /* ================= MAIN THEMATIC LAYERS ================= */
 
@@ -2133,20 +2165,21 @@ fetch("Laos Boarder to Phnom Pehn.geojson")
 });
     
 L.control.layers(
-null,
+baseMaps,
 {
     "🟢 Ecological Habitat Networks": ecologyLayer,
 
     "🔴 Migration & Mobility Networks": migrationLayer,
 
     "🔵 Spatial & Cultural Memory": memoryLayer,
-        
-    "🟡 Bon Bibi Myth": mythLayer   
+
+    "🟡 Bon Bibi Myth": mythLayer
 },
 {
     collapsed:false
 }
 ).addTo(map);
+    
 </script>
 
 </body>
