@@ -121,7 +121,6 @@ html,body{
 
 /* ================= BASE MAPS ================= */
 
-// Standard (Default)
 var standard = L.tileLayer(
 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
 {
@@ -129,7 +128,6 @@ var standard = L.tileLayer(
 }
 ).addTo(map);
 
-// Waterways (Satellite)
 var waterways = L.tileLayer(
 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 {
@@ -137,7 +135,6 @@ var waterways = L.tileLayer(
 }
 );
 
-// Forest & Terrain
 var forest = L.tileLayer(
 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
 {
@@ -145,7 +142,7 @@ var forest = L.tileLayer(
 }
 );
 
-    var baseMaps = {
+var baseMaps = {
     "🗺 Standard Map": standard,
     "🌊 Waterways": waterways,
     "🌿 Forest & Terrain": forest
