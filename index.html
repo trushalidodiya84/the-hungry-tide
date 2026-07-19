@@ -170,6 +170,39 @@ html,body{
     border-top:1px solid #ddd;
     margin:30px 0;
 }
+    /* ================= WEBSITE FOOTER ================= */
+
+#mapFooter{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:rgba(255,255,255,0.92);
+    border-top:1px solid #ccc;
+    z-index:999;
+    text-align:center;
+    padding:8px 0;
+    font-size:13px;
+    color:#555;
+    font-family:Georgia, serif;
+}
+
+#mapFooter .footer-content{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+#mapFooter strong{
+    color:#2E5E3B;
+}
+
+#mapFooter .divider{
+    color:#999;
+}
+    
 </style>
 
 </head>
@@ -189,6 +222,15 @@ html,body{
 </div>
 
 <div id="map"></div>
+    <footer id="mapFooter">
+    <div class="footer-content">
+        <span><strong>Interactive Map developed by</strong> Trushali Dodiya</span>
+
+        <span class="divider">|</span>
+
+        <span><strong>Built with</strong> Leaflet.js • OpenStreetMap • Esri • GIS</span>
+    </div>
+</footer>
 
 <script>
 
