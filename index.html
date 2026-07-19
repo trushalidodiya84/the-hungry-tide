@@ -145,17 +145,6 @@ var forest = L.tileLayer(
 }
 );
 
-var standard = L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png'
-).addTo(map);
-
-var waterways = L.tileLayer(
-'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-);
-
-var forest = L.tileLayer(
-'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
-);
     var baseMaps = {
     "🗺 Standard Map": standard,
     "🌊 Waterways": waterways,
