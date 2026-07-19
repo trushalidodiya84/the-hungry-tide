@@ -1940,7 +1940,53 @@ fetch("Tonle Sap.geojson")
 
 });
 
+/* ================= LAOS BORDER ================= */
 
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Laos Border"){
+
+            L.geoJSON(feature,{
+
+                pointToLayer:function(feature,latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#2E7D32",
+                        fillColor:"#66BB6A",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
+
+                onEachFeature:function(feature,layer){
+
+                    layer.bindPopup(
+
+                        "<b>🌿 Laos Border</b><br><br>"+
+
+                        "The stretch of the Mekong River near the Laos–Cambodia border marks the northern limit of Piya Roy's freshwater Irrawaddy dolphin survey. Here, she tracked <i>Orcaella brevirostris</i> in deep river pools that provide essential habitat during the dry season.<br><br>"+
+
+                        "<b>Ecological Significance</b><br>"+
+                        "Northern extent of the Mekong freshwater Irrawaddy dolphin population.<br>"+
+                        "Deep pools serve as critical refuges during the dry season.<br>"+
+                        "Demonstrates the importance of transboundary river ecosystems for dolphin conservation."
+
+                    );
+
+                }
+
+            }).addTo(ecologyLayer);
+
+        }
+
+    });
+
+});
+    
 L.control.layers(
 null,
 {
