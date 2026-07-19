@@ -186,15 +186,19 @@ fillColor:"#66BB6A",
     dashArray:"5,5"
 })
 .addTo(tidalPoolLayer)
-.bindPopup(
-"<b>🌊 Tide Country</b><br>" +
-"A dynamic estuarine landscape shaped by daily tides, erosion, sedimentation, and shifting waterways. The tide country is the central ecological space of Amitav Ghosh's <i>The Hungry Tide</i>."
-);
+.bindPopup(`
+<b>🌊 Tide Country</b><br><br>
 
-ecologyLayer.addLayer(ecologicalCorridorLayer);
+The Tide Country represents one of the world's most dynamic estuarine landscapes, where rivers, islands, forests, and coastlines exist in a constant state of transformation.<br><br>
 
-ecologyLayer.addLayer(stormLayer);
+<b>Ecological Characteristics</b><br>
+• Rivers frequently change their courses, while islands emerge and disappear within a short span of time.<br>
+• Mangrove forests regenerate rapidly, reclaiming denuded land within a few decades.<br>
+• Tides continuously reshape the landscape, eroding, depositing, and transforming everything into new forms of life.<br><br>
 
+<b>Literary Significance</b><br>
+In <i>The Hungry Tide</i>, the Tide Country symbolizes a landscape of perpetual change where human lives, memory, and ecology remain inseparable. As Rainer Maria Rilke observes, <i>"Life is lived in transformation,"</i> a philosophy that aptly reflects the ever-changing ecology of the Sundarbans.
+`);
     
 
 
