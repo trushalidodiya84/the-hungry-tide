@@ -1894,6 +1894,50 @@ fetch("All places.geojson")
     });
 
 });
+/* ================= TONLE SAP LAKE ================= */
+
+fetch("Tonle Sap.geojson")
+.then(response => response.json())
+.then(data => {
+
+    L.geoJSON(data,{
+
+        pointToLayer:function(feature,latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#1565C0",
+                fillColor:"#42A5F5",
+                fillOpacity:0.8,
+                weight:2
+            });
+        },
+
+        onEachFeature:function(feature,layer){
+
+            layer.bindPopup(
+
+                "<b>🐬 Tonle Sap Lake, Cambodia</b><br><br>"+
+
+                "Tonle Sap, Southeast Asia's largest freshwater lake, once supported an abundant population of Irrawaddy dolphins (<i>Orcaella brevirostris</i>). By the time of Piya's research, however, this population had disappeared, illustrating the devastating consequences of human conflict and environmental degradation.<br><br>"+
+
+                "<b>Ecological Significance</b><br>"+
+                "• Former habitat of the freshwater Irrawaddy dolphin.<br>"+
+                "• Population declined to local extinction.<br>"+
+                "• Demonstrates the vulnerability of freshwater cetaceans to habitat loss and human exploitation.<br><br>"+
+
+                "<b>Historical Context</b><br>"+
+                "• During the 1970s, Cambodia's civil conflict severely affected the dolphin population.<br>"+
+                "• Dolphins were hunted for their oil, which was used as fuel for boats and motorcycles.<br>"+
+                "• The disappearance of the Tonle Sap population reflects one of the region's major ecological tragedies.<br><br>"+
+
+
+            );
+
+        }
+
+    }).addTo(ecologyLayer);
+
+});
     
 L.control.layers(
 null,
