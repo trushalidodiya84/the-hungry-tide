@@ -2210,6 +2210,8 @@ baseMaps,
 ).addTo(map);
     
 </script>
+</script>
+
 <div id="aboutModal" class="modal">
 
 <div class="modal-content">
@@ -2217,135 +2219,73 @@ baseMaps,
 <span class="close">&times;</span>
 
 from pathlib import Path
-from docx import Document
 from textwrap import dedent
 
-# Read uploaded file
-src = Path("/mnt/data/Pasted text(23).txt")
-text = src.read_text(encoding="utf-8")
+src=Path("/mnt/data/Pasted text(23).txt")
+text=src.read_text(encoding="utf-8")
 
-css = dedent("""
-
+css=dedent("""
 /* ================= ABOUT MODAL ================= */
-.modal{
-    display:none;
-    position:fixed;
-    z-index:9999;
-    left:0; top:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,.45);
-}
-.modal-content{
-    background:#fff;
-    width:70%;
-    height:80%;
-    margin:4% auto;
-    padding:35px;
-    overflow-y:auto;
-    border-radius:8px;
-    box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-.close{
-    float:right;
-    font-size:32px;
-    cursor:pointer;
-    font-weight:bold;
-}
+.modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.45);}
+.modal-content{background:#fff;width:70%;height:80%;margin:4% auto;padding:35px;overflow-y:auto;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.3);}
+.close{float:right;font-size:32px;cursor:pointer;font-weight:bold;}
 .modal h1{font-family:'Cinzel',serif;color:#2E5E3B;}
 .modal h2,.modal h3{color:#2E5E3B;}
 .modal p,.modal li{font-size:16px;line-height:1.7;}
 """)
+text=text.replace("</style>",css+"\n</style>",1)
 
-if "</style>" in text:
-    text = text.replace("</style>", css + "\n</style>", 1)
-
-modal = dedent("""
+modal=dedent("""
 <div id="aboutModal" class="modal">
 <div class="modal-content">
 <span class="close">&times;</span>
-
 <h1>ABOUT THE PROJECT</h1>
-
 <h2>Migration and Ecology: A Digital Cartographic Study of Spatial and Cultural Memory in <em>Amitav Ghosh's The Hungry Tide</em></h2>
+<p>This interactive digital map has been developed as part of a doctoral research project in <strong>Digital Humanities</strong>.</p>
+<p><strong>Replace this section with the full About Project text you prepared.</strong></p>
+</div>
+</div>
+<script>
+const aboutModal=document.getElementById("aboutModal");
+const aboutLink=document.getElementById("aboutLink");
+const closeBtn=document.querySelector(".close");
+aboutLink.onclick=function(e){e.preventDefault();aboutModal.style.display="block";}
+closeBtn.onclick=function(){aboutModal.style.display="none";}
+window.onclick=function(e){if(e.target==aboutModal){aboutModal.style.display="none";}}
+</script>
+""")
+text=text.replace("</body>",modal+"\n</body>",1)
 
-<p>This interactive digital map has been developed as part of a doctoral research project in <strong>Digital Humanities</strong>. The project explores the spatial dimensions of <em>The Hungry Tide</em> by integrating literary analysis with digital cartography and Geographic Information Systems (GIS).</p>
-
-<p>The map serves as a visual interface to the novel's complex geographical landscape, enabling readers to examine the intricate relationships between ecology, migration, memory, and mythology within the Sundarbans.</p>
-
-<hr>
-<h2>Research Context</h2>
-<p><em>The Hungry Tide</em> presents the Sundarbans as a dynamic landscape where environmental processes, human mobility, and cultural memory continually intersect.</p>
-
-<hr>
-<h2>Project Objectives</h2>
-<ul>
-<li>Visualize the geographical settings represented in <em>The Hungry Tide</em>.</li>
-<li>Map ecological habitats.</li>
-<li>Represent migration and mobility networks.</li>
-<li>Document sites of spatial and cultural memory.</li>
-<li>Visualize the Bon Bibi myth.</li>
-<li>Demonstrate Digital Humanities and Literary Cartography.</li>
-</ul>
-
-<hr>
-<h2>Research Information</h2>
-<p><strong>Researcher</strong><br>
-Trushali Dodiya<br>
-Research Scholar<br>
-Department of English<br>
-MK Bhavnagar University</p>
-
-<p><strong>Under the Guidance of</strong><br>
-Prof. (Dr.) Dilip Barad<br>
-Professor & Head<br>
-Department of English<br>
-MK Bhavnagar University</p>
+out=Path("/mnt/data/index_with_about_modal.html")
+out.write_text(text,encoding="utf-8")
+print(str(out))
 
 </div>
+
 </div>
 
 <script>
+
 const aboutModal=document.getElementById("aboutModal");
 const aboutLink=document.getElementById("aboutLink");
 const closeBtn=document.querySelector(".close");
 
 aboutLink.onclick=function(e){
- e.preventDefault();
- aboutModal.style.display="block";
+    e.preventDefault();
+    aboutModal.style.display="block";
 }
+
 closeBtn.onclick=function(){
- aboutModal.style.display="none";
+    aboutModal.style.display="none";
 }
+
 window.onclick=function(e){
- if(e.target==aboutModal){
-   aboutModal.style.display="none";
- }
+    if(e.target==aboutModal){
+        aboutModal.style.display="none";
+    }
 }
-</script>
-""")
-
-if "</body>" in text:
-    text = text.replace("</body>", modal + "\n</body>", 1)
-
-out = Path("/mnt/data/index_with_about_modal.html")
-out.write_text(text, encoding="utf-8")
-
-print(out)
-
-    
-</div>
-
-</div>
-
-<script>
-
-const aboutModal=document.getElementById("aboutModal");
-const aboutLink=document.getElementById("aboutLink");
-const closeBtn=document.querySelector(".close");
-
-...
 
 </script>
-    
+
 </body>
 </html>
