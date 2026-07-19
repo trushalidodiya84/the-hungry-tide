@@ -1799,7 +1799,51 @@ fetch("All places.geojson")
     });
 
 });
-            
+
+    /* ================= KRATIE ================= */
+
+fetch("Kratie.geojson")
+.then(response => response.json())
+.then(data => {
+
+    L.geoJSON(data,{
+
+        pointToLayer:function(feature,latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#1565C0",
+                fillColor:"#42A5F5",
+                fillOpacity:0.8,
+                weight:2
+            });
+        },
+
+        onEachFeature:function(feature,layer){
+
+            layer.bindPopup(
+
+                "<b>🐬 Kratie, Cambodia</b><br><br>"+
+
+                "Situated on the banks of the Mekong River, Kratie became Piya Roy's principal field station during her survey of the endangered Irrawaddy dolphin (<i>Orcaella brevirostris</i>). A few kilometres north of the town, deep freshwater pools served as important dry-season refuges for resident dolphin pods.<br><br>"+
+
+                "<b>Ecological Significance</b><br>"+
+                "• Principal research base for the Mekong Irrawaddy dolphin population.<br>"+
+                "• Deep freshwater pools provide critical habitat during the dry season.<br>"+
+                "• Demonstrates the ecological dependence of freshwater dolphins on the Mekong River ecosystem.<br><br>"+
+
+                "<b>Literary Significance</b><br>"+
+                "• Piya conducts long-term dolphin surveys from Kratie.<br>"+
+                "• She develops her expertise as a cetologist while documenting the behaviour and distribution of Irrawaddy dolphins.<br>"+
+                "• Kratie marks an important stage in Piya's scientific journey before her research in the Sundarbans."
+
+            );
+
+        }
+
+    }).addTo(ecologyLayer);
+
+});
+    
 L.control.layers(
 null,
 {
