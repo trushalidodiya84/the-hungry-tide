@@ -1901,15 +1901,15 @@ fetch("Tonle Sap.geojson")
 .then(data => {
 
     L.geoJSON(data,{
-
-          style:function(feature){
-            return{
-                color:"#2E7D32",
-                weight:4,
-                opacity:0.9
-                
-            });
-        },
+pointToLayer:function(feature,latlng){
+    return L.circleMarker(latlng,{
+        radius:8,
+        color:"#2E7D32",
+        fillColor:"#66BB6A",
+        fillOpacity:0.8,
+        weight:2
+    });
+},
 
         onEachFeature:function(feature,layer){
 
@@ -1927,9 +1927,11 @@ fetch("Tonle Sap.geojson")
                 "<b>Historical Context</b><br>"+
                 "• During the 1970s, Cambodia's civil conflict severely affected the dolphin population.<br>"+
                 "• Dolphins were hunted for their oil, which was used as fuel for boats and motorcycles.<br>"+
-                "• The disappearance of the Tonle Sap population reflects one of the region's major ecological tragedies."
+                "• The disappearance of the Tonle Sap population reflects one of the region's major ecological tragedies.<br><br>"+
 
-               
+                "<b>Literary Significance</b><br>"+
+                "• The fate of the Tonle Sap dolphins deepens Piya's awareness of the fragility of river dolphin populations and reinforces her commitment to conservation."
+
             );
 
         }
@@ -1994,12 +1996,13 @@ fetch("Laos Boarder to Phnom Pehn.geojson")
     L.geoJSON(data,{
 
         style:function(feature){
-            return{
-                color:"#2E7D32",
-                weight:4,
-                opacity:0.9
-            };
-        },
+    return{
+        color:"#2E7D32",
+        weight:4,
+        opacity:0.9,
+        dashArray:"8,8"
+    };
+},
 
         onEachFeature:function(feature,layer){
 
