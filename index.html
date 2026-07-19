@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
+
+<meta charset="utf-8">
+
 <title>The Hungry Tide - Literary Cartography</title>
 
-#sidebar h1{
-    font-family:'Cinzel', serif;
-}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <style>
-html, body{
+
+html,body{
     margin:0;
     padding:0;
     height:100%;
@@ -18,8 +23,8 @@ html, body{
 }
 
 #map{
-    height:100vh;
     width:100%;
+    height:100vh;
 }
 
 #sidebar{
@@ -38,7 +43,7 @@ html, body{
 
     z-index:1000;
 
-    box-shadow:0 3px 12px rgba(0,0,0,0.25);
+    box-shadow:0 3px 12px rgba(0,0,0,.25);
 
     border-radius:4px;
 
@@ -46,37 +51,37 @@ html, body{
 
 #sidebar h1{
 
-    margin:0;
-
-    font-size:40px;
-
-    line-height:0.95;
+    font-family:'Cinzel',serif;
 
     color:#8B1E1E;
 
-    font-family: "Georgia", serif;
+    font-size:44px;
+
+    line-height:1;
+
+    margin:0;
 
 }
 
 .subtitle{
 
-    margin-top:15px;
-
     font-size:20px;
+
+    margin-top:15px;
 
 }
 
 .project{
 
-    margin-top:12px;
+    margin-top:15px;
 
     text-transform:uppercase;
 
-    letter-spacing:2px;
+    letter-spacing:3px;
 
     font-size:13px;
 
-    color:#555;
+    color:#666;
 
 }
 
@@ -92,34 +97,24 @@ html, body{
 
 }
 
-#aboutLink:hover{
-
-    text-decoration:underline;
-
-}
 </style>
 
 </head>
+
 <body>
 
 <div id="sidebar">
 
-    <h1>THE HUNGRY TIDE</h1>
+<h1>THE HUNGRY TIDE</h1>
 
-    <p class="subtitle">
-        <em>An Interactive Literary Map</em>
-    </p>
+<p class="subtitle"><em>An Interactive Literary Map</em></p>
 
-    <p class="project">
-        A Digital Humanities Project
-    </p>
+<p class="project">A Digital Humanities Project</p>
 
-    <a href="#" id="aboutLink">About this Project</a>
+<a href="#" id="aboutLink">About this Project</a>
 
 </div>
 
-<div id="map"></div>
-    
 <div id="map"></div>
 
 <script>
