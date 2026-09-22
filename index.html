@@ -211,6 +211,14 @@ html,body{
     text-align:center;
     line-height:30px;
 }
+    .ecology-symbol{
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 40px;
+}
     
 </style>
 
@@ -722,16 +730,16 @@ fetch("Garjantola.geojson")
 
     L.geoJSON(data, {
 
-        pointToLayer: function(feature, latlng){
-            return L.circleMarker(latlng,{
-                radius:10,
-                color:"#006400",
-                fillColor:"#32CD32",
-                fillOpacity:0.8,
-                weight:2
-            });
-        },
-
+      pointToLayer: function(feature, latlng){
+    return L.marker(latlng,{
+        icon: L.divIcon({
+            className: "ecology-symbol",
+            html: "🐅 🌳 🐬",
+            iconSize: [100, 40],
+            iconAnchor: [50, 20]
+        })
+    });
+},
         onEachFeature: function(feature, layer){
 
            layer.bindPopup(`
