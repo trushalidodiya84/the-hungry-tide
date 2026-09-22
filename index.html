@@ -202,6 +202,15 @@ html,body{
 #mapFooter .divider{
     color:#999;
 }
+    /* ================= SYMBOL MARKERS ================= */
+
+.symbol{
+    background:transparent;
+    border:none;
+    font-size:26px;
+    text-align:center;
+    line-height:30px;
+}
     
 </style>
 
@@ -1377,7 +1386,10 @@ The journey brings together scientific inquiry, traditional ecological knowledge
 
 ecologyLayer.addLayer(piyaDolphinRoute);
 
-    /* ================= GERAFITOLA ================= */
+   /* ================= GERAFITOLA : DOLPHIN SYMBOL ================= */
+
+
+/* ================= DOLPHIN ICON ================= */
 
 var dolphinIcon = L.divIcon({
     className: "symbol",
@@ -1385,48 +1397,33 @@ var dolphinIcon = L.divIcon({
     iconSize: [30, 30],
     iconAnchor: [15, 15]
 });
-    var gerafitola = L.marker([21.81000, 89.04000], {
-    icon: dolphinIcon
-});
+
+
+/* ================= GERAFITOLA MARKER ================= */
+
+var gerafitola = L.marker(
+    [21.81000, 89.04000],
+    {
+        icon: dolphinIcon
+    }
+);
+
+
+/* ================= GERAFITOLA POPUP ================= */
+
 gerafitola.bindPopup(`
-<b>🐬 Gerafitola</b><br><br>
+
+<b>🐬 Gerafitola: Dolphins and Environmental Knowledge</b>
+
+<br><br>
 
 During their expedition through the Sundarbans, Piya and Fokir stopped at Gerafitola while tracking river dolphins.
 
 <br><br>
 
-Here Piya observed a Gangetic Dolphin (<i>Platanista gangetica</i>) displaying unusual behaviour. Unable to explain these movements, she recalled scientific research suggesting that river dolphins are highly sensitive to changes in atmospheric pressure.
-
-<br><br>
-
-The unusual behaviour of the dolphins became an important ecological indicator of environmental change and the approaching cyclone.
-
-<br><br>
-
-Gerafitola also appears in Nirmal and Horen's journey. While reading François Bernier's travel narrative, Nirmal learned of a rare moon rainbow. Horen believed the location described by Bernier was Gerafitola, the only place in the region where such a spectacle could be seen on a full-moon night.
-
-`);
-
-gerafitola.addTo(ecologyLayer);
-
-    /* ================= GERAFITOLA : ECOLOGY AND ENVIRONMENTAL OBSERVATION ================= */
-
-var gerafitola = L.circleMarker([21.81000, 89.04000],{
-    radius:8,
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0.8,
-    weight:2
-});
-
-gerafitola.bindPopup(`
-<b>🐬 Gerafitola: Dolphins and Environmental Knowledge</b><br><br>
-
-During their expedition through the Sundarbans, Piya and Fokir stopped at Gerafitola while tracking river dolphins.
-
-<br><br>
-
-Here Piya observed a Gangetic Dolphin (<i>Platanista gangetica</i>) displaying unusual behaviour. Unable to explain the movement patterns, she recalled the research of Georges Pilleri, whose studies suggested that river dolphins are highly sensitive to changes in atmospheric pressure.
+Here Piya observed a Gangetic Dolphin
+(<i>Platanista gangetica</i>)
+displaying unusual behaviour. Unable to explain the movement patterns, she recalled the research of Georges Pilleri, whose studies suggested that river dolphins are highly sensitive to changes in atmospheric pressure.
 
 <br><br>
 
@@ -1441,6 +1438,9 @@ Gerafitola demonstrates the close relationship between animal behaviour, environ
 Nirmal and Horen also associate this place with François Bernier's seventeenth-century travel narrative describing a rare moon rainbow. Horen believed that Bernier's account referred to Gerafitola, one of the few places in the tide country where such a phenomenon could be witnessed during a full moon.
 
 `);
+
+
+/* ================= ADD TO ECOLOGY LAYER ================= */
 
 gerafitola.addTo(ecologyLayer);
 /* ================= GOSABA : HAMILTON ESTATE ================= */
