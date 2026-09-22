@@ -1379,13 +1379,15 @@ ecologyLayer.addLayer(piyaDolphinRoute);
 
     /* ================= GERAFITOLA ================= */
 
-var gerafitola = L.divIcon({
-    className:"symbol",
-    html:"🐬",
-    iconSize:[30,30],
-    iconAnchor:[15,15]
+var dolphinIcon = L.divIcon({
+    className: "symbol",
+    html: "🐬",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
 });
-
+    var gerafitola = L.marker([21.81000, 89.04000], {
+    icon: dolphinIcon
+});
 gerafitola.bindPopup(`
 <b>🐬 Gerafitola</b><br><br>
 
