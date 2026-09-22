@@ -221,7 +221,25 @@ html,body{
     text-align: center;
     line-height: 40px;
 }
-    
+    .combined-symbol{
+    background: transparent;
+    border: none;
+}
+
+.symbol-circle{
+    width: 54px;
+    height: 54px;
+    border: 3px solid #006400;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+
+    font-size: 17px;
+}
 </style>
 
 </head>
@@ -732,13 +750,19 @@ fetch("Garjantola.geojson")
 
     L.geoJSON(data, {
 
-      pointToLayer: function(feature, latlng){
+    pointToLayer: function(feature, latlng){
     return L.marker(latlng,{
         icon: L.divIcon({
-            className: "ecology-symbol",
-            html: "🐅🌳🐬",
-            iconSize: [100, 100],
-            iconAnchor: [50, 50]
+            className: "combined-symbol",
+            html: `
+                <div class="symbol-circle">
+                    <span>🐬</span>
+                    <span>🐅</span>
+                    <span>🌳</span>
+                </div>
+            `,
+            iconSize: [60, 60],
+            iconAnchor: [30, 30]
         })
     });
 },
