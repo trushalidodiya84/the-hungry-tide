@@ -257,9 +257,9 @@ html,body{
     .garden-research-symbol{
     background:transparent;
     border:none;
-    font-size:50px;
+    font-size:24px;
     text-align:center;
-    line-height:55px;
+    line-height:30px;
     white-space:nowrap;
 }
 </style>
@@ -1702,11 +1702,11 @@ fetch("All places.geojson")
     });
 
     var gardenResearchIcon = L.divIcon({
-        className:"garden-research-symbol",
-        html:"🪴🔬",
-        iconSize:[50,50],
-        iconAnchor:[55,27]
-    });
+    className:"garden-research-symbol",
+    html:"🪴🔬",
+    iconSize:[70,40],
+    iconAnchor:[35,20]
+});
 
     var gardenResearch = L.marker(latlng,{
         icon:gardenResearchIcon,
