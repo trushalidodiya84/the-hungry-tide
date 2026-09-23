@@ -750,103 +750,55 @@ fetch("All places.geojson")
 
     data.features.forEach(function(feature){
 
-        if(feature.properties.name === "Morichjhapi"){
+       if(feature.properties.name === "Morichjhapi"){
 
-            // ==========================================
-            // EXISTING MORICHJHAPI MARKER
-            // ==========================================
-
-            L.geoJSON(feature,{
-
-                pointToLayer: function(feature, latlng){
-
-                    return L.circleMarker(latlng,{
-                        radius: 8,
-                        color: "#00008B",
-                        fillColor: "#4169E1",
-                        fillOpacity: 0.8,
-                        weight: 2
-                    });
-
-                }
-
-            }).addTo(map);
-
-
-            // ==========================================
-            // 🕊️ MEMORY + LONGING ICON
-            // SAME EXACT COORDINATES
-            // ==========================================
-
-            var memoryIcon = L.divIcon({
-
-                className: "memory-icon",
-
-                html: "🕊️",
-
-                iconSize: [40, 40],
-
-                iconAnchor: [20, 20],
-
-                popupAnchor: [0, -20]
-
+    // EXISTING BLUE CIRCLE MARKER — DO NOT CHANGE
+    L.geoJSON(feature,{
+        pointToLayer: function(feature, latlng){
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#00008B",
+                fillColor:"#4169E1",
+                fillOpacity:0.8,
+                weight:2
             });
-
-
-            // ==========================================
-            // GET EXACT MORICHJHAPI COORDINATES
-            // ==========================================
-
-            var morichLat =
-                feature.geometry.coordinates[1];
-
-            var morichLng =
-                feature.geometry.coordinates[0];
-
-
-            // ==========================================
-            // ADD DOVE AT EXACT SAME LOCATION
-            // ==========================================
-
-            L.marker(
-
-                [morichLat, morichLng],
-
-                {
-                    icon: memoryIcon,
-                    zIndexOffset: 1000
-                }
-
-            )
-
-            .addTo(map)
-
-            .bindPopup(`
-
-                <div style="max-width:320px;">
-
-                    <h3 style="margin-bottom:8px;">
-                        🕊️ Morichjhapi — Memory & Longing
-                    </h3>
-
-                    <p>
-                        Morichjhapi is a site of historical and
-                        cultural memory in <i>The Hungry Tide</i>,
-                        preserving memories of displacement,
-                        suffering, resistance and loss.
-                    </p>
-
-                    <p>
-                        For Kusum, it also embodies a deep longing
-                        for the Sundarbans, homeland, belonging
-                        and return.
-                    </p>
-
-                </div>
-
-            `);
-
         }
+    }).addTo(map);
+
+
+    // 🕊️ DOVE — EXACT SAME LOCATION AS BLUE CIRCLE
+    var morichLat = feature.geometry.coordinates[1];
+    var morichLng = feature.geometry.coordinates[0];
+
+    var memoryIcon = L.divIcon({
+        className: "memory-icon",
+        html: "🕊️",
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
+        popupAnchor: [0, -20]
+    });
+
+    L.marker([morichLat, morichLng], {
+        icon: memoryIcon,
+        zIndexOffset: 1000
+    })
+    .addTo(map)
+    .bindPopup(`
+        <div style="max-width:300px;">
+            <h3>🕊️ Morichjhapi — Memory & Longing</h3>
+
+            <p>
+            Morichjhapi represents memories of displacement,
+            suffering, resistance and loss in <i>The Hungry Tide</i>.
+            </p>
+
+            <p>
+            For Kusum, it also represents her deep longing for
+            her homeland, belonging and return.
+            </p>
+        </div>
+    `);
+}
 
     });
 
