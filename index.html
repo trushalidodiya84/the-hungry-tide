@@ -2148,14 +2148,34 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-              pointToLayer: function(feature, latlng) { 
-                  return L.circleMarker(latlng,{ 
-                  radius:8, color:"#2E7D32", 
-                  fillColor:"#66BB6A", 
-                  fillOpacity:0.8, 
-                  weight:2
-        })
+              pointToLayer: function(feature, latlng){
+
+    // Green circle
+    var circle = L.circleMarker(latlng,{
+        radius:8,
+        color:"#2E7D32",
+        fillColor:"#66BB6A",
+        fillOpacity:0.8,
+        weight:2
     });
+
+    // Dolphin symbol
+    var dolphinIcon = L.divIcon({
+        className: "dolphin-symbol",
+        html: "🐬",
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+    });
+
+    var dolphin = L.marker(latlng,{
+        icon: dolphinIcon
+    });
+
+    // Put both together
+    return L.layerGroup([
+        circle,
+        dolphin
+    ]);
 },
 
                 onEachFeature:function(feature, layer){
