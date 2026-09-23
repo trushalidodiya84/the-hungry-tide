@@ -1769,7 +1769,7 @@ fetch("Salt Lake.geojson")
 .then(response => response.json())
 .then(data => {
 
- L.geoJSON(data, {
+    L.geoJSON(data, {
 
         style: {
             color: "#2E7D32",
@@ -1778,21 +1778,6 @@ fetch("Salt Lake.geojson")
             fillOpacity: 0.4
         }
 
-    }).addTo(map);
-
-
-    /* ================= LAKE ICON ================= */
-
-    var lakeIcon = L.divIcon({
-        className: "lake-symbol",
-        html: "🏞️",
-        iconSize: [48, 48],
-        iconAnchor: [24, 24]
-    });
-
-    L.marker([22.57659, 88.41337], {
-        icon: lakeIcon,
-        interactive: false
     }).addTo(map);
 
 });
