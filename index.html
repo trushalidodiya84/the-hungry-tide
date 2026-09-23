@@ -277,6 +277,13 @@ html,body{
     text-align: center;
     line-height: 40px;
 }
+    .girl-migrant-icon{
+     background: transparent;
+    border: none;
+    font-size: 32px;
+    text-align: center;
+    line-height: 40px;
+    }
         
 </style>
 
@@ -2662,7 +2669,246 @@ Dhanbad therefore functions as a crucial node in Kusum's migration, linking forc
 dhanbad.addTo(migrationLayer);
 
 
+// ==========================================
+// KUSUM'S MIGRATION ROUTE
+// SATJELIA → DHANBAD → MORICHJHAPI
+// Red Dashed Lines + Girl Migrant Icons
+// ==========================================
 
+
+// ==========================================
+// 1. EXISTING DHANBAD COORDINATES
+// ==========================================
+
+var dhanbadRoute = [
+    23.789347564946187,
+    86.42632199534648
+];
+
+
+// ==========================================
+// 2. GIRL MIGRANT ICON
+// ==========================================
+
+var girlMigrationIcon = L.divIcon({
+
+    className: "girl-migrant-icon",
+
+    html: `
+        <div style="
+            font-size: 30px;
+            text-align: center;
+            line-height: 1;
+        ">👧🎒</div>
+    `,
+
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+
+});
+
+
+// ==========================================
+// 3. READ SATJELIA + MORICHJHAPI
+// FROM EXISTING GEOJSON
+// ==========================================
+
+fetch("All places.geojson")
+
+.then(response => response.json())
+
+.then(data => {
+
+    var satjeliaCoords = null;
+    var morichjhapiCoords = null;
+
+
+    data.features.forEach(function(feature) {
+
+
+        // SATJELIA
+        if(feature.properties.name === "Satjelia") {
+
+            satjeliaCoords = [
+                feature.geometry.coordinates[1],
+                feature.geometry.coordinates[0]
+            ];
+
+        }
+
+
+        // MORICHJHAPI
+        if(feature.properties.name === "Morichjhapi") {
+
+            morichjhapiCoords = [
+                feature.geometry.coordinates[1],
+                feature.geometry.coordinates[0]
+            ];
+
+        }
+
+    });
+
+
+    // ==========================================
+    // CHECK COORDINATES
+    // ==========================================
+
+    if(!satjeliaCoords || !morichjhapiCoords) {
+
+        console.log(
+            "Satjelia or Morichjhapi coordinates not found."
+        );
+
+        return;
+
+    }
+
+
+    // ==========================================
+    // 4. SATJELIA → DHANBAD
+    // INDIRECT RED DASHED LINE
+    // ==========================================
+
+    var satjeliaDhanbadLine = L.polyline(
+
+        [
+
+            satjeliaCoords,
+
+            // Indirect visual path
+            [22.35, 88.65],
+            [22.65, 88.30],
+            [22.95, 88.00],
+            [23.25, 87.55],
+            [23.55, 87.05],
+
+            dhanbadRoute
+
+        ],
+
+        {
+
+            color: "#D32F2F",
+
+            weight: 4,
+
+            opacity: 0.9,
+
+            dashArray: "10, 8",
+
+            lineCap: "round",
+
+            lineJoin: "round"
+
+        }
+
+    ).addTo(map);
+
+
+    // ==========================================
+    // 5. GIRL ICON
+    // SATJELIA → DHANBAD
+    // ==========================================
+
+    L.marker(
+
+        [22.95, 88.00],
+
+        {
+            icon: girlMigrationIcon
+        }
+
+    )
+
+    .addTo(map)
+
+    .bindPopup(`
+
+        <b>Kusum – Satjelia</b><br><br>
+
+        Kusum is from Satjelia, an inhabited island
+        of the Sundarbans. Her life becomes marked
+        by displacement and migration.
+
+    `);
+
+
+    // ==========================================
+    // 6. DHANBAD → MORICHJHAPI
+    // INDIRECT RED DASHED LINE
+    // ==========================================
+
+    var dhanbadMorichjhapiLine = L.polyline(
+
+        [
+
+            dhanbadRoute,
+
+            // Indirect visual path
+            [23.55, 86.15],
+            [23.20, 85.85],
+            [22.85, 85.60],
+            [22.55, 86.00],
+            [22.30, 86.50],
+            [22.15, 87.10],
+            [22.05, 87.75],
+            [22.00, 88.35],
+            [22.05, 88.70],
+
+            morichjhapiCoords
+
+        ],
+
+        {
+
+            color: "#D32F2F",
+
+            weight: 4,
+
+            opacity: 0.9,
+
+            dashArray: "10, 8",
+
+            lineCap: "round",
+
+            lineJoin: "round"
+
+        }
+
+    ).addTo(map);
+
+
+    // ==========================================
+    // 7. GIRL ICON
+    // DHANBAD → MORICHJHAPI
+    // ==========================================
+
+    L.marker(
+
+        [22.30, 86.50],
+
+        {
+            icon: girlMigrationIcon
+        }
+
+    )
+
+    .addTo(map)
+
+    .bindPopup(`
+
+        <b>Kusum – Dhanbad</b><br><br>
+
+        At Dhanbad Railway Station, Kusum meets
+        Rajen and learns about her mother's fate.
+        She later returns towards the Sundarbans
+        with her son Fokir.
+
+    `);
+
+
+});
     
     
 L.control.layers(
