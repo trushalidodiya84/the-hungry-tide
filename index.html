@@ -2601,7 +2601,22 @@ var dhanbad = L.circleMarker([23.789347564946187, 86.42632199534648],{
     fillOpacity:0.85,
     weight:2
 });
+var railwayIcon = L.divIcon({
+        className:"railway-symbol",
+        html:"🚉",
+        iconSize:[40,40],
+        iconAnchor:[20,20]
+    });
 
+    var railway = L.marker(latlng,{
+        icon:railwayIcon,
+        interactive:false
+    });
+
+    railway.addTo(map);
+
+    return circle;
+},
 dhanbad.bindPopup(`
 <b>🚉 Dhanbad Junction</b><br><br>
 
