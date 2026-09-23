@@ -1090,6 +1090,9 @@ Following displacement from East Pakistan (later Bangladesh), many refugee famil
 migrationLayer.addLayer(route1);
 
 
+/* ================= REFUGEE MIGRATION ROUTES ================= */
+
+
 /* Raipur → Dandakaranya */
 
 var route2 = L.polyline([
@@ -1097,18 +1100,35 @@ var route2 = L.polyline([
     [19.0, 82.0]          // Dandakaranya region
 ],{
     color:"#FF4444",
-    weight:3,
-    dashArray:"6,6"
+    weight:3
 });
 
 route2.bindPopup(`
 <b>🚶 Refugee Migration Route II</b><br><br>
+
 Raipur → Dandakaranya
+
 <br><br>
+
 Refugees were relocated from transit centres to rehabilitation camps throughout the Dandakaranya Project area.
 `);
 
 migrationLayer.addLayer(route2);
+
+
+/* 🚶 People moving on Route 2 */
+
+var movementIcon2 = L.divIcon({
+    className: "migration-symbol",
+    html: "🚶",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+
+L.marker([20.15, 81.82], {
+    icon: movementIcon2
+}).addTo(migrationLayer);
+
 
 
 /* Dandakaranya → Morichjhapi */
@@ -1118,10 +1138,34 @@ var route3 = L.polyline([
     [22.10, 88.93]        // Morichjhapi
 ],{
     color:"#FF4444",
-    weight:3,
-    dashArray:"6,6"
+    weight:3
 });
 
+route3.bindPopup(`
+<b>🚶 Refugee Migration Route III</b><br><br>
+
+Dandakaranya → Morichjhapi
+
+<br><br>
+
+Refugees left the Dandakaranya region and migrated towards the Sundarbans, eventually reaching Morichjhapi.
+`);
+
+migrationLayer.addLayer(route3);
+
+
+/* 🚶 People moving on Route 3 */
+
+var movementIcon3 = L.divIcon({
+    className: "migration-symbol",
+    html: "🚶",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+
+L.marker([20.55, 85.45], {
+    icon: movementIcon3
+}).addTo(migrationLayer);
 route3.bindPopup(`
 <b>🚶 Refugee Migration Route III</b><br><br>
 Dandakaranya → Morichjhapi
