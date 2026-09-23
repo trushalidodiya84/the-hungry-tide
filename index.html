@@ -262,6 +262,15 @@ html,body{
     line-height:30px;
     white-space:nowrap;
 }
+    .railway-symbol{
+    background:transparent;
+    border:none;
+    font-size:24px;
+    text-align:center;
+    line-height:30px;
+    white-space:nowrap;
+    }
+        
 </style>
 
 </head>
@@ -1937,15 +1946,31 @@ fetch("All places.geojson")
             L.geoJSON(feature,{
 
                 pointToLayer: function(feature, latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#2E7D32",
-                        fillColor:"#66BB6A",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-                },
 
+    var circle = L.circleMarker(latlng,{
+        radius:8,
+        color:"#2E7D32",
+        fillColor:"#66BB6A",
+        fillOpacity:0.8,
+        weight:2
+    });
+
+    var railwayIcon = L.divIcon({
+        className:"railway-symbol",
+        html:"🚉",
+        iconSize:[40,40],
+        iconAnchor:[20,20]
+    });
+
+    var railway = L.marker(latlng,{
+        icon:railwayIcon,
+        interactive:false
+    });
+
+    railway.addTo(map);
+
+    return circle;
+},
                 onEachFeature: function(feature, layer){
 
                     layer.bindPopup(`
