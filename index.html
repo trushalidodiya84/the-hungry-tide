@@ -1772,7 +1772,6 @@ fetch("Salt Lake.geojson")
             fillOpacity: 0.4
         },
 
-
         onEachFeature: function(feature, layer){
 
             layer.bindPopup(`
@@ -1791,6 +1790,7 @@ fetch("Salt Lake.geojson")
             <br><br>
 
             Salt Lake demonstrates how tidal movements, changing environments, and scientific interpretation shape human knowledge of the natural world.
+
             `);
 
         }
@@ -1798,6 +1798,22 @@ fetch("Salt Lake.geojson")
     }).addTo(ecologyLayer);
 
 });
+
+
+/* ================= SALT LAKE ICON ================= */
+
+var lakeIcon = L.divIcon({
+    className: "lake-symbol",
+    html: "🏞️",
+    iconSize: [48, 48],
+    iconAnchor: [24, 24]
+});
+
+L.marker([22.57659, 88.41337], {
+    icon: lakeIcon,
+    interactive: false
+}).addTo(ecologyLayer);
+    
 var encounterZone = L.circleMarker([22.00796, 88.73735],{
     radius:8,
     color:"#2E7D32",
