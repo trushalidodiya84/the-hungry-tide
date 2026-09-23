@@ -2594,30 +2594,42 @@ fetch("Laos Boarder to Phnom Pehn.geojson")
 
 /* ================= DHANBAD ================= */
 
-var dhanbad = L.circleMarker([23.789347564946187, 86.42632199534648],{
-    radius:8,
-    color:"#B71C1C",
-    fillColor:"#E53935",
-    fillOpacity:0.85,
-    weight:2
-});
-var railwayIcon = L.divIcon({
-        className:"railway-symbol",
-        html:"🚉",
-        iconSize:[40,40],
-        iconAnchor:[20,20]
-    });
+var dhanbad = L.circleMarker(
+    [23.789347564946187, 86.42632199534648],
+    {
+        radius:8,
+        color:"#B71C1C",
+        fillColor:"#E53935",
+        fillOpacity:0.85,
+        weight:2
+    }
+);
 
-    var railway = L.marker(latlng,{
+
+/* ================= DHANBAD RAILWAY ICON ================= */
+
+var railwayIcon = L.divIcon({
+    className:"railway-symbol",
+    html:"🚉",
+    iconSize:[40,40],
+    iconAnchor:[20,20]
+});
+
+var railway = L.marker(
+    [23.789347564946187, 86.42632199534648],
+    {
         icon:railwayIcon,
         interactive:false
-    });
+    }
+);
 
-    railway.addTo(map);
+railway.addTo(migrationLayer);
 
-    return circle;
-},
+
+/* ================= DHANBAD POPUP ================= */
+
 dhanbad.bindPopup(`
+
 <b>🚉 Dhanbad Junction</b><br><br>
 
 Dhanbad marks a significant stage in Kusum's migration narrative. After her father dies while collecting firewood in a protected forest area of the Sundarbans, her mother accepts Dilip Choudhury's promise of employment in Calcutta. Instead, she is trafficked and forced into prostitution in Sonagachhi. Believing that her mother has secured respectable work, Kusum later leaves the tide country in search of her.
@@ -2633,9 +2645,13 @@ Although Kusum and Rajen marry, both continue to long for their homeland in the 
 <br><br>
 
 Dhanbad therefore functions as a crucial node in Kusum's migration, linking forced displacement, urban exploitation, refugee movement, and eventual return to the tide country.
+
 `);
 
-dhanbad.addTo(migrationLayer); 
+
+/* ================= ADD DHANBAD TO MIGRATION LAYER ================= */
+
+dhanbad.addTo(migrationLayer);
     
     
 L.control.layers(
