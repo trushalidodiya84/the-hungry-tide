@@ -2664,52 +2664,26 @@ Dhanbad therefore functions as a crucial node in Kusum's migration, linking forc
 `);
 
 
-/* ================= ADD DHANBAD TO MIGRATION LAYER ================= */
-
-dhanbad.addTo(migrationLayer);
-
-
 // ==========================================
 // KUSUM'S MIGRATION ROUTE
 // SATJELIA → DHANBAD → MORICHJHAPI
-// Red Dashed Lines + Girl Migrant Icons
 // ==========================================
 
 
 // ==========================================
-// 1. EXISTING DHANBAD COORDINATES
-// ==========================================
-
-var dhanbadRoute = [
-    23.789347564946187,
-    86.42632199534648
-];
-
-
-// ==========================================
-// 2. GIRL MIGRANT ICON
+// GIRL MIGRANT ICON
 // ==========================================
 
 var girlMigrationIcon = L.divIcon({
-
     className: "girl-migrant-icon",
-
-    html: `
-        <div style="
-            font-size: 30px;
-            text-align: center;
-            line-height: 1;
-        ">👧🎒</div>
-    `,
-
+    html: "👧",
     iconSize: [40, 40],
     iconAnchor: [20, 20]
-
 });
 
 
 // ==========================================
-// 3. READ SATJELIA + MORICHJHAPI
+// GET SATJELIA + MORICHJHAPI
 // FROM EXISTING GEOJSON
 // ==========================================
 
@@ -2725,8 +2699,7 @@ fetch("All places.geojson")
 
     data.features.forEach(function(feature) {
 
-
-        // SATJELIA
+        // Satjelia
         if(feature.properties.name === "Satjelia") {
 
             satjeliaCoords = [
@@ -2737,7 +2710,7 @@ fetch("All places.geojson")
         }
 
 
-        // MORICHJHAPI
+        // Morichjhapi
         if(feature.properties.name === "Morichjhapi") {
 
             morichjhapiCoords = [
@@ -2766,54 +2739,42 @@ fetch("All places.geojson")
 
 
     // ==========================================
-    // 4. SATJELIA → DHANBAD
-    // INDIRECT RED DASHED LINE
+    // 1. SATJELIA → DHANBAD
+    // STRAIGHT RED DASHED LINE
     // ==========================================
 
     var satjeliaDhanbadLine = L.polyline(
 
         [
-
             satjeliaCoords,
-
-            // Indirect visual path
-            [22.35, 88.65],
-            [22.65, 88.30],
-            [22.95, 88.00],
-            [23.25, 87.55],
-            [23.55, 87.05],
-
             dhanbadRoute
-
         ],
 
         {
-
             color: "#D32F2F",
-
             weight: 4,
-
             opacity: 0.9,
-
             dashArray: "10, 8",
-
-            lineCap: "round",
-
-            lineJoin: "round"
-
+            lineCap: "round"
         }
 
     ).addTo(map);
 
 
     // ==========================================
-    // 5. GIRL ICON
-    // SATJELIA → DHANBAD
+    // GIRL ICON – FIRST ROUTE
     // ==========================================
+
+    var girl1Lat =
+        (satjeliaCoords[0] + dhanbadRoute[0]) / 2;
+
+    var girl1Lng =
+        (satjeliaCoords[1] + dhanbadRoute[1]) / 2;
+
 
     L.marker(
 
-        [22.95, 88.00],
+        [girl1Lat, girl1Lng],
 
         {
             icon: girlMigrationIcon
@@ -2825,68 +2786,67 @@ fetch("All places.geojson")
 
     .bindPopup(`
 
-        <b>Kusum – Satjelia</b><br><br>
+        <div style="max-width:320px;">
 
-        Kusum is from Satjelia, an inhabited island
-        of the Sundarbans. Her life becomes marked
-        by displacement and migration.
+            <h3 style="margin-bottom:8px;">
+                Kusum: Satjelia → Dhanbad
+            </h3>
+
+            <p>
+                Kusum is from Satjelia, an inhabited island
+                of the Sundarbans. After her father's death
+                while collecting firewood in a protected forest,
+                her family faces poverty and displacement.
+            </p>
+
+            <p>
+                Searching for her mother, who has been trafficked
+                to Sonagachhi, Kusum leaves the tide country and
+                travels towards Dhanbad.
+            </p>
+
+        </div>
 
     `);
 
 
     // ==========================================
-    // 6. DHANBAD → MORICHJHAPI
-    // INDIRECT RED DASHED LINE
+    // 2. DHANBAD → MORICHJHAPI
+    // STRAIGHT RED DASHED LINE
     // ==========================================
 
     var dhanbadMorichjhapiLine = L.polyline(
 
         [
-
             dhanbadRoute,
-
-            // Indirect visual path
-            [23.55, 86.15],
-            [23.20, 85.85],
-            [22.85, 85.60],
-            [22.55, 86.00],
-            [22.30, 86.50],
-            [22.15, 87.10],
-            [22.05, 87.75],
-            [22.00, 88.35],
-            [22.05, 88.70],
-
             morichjhapiCoords
-
         ],
 
         {
-
             color: "#D32F2F",
-
             weight: 4,
-
             opacity: 0.9,
-
             dashArray: "10, 8",
-
-            lineCap: "round",
-
-            lineJoin: "round"
-
+            lineCap: "round"
         }
 
     ).addTo(map);
 
 
     // ==========================================
-    // 7. GIRL ICON
-    // DHANBAD → MORICHJHAPI
+    // GIRL ICON – SECOND ROUTE
     // ==========================================
+
+    var girl2Lat =
+        (dhanbadRoute[0] + morichjhapiCoords[0]) / 2;
+
+    var girl2Lng =
+        (dhanbadRoute[1] + morichjhapiCoords[1]) / 2;
+
 
     L.marker(
 
-        [22.30, 86.50],
+        [girl2Lat, girl2Lng],
 
         {
             icon: girlMigrationIcon
@@ -2896,17 +2856,31 @@ fetch("All places.geojson")
 
     .addTo(map)
 
-    .bindPopup(`
+   .bindPopup(`
 
-        <b>Kusum – Dhanbad</b><br><br>
+    <div style="max-width:320px;">
 
-        At Dhanbad Railway Station, Kusum meets
-        Rajen and learns about her mother's fate.
-        She later returns towards the Sundarbans
-        with her son Fokir.
+        <h3 style="margin-bottom:8px;">
+            Kusum: Dhanbad → Morichjhapi
+        </h3>
 
-    `);
+        <p>
+            At Dhanbad Railway Station, Kusum meets Rajen and
+            learns about her mother's fate. Although she builds
+            a life with Rajen, she continues to yearn for her
+            homeland in the Sundarbans.
+        </p>
 
+        <p>
+            After Rajen's death, Kusum joins the refugees
+            travelling to Morichjhapi with her young son, Fokir.
+            Her return reflects her longing for the tide country,
+            belonging, and a life among her own people.
+        </p>
+
+    </div>
+
+`);
 
 });
     
