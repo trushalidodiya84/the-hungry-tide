@@ -888,6 +888,18 @@ Dandakaranya therefore represents a crucial stage in the migration history of th
     L.marker([19.0337, 81.6674], {
         icon: peopleIcon
     }).addTo(migrationLayer);
+    /* ================= REFUGEE HOME IN DANDAKARANYA ================= */
+
+var refugeeHomeIcon = L.divIcon({
+    className: "migration-symbol",
+    html: "🏠",
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+
+L.marker([19.10, 81.85], {
+    icon: refugeeHomeIcon
+}).addTo(migrationLayer);
 
 });
 /* ================= BANGLADESH : MIGRATION ================= */
