@@ -750,55 +750,103 @@ fetch("All places.geojson")
 
     data.features.forEach(function(feature){
 
-       if(feature.properties.name === "Morichjhapi"){
+        if(feature.properties.name === "Morichjhapi"){
 
-    // EXISTING BLUE CIRCLE MARKER — DO NOT CHANGE
-    L.geoJSON(feature,{
-        pointToLayer: function(feature, latlng){
-            return L.circleMarker(latlng,{
-                radius:8,
-                color:"#00008B",
-                fillColor:"#4169E1",
-                fillOpacity:0.8,
-                weight:2
+            // ==========================================
+            // EXISTING MORICHJHAPI MARKER
+            // ==========================================
+
+            L.geoJSON(feature,{
+
+                pointToLayer: function(feature, latlng){
+
+                    return L.circleMarker(latlng,{
+                        radius: 8,
+                        color: "#00008B",
+                        fillColor: "#4169E1",
+                        fillOpacity: 0.8,
+                        weight: 2
+                    });
+
+                }
+
+            }).addTo(map);
+
+
+            // ==========================================
+            // 🕊️ MEMORY + LONGING ICON
+            // SAME EXACT COORDINATES
+            // ==========================================
+
+            var memoryIcon = L.divIcon({
+
+                className: "memory-icon",
+
+                html: "🕊️",
+
+                iconSize: [40, 40],
+
+                iconAnchor: [20, 20],
+
+                popupAnchor: [0, -20]
+
             });
+
+
+            // ==========================================
+            // GET EXACT MORICHJHAPI COORDINATES
+            // ==========================================
+
+            var morichLat =
+                feature.geometry.coordinates[1];
+
+            var morichLng =
+                feature.geometry.coordinates[0];
+
+
+            // ==========================================
+            // ADD DOVE AT EXACT SAME LOCATION
+            // ==========================================
+
+            L.marker(
+
+                [morichLat, morichLng],
+
+                {
+                    icon: memoryIcon,
+                    zIndexOffset: 1000
+                }
+
+            )
+
+            .addTo(map)
+
+            .bindPopup(`
+
+                <div style="max-width:320px;">
+
+                    <h3 style="margin-bottom:8px;">
+                        🕊️ Morichjhapi — Memory & Longing
+                    </h3>
+
+                    <p>
+                        Morichjhapi is a site of historical and
+                        cultural memory in <i>The Hungry Tide</i>,
+                        preserving memories of displacement,
+                        suffering, resistance and loss.
+                    </p>
+
+                    <p>
+                        For Kusum, it also embodies a deep longing
+                        for the Sundarbans, homeland, belonging
+                        and return.
+                    </p>
+
+                </div>
+
+            `);
+
         }
-    }).addTo(map);
-
-
-    // 🕊️ DOVE — EXACT SAME LOCATION AS BLUE CIRCLE
-    var morichLat = feature.geometry.coordinates[1];
-    var morichLng = feature.geometry.coordinates[0];
-
-    var memoryIcon = L.divIcon({
-        className: "memory-icon",
-        html: "🕊️",
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-        popupAnchor: [0, -20]
-    });
-
-    L.marker([morichLat, morichLng], {
-        icon: memoryIcon,
-        zIndexOffset: 1000
-    })
-    .addTo(map)
-    .bindPopup(`
-        <div style="max-width:300px;">
-            <h3>🕊️ Morichjhapi — Memory & Longing</h3>
-
-            <p>
-            Morichjhapi represents memories of displacement,
-            suffering, resistance and loss in <i>The Hungry Tide</i>.
-            </p>
-
-            <p>
-            For Kusum, it also represents her deep longing for
-            her homeland, belonging and return.
-            </p>
-        </div>
-    `);
-}
 
     });
 
@@ -1029,36 +1077,43 @@ Through Nirmal's personal journey, Amitav Ghosh illustrates how political border
 
 });    
 
-partitionMigration.addTo(migrationLayer);
+ /* ================= PARTITION MIGRATION NETWORK ================= */
 
+fetch("Bangladesh Partition Migration Network.geojson")
+.then(response => response.json())
+.then(data => {
 
-/* ================= MIGRATION DIRECTION ARROWS ================= */
+    var partitionMigration = L.geoJSON(data, {
 
-partitionMigration.eachLayer(function(layer) {
+        style: function(feature) {
+            return {
+                color: "#B22222",      // Dark Red
+                weight: 3,
+                opacity: 0.9,
+                dashArray: "1,7",      // Small dotted pattern
+                lineCap: "round",
+                lineJoin: "round"
+            };
+        },
 
-    if (layer instanceof L.Polyline) {
+        onEachFeature: function(feature, layer) {
 
-        L.polylineDecorator(layer, {
+            layer.bindPopup(`
+                <b>🚶 Bangladesh Partition Migration Network</b><br><br>
 
-            patterns: [
-                {
-                    offset: "25%",
-                    repeat: "30%",
-                    symbol: L.Symbol.arrowHead({
-                        pixelSize: 10,
-                        polygon: false,
-                        pathOptions: {
-                            color: "#B22222",
-                            weight: 2,
-                            opacity: 0.9
-                        }
-                    })
-                }
-            ]
+                The Partition of British India (1947) and the subsequent political upheavals in East Pakistan (present-day Bangladesh) resulted in one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
 
-        }).addTo(migrationLayer);
+                <br><br>
 
-    }
+                This symbolic migration network illustrates the broad movement of refugees across the border rather than specific migration routes. It provides the historical context that informs the refugee narratives and cultural memory represented in <i>The Hungry Tide</i>.
+
+            `);
+
+        }
+
+    });
+
+    partitionMigration.addTo(migrationLayer);
 
 });
     
