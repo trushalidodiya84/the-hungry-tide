@@ -1764,15 +1764,14 @@ fetch("Salt Lake.geojson")
 .then(data => {
 
     L.geoJSON(data, {
+
         style: {
             color: "#2E7D32",
             weight: 2,
             fillColor: "#66BB6A",
             fillOpacity: 0.4
-        }
-    }).addTo(ecologyLayer);
+        },
 
-});
         onEachFeature: function(feature, layer){
 
             layer.bindPopup(`
@@ -1791,7 +1790,6 @@ fetch("Salt Lake.geojson")
             <br><br>
 
             Salt Lake demonstrates how tidal movements, changing environments, and scientific interpretation shape human knowledge of the natural world.
-
             `);
 
         }
