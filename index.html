@@ -1025,89 +1025,59 @@ L.marker([19.10, 81.85], {
 }).addTo(migrationLayer);
 
 });
-/* ================= BANGLADESH : MIGRATION ================= */
 
-fetch("All places.geojson")
-.then(response => response.json())
-.then(data => {
 
-    data.features.forEach(function(feature){
+/* =========================================================
+   BANGLADESH PARTITION MIGRATION NETWORK
+   RED DOTTED LINES + DIRECTIONAL ARROWS
+   ========================================================= */
 
-        if(feature.properties.name === "Bangladesh"){
 
-            L.geoJSON(feature,{
+/* ================= ARROW ICON ================= */
 
-                pointToLayer: function(feature, latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#8B0000",
-                        fillColor:"#FF6B6B",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-                },
+var partitionArrowIcon = L.divIcon({
 
-                onEachFeature: function(feature, layer){
+    className: "partition-arrow-icon",
 
-layer.bindPopup(`
-<b>🚶 Bangladesh Partition Migration Network</b><br><br>
+    html: '<span>➤</span>',
 
-The Partition of British India in 1947 profoundly shaped the lives of many characters in <i>The Hungry Tide</i>. Nirmal, originally from Dhaka, arrived in Calcutta as a student before Partition. The creation of the international border separated him from his family, forcing him to remain in India and begin a new life in Calcutta.
+    iconSize: [30, 30],
 
-<br><br>
+    iconAnchor: [15, 15]
 
-As a lecturer at Ashutosh College, Nirmal met Nilima, one of his students, whom he later married. Their lives, however, continued to be influenced by the political upheavals of post-Independence South Asia. Nirmal's involvement with left-wing political movements and his association with anti-colonial struggles in Burma eventually led to his detention and later his relocation to Lusibari in the Sundarbans.
+});
 
-<br><br>
 
-The migration of refugees from East Pakistan into India transformed the social and cultural landscape of the Sundarbans. Their search for land, livelihood, and belonging eventually culminated in the settlement at Morichjhapi, an event that occupies a central place in the novel's historical memory.
-
-<br><br>
-
-Through Nirmal's personal journey, Amitav Ghosh illustrates how political borders, displacement, and migration reshape individual lives while leaving enduring traces in the collective memory of the Sundarbans.
-
-`);
-                }
-
-            }).addTo(migrationLayer);
-
-        }
-
-    });
-
-});    
-
-/* ================= PARTITION MIGRATION NETWORK ================= */
+/* ================= ARROW CSS ================= */
 
 /*
-   Bangladesh Partition Migration Network
-   --------------------------------------
-   Existing GeoJSON lines = RED DOTTED
-   Directional arrows = REFUGEE MOVEMENT / DISSEMINATION
-
-   IMPORTANT:
-   - Existing lines are NOT changed.
-   - Existing coordinates are NOT changed.
-   - No additional migration lines are created.
-   - Arrows are simply placed on the existing lines.
+   Add this CSS in your <style> section.
 */
+
+
 
 
 fetch("Bangladesh Partition Migration Network.geojson")
 
-.then(response => {
+.then(function(response) {
 
     if (!response.ok) {
-        throw new Error("Could not load Bangladesh Partition Migration Network.geojson");
+        throw new Error(
+            "Could not load Bangladesh Partition Migration Network.geojson"
+        );
     }
 
     return response.json();
 
 })
 
-.then(data => {
 
-    /* ================= EXISTING MIGRATION LINES ================= */
+.then(function(data) {
+
+
+    /* =====================================================
+       EXISTING PARTITION MIGRATION LINES
+       ===================================================== */
 
     var partitionMigration = L.geoJSON(data, {
 
@@ -1115,13 +1085,13 @@ fetch("Bangladesh Partition Migration Network.geojson")
 
             return {
 
-                color: "#B22222",      // Dark Red
+                color: "#B22222",
 
                 weight: 3,
 
                 opacity: 0.9,
 
-                dashArray: "1,7",      // Existing dotted pattern
+                dashArray: "1,7",
 
                 lineCap: "round",
 
@@ -1176,65 +1146,176 @@ fetch("Bangladesh Partition Migration Network.geojson")
     });
 
 
-    /* ================= ADD EXISTING NETWORK TO LAYER ================= */
+    /* =====================================================
+       ADD THE ORIGINAL RED DOTTED NETWORK
+       ===================================================== */
 
     partitionMigration.addTo(migrationLayer);
 
 
-    /* ================= DIRECTIONAL ARROWS ================= */
+
+    /* =====================================================
+       FUNCTION: ADD ARROWS TO A LINE
+       ===================================================== */
+
+    function addMigrationArrows(coords) {
+
+        if (!coords || coords.length < 2) {
+            return;
+        }
+
+
+        /*
+           Put arrows at 25%, 50% and 75%
+           of the existing line.
+        */
+
+        var positions = [0.25, 0.50, 0.75];
+
+
+        positions.forEach(function(position) {
+
+
+            /*
+               Find the position along the existing line.
+            */
+
+            var totalSegments = coords.length - 1;
+
+            var exactPosition = position * totalSegments;
+
+            var segmentIndex = Math.floor(exactPosition);
+
+            if (segmentIndex >= totalSegments) {
+                segmentIndex = totalSegments - 1;
+            }
+
+
+            var segmentFraction =
+                exactPosition - segmentIndex;
+
+
+            var start = coords[segmentIndex];
+
+            var end = coords[segmentIndex + 1];
+
+
+            /*
+               GeoJSON coordinates are:
+               [longitude, latitude]
+            */
+
+            var lng =
+                start[0] +
+                (end[0] - start[0]) * segmentFraction;
+
+            var lat =
+                start[1] +
+                (end[1] - start[1]) * segmentFraction;
+
+
+            var arrowMarker = L.marker(
+                [lat, lng],
+                {
+                    icon: partitionArrowIcon,
+                    interactive: false,
+                    zIndexOffset: 500
+                }
+            );
+
+
+            arrowMarker.addTo(migrationLayer);
+
+
+            /*
+               Calculate the direction of the existing line.
+            */
+
+            var startPoint = map.latLngToLayerPoint([
+                start[1],
+                start[0]
+            ]);
+
+            var endPoint = map.latLngToLayerPoint([
+                end[1],
+                end[0]
+            ]);
+
+
+            var angle = Math.atan2(
+                endPoint.y - startPoint.y,
+                endPoint.x - startPoint.x
+            ) * 180 / Math.PI;
+
+
+            /*
+               Rotate the arrow so that it follows
+               the direction of the existing line.
+            */
+
+            var element = arrowMarker.getElement();
+
+            if (element) {
+
+                var arrowSpan =
+                    element.querySelector("span");
+
+                if (arrowSpan) {
+
+                    arrowSpan.style.transform =
+                        "rotate(" + angle + "deg)";
+
+                }
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =====================================================
+       READ EVERY EXISTING LINE
+       ===================================================== */
 
     partitionMigration.eachLayer(function(layer) {
 
+
         /*
-           Only add arrows to line features.
+           LINESTRING
         */
 
         if (
-            layer instanceof L.Polyline &&
-            !(layer instanceof L.Polygon)
+            layer.feature &&
+            layer.feature.geometry &&
+            layer.feature.geometry.type === "LineString"
         ) {
 
-            L.polylineDecorator(layer, {
+            addMigrationArrows(
+                layer.feature.geometry.coordinates
+            );
 
-                patterns: [
+        }
 
-                    {
 
-                        /*
-                           First arrow position
-                        */
+        /*
+           MULTILINESTRING
+        */
 
-                        offset: "25%",
+        if (
+            layer.feature &&
+            layer.feature.geometry &&
+            layer.feature.geometry.type === "MultiLineString"
+        ) {
 
-                        /*
-                           Distance between arrows
-                        */
+            layer.feature.geometry.coordinates.forEach(
+                function(lineCoords) {
 
-                        repeat: "30%",
+                    addMigrationArrows(lineCoords);
 
-                        symbol: L.Symbol.arrowHead({
-
-                            pixelSize: 10,
-
-                            polygon: false,
-
-                            pathOptions: {
-
-                                color: "#B22222",
-
-                                weight: 2,
-
-                                opacity: 0.9
-
-                            }
-
-                        })
-
-                    }
-
-                ]
-
-            }).addTo(migrationLayer);
+                }
+            );
 
         }
 
@@ -1242,7 +1323,7 @@ fetch("Bangladesh Partition Migration Network.geojson")
 
 
     console.log(
-        "Bangladesh Partition Migration Network with directional arrows added successfully."
+        "Partition Migration Network with directional arrows loaded."
     );
 
 })
@@ -1251,11 +1332,13 @@ fetch("Bangladesh Partition Migration Network.geojson")
 .catch(function(error) {
 
     console.error(
-        "Error loading Bangladesh Partition Migration Network:",
+        "Partition Migration Network Error:",
         error
     );
 
 });
+
+ 
     
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
