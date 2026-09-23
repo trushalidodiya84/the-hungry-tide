@@ -1077,35 +1077,97 @@ Through Nirmal's personal journey, Amitav Ghosh illustrates how political border
 
 });    
 
- /* ================= PARTITION MIGRATION NETWORK ================= */
+/* ================= PARTITION MIGRATION NETWORK ================= */
+
+/*
+   Bangladesh Partition Migration Network
+   --------------------------------------
+   Existing GeoJSON lines = RED DOTTED
+   Directional arrows = REFUGEE MOVEMENT / DISSEMINATION
+
+   IMPORTANT:
+   - Existing lines are NOT changed.
+   - Existing coordinates are NOT changed.
+   - No additional migration lines are created.
+   - Arrows are simply placed on the existing lines.
+*/
+
 
 fetch("Bangladesh Partition Migration Network.geojson")
-.then(response => response.json())
+
+.then(response => {
+
+    if (!response.ok) {
+        throw new Error("Could not load Bangladesh Partition Migration Network.geojson");
+    }
+
+    return response.json();
+
+})
+
 .then(data => {
+
+    /* ================= EXISTING MIGRATION LINES ================= */
 
     var partitionMigration = L.geoJSON(data, {
 
         style: function(feature) {
+
             return {
+
                 color: "#B22222",      // Dark Red
+
                 weight: 3,
+
                 opacity: 0.9,
-                dashArray: "1,7",      // Small dotted pattern
+
+                dashArray: "1,7",      // Existing dotted pattern
+
                 lineCap: "round",
+
                 lineJoin: "round"
+
             };
+
         },
+
+
+        /* ================= POPUP ================= */
 
         onEachFeature: function(feature, layer) {
 
             layer.bindPopup(`
-                <b>🚶 Bangladesh Partition Migration Network</b><br><br>
 
-                The Partition of British India (1947) and the subsequent political upheavals in East Pakistan (present-day Bangladesh) resulted in one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
+                <div style="max-width:330px;">
 
-                <br><br>
+                    <h3 style="margin-bottom:10px;">
+                        🚶 Bangladesh Partition Migration Network
+                    </h3>
 
-                This symbolic migration network illustrates the broad movement of refugees across the border rather than specific migration routes. It provides the historical context that informs the refugee narratives and cultural memory represented in <i>The Hungry Tide</i>.
+                    <p>
+                        The Partition of British India (1947) and the
+                        subsequent political upheavals in East Pakistan
+                        (present-day Bangladesh) resulted in one of the
+                        largest episodes of forced migration in modern
+                        South Asian history.
+                    </p>
+
+                    <p>
+                        Millions of displaced people crossed the
+                        international border into India in search of
+                        safety, livelihood, and resettlement.
+                    </p>
+
+                    <p>
+                        This symbolic migration network illustrates the
+                        broad movement of refugees across the border rather
+                        than specific migration routes. It provides the
+                        historical context that informs the refugee
+                        narratives and cultural memory represented in
+                        <i>The Hungry Tide</i>.
+                    </p>
+
+                </div>
 
             `);
 
@@ -1113,7 +1175,85 @@ fetch("Bangladesh Partition Migration Network.geojson")
 
     });
 
+
+    /* ================= ADD EXISTING NETWORK TO LAYER ================= */
+
     partitionMigration.addTo(migrationLayer);
+
+
+    /* ================= DIRECTIONAL ARROWS ================= */
+
+    partitionMigration.eachLayer(function(layer) {
+
+        /*
+           Only add arrows to line features.
+        */
+
+        if (
+            layer instanceof L.Polyline &&
+            !(layer instanceof L.Polygon)
+        ) {
+
+            L.polylineDecorator(layer, {
+
+                patterns: [
+
+                    {
+
+                        /*
+                           First arrow position
+                        */
+
+                        offset: "25%",
+
+                        /*
+                           Distance between arrows
+                        */
+
+                        repeat: "30%",
+
+                        symbol: L.Symbol.arrowHead({
+
+                            pixelSize: 10,
+
+                            polygon: false,
+
+                            pathOptions: {
+
+                                color: "#B22222",
+
+                                weight: 2,
+
+                                opacity: 0.9
+
+                            }
+
+                        })
+
+                    }
+
+                ]
+
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+
+    console.log(
+        "Bangladesh Partition Migration Network with directional arrows added successfully."
+    );
+
+})
+
+
+.catch(function(error) {
+
+    console.error(
+        "Error loading Bangladesh Partition Migration Network:",
+        error
+    );
 
 });
     
