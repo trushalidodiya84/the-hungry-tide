@@ -240,6 +240,13 @@ html,body{
 
     font-size: 17px;
 }
+    .migration-symbol {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    text-align: center;
+    line-height: 30px;
+}
 </style>
 
 </head>
@@ -1016,10 +1023,45 @@ var route1 = L.polyline([
     [21.2514, 81.6296]    // Raipur
 ],{
     color:"#FF4444",
-    weight:3,
-    dashArray:"6,6"
+    weight:3
+});
+/* ================= REFUGEE MIGRATION ICONS ================= */
+
+/* Migration symbol at Bangladesh */
+var refugeeStartIcon = L.divIcon({
+    className: "migration-symbol",
+    html: "🚶",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
 });
 
+L.marker([23.6850, 90.3563], {
+    icon: refugeeStartIcon
+}).addTo(migrationLayer);
+
+
+/* Refugee settlement symbol at Raipur */
+var refugeeEndIcon = L.divIcon({
+    className: "migration-symbol",
+    html: "🏕️",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+
+L.marker([21.2514, 81.6296], {
+    icon: refugeeEndIcon
+}).addTo(migrationLayer);
+    var movementIcon = L.divIcon({
+    className: "migration-symbol",
+    html: "🚶",
+    iconSize: [30, 30],
+    iconAnchor: [15, 15]
+});
+
+L.marker([22.45, 85.90], {
+    icon: movementIcon
+}).addTo(migrationLayer);
+    
 route1.bindPopup(`
 <b>🚶 Refugee Migration Route I</b><br><br>
 Bangladesh → Raipur
