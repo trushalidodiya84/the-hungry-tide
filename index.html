@@ -2148,17 +2148,16 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-               pointToLayer: function(feature, latlng){
+              pointToLayer: function(feature, latlng){
     return L.marker(latlng,{
         icon: L.divIcon({
             className: "dolphin-symbol",
             html: "🐬",
             iconSize: [50, 50],
-            iconAnchor: [30, 30]
+            iconAnchor: [17, 17]
         })
-   
-                    });
-                },
+    });
+},
 
                 onEachFeature:function(feature, layer){
 
