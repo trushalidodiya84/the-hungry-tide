@@ -2148,9 +2148,8 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-              pointToLayer: function(feature, latlng){
+             pointToLayer: function(feature, latlng){
 
-    // Green circle
     var circle = L.circleMarker(latlng,{
         radius:8,
         color:"#2E7D32",
@@ -2159,7 +2158,6 @@ fetch("All places.geojson")
         weight:2
     });
 
-    // Dolphin symbol
     var dolphinIcon = L.divIcon({
         className: "dolphin-symbol",
         html: "🐬",
@@ -2168,14 +2166,13 @@ fetch("All places.geojson")
     });
 
     var dolphin = L.marker(latlng,{
-        icon: dolphinIcon
+        icon: dolphinIcon,
+        interactive: false
     });
 
-    // Put both together
-    return L.layerGroup([
-        circle,
-        dolphin
-    ]);
+    dolphin.addTo(map);
+
+    return circle;
 },
 
                 onEachFeature:function(feature, layer){
