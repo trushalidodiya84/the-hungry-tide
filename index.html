@@ -284,14 +284,6 @@ html,body{
     text-align: center;
     line-height: 40px;
     }
-    .memory-longing-icon {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    font-size: 30px;
-    text-align: center;
-    line-height: 40px;
-}
         
 </style>
 
@@ -646,6 +638,8 @@ fetch("All places.geojson")
     });
 
 });
+/* ================= MORICHHJHAPI : ECOLOGY ================= */
+
 fetch("All places.geojson")
 .then(response => response.json())
 .then(data => {
@@ -654,132 +648,43 @@ fetch("All places.geojson")
 
         if(feature.properties.name === "Morichjhapi"){
 
-            // ==========================================
-            // EXISTING MORICHJHAPI PLACE MARKER
-            // ==========================================
-
             L.geoJSON(feature,{
 
                 pointToLayer: function(feature, latlng){
-
                     return L.circleMarker(latlng,{
-
-                        radius: 8,
-
-                        color: "#006400",
-
-                        fillColor: "#32CD32",
-
-                        fillOpacity: 0.8,
-
-                        weight: 2
-
+                        radius:8,
+                        color:"#006400",
+                        fillColor:"#32CD32",
+                        fillOpacity:0.8,
+                        weight:2
                     });
-
                 },
 
                 onEachFeature: function(feature, layer){
 
                     layer.bindPopup(`
-                        
-                        <div style="max-width:320px;">
+<b>🌿 Morichjhapi</b><br><br>
 
-                            <h3 style="margin-bottom:8px;">
-                                📖 Morichjhapi
-                            </h3>
+Located near Lusibari on the banks of the Bagna River, Morichjhapi was a forested island within the Sundarbans Reserved Forest. The island became the site of a major conflict between human settlement and environmental conservation.
 
-                            <p>
-                                Morichjhapi is a site of historical and
-                                cultural memory in <i>The Hungry Tide</i>.
-                                Through Nirmal's journals, Kusum's
-                                experiences, and local recollections,
-                                the island preserves memories of
-                                displacement, suffering, resistance,
-                                and loss.
-                            </p>
+<br><br>
 
-                            <p>
-                                The island also embodies Kusum's longing
-                                for the Sundarbans, homeland, belonging,
-                                and return.
-                            </p>
+In 1979, thousands of refugees displaced from East Pakistan/Bangladesh and later resettled in Dandakaranya migrated to Morichjhapi in search of land and livelihood. However, the authorities declared the island a protected forest reserved for tiger conservation and ordered the settlers' eviction.
 
-                        </div>
+<br><br>
 
-                    `);
+Morichjhapi highlights the complex relationship between ecology, conservation policies, human survival, and the fragile mangrove environment of the Sundarbans. In <i>The Hungry Tide</i>, it serves as a powerful example of how environmental space is shaped by both natural forces and political decisions.
+`);
 
                 }
 
-            }).addTo(map);
-
-
-            // ==========================================
-            // 🕊️ MEMORY + LONGING ICON
-            // ==========================================
-
-            var memoryLongingIcon = L.divIcon({
-
-                className: "memory-longing-icon",
-
-                html: "🕊️",
-
-                iconSize: [40, 40],
-
-                iconAnchor: [20, 20]
-
-            });
-
-
-            // ==========================================
-            // ADD 🕊️ AT MORICHJHAPI
-            // ==========================================
-
-            L.marker(
-
-                [
-                    feature.geometry.coordinates[1],
-                    feature.geometry.coordinates[0]
-                ],
-
-                {
-                    icon: memoryLongingIcon
-                }
-
-            )
-
-            .addTo(map)
-
-            .bindPopup(`
-
-                <div style="max-width:320px;">
-
-                    <h3 style="margin-bottom:8px;">
-                        🕊️ Morichjhapi — Memory & Longing
-                    </h3>
-
-                    <p>
-                        Morichjhapi represents historical and cultural
-                        memory in <i>The Hungry Tide</i>, preserving
-                        memories of displacement, suffering, resistance,
-                        and loss.
-                    </p>
-
-                    <p>
-                        For Kusum, the island also embodies a deep
-                        longing for the Sundarbans, homeland, belonging,
-                        and return.
-                    </p>
-
-                </div>
-
-            `);
+            }).addTo(ecologyLayer);
 
         }
 
     });
 
 });
-    
 
     /* ================= MORICHHJHAPI : MIGRATION ================= */
 
@@ -791,131 +696,17 @@ fetch("All places.geojson")
 
         if(feature.properties.name === "Morichjhapi"){
 
-            // ==========================================
-            // EXISTING MORICHJHAPI PLACE MARKER
-            // ==========================================
-
             L.geoJSON(feature,{
 
                 pointToLayer: function(feature, latlng){
-
                     return L.circleMarker(latlng,{
-
-                        radius: 8,
-
-                        color: "#006400",
-
-                        fillColor: "#32CD32",
-
-                        fillOpacity: 0.8,
-
-                        weight: 2
-
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF4444",
+                        fillOpacity:0.8,
+                        weight:2
                     });
-
                 },
-
-                onEachFeature: function(feature, layer){
-
-                    layer.bindPopup(`
-                        
-                        <div style="max-width:320px;">
-
-                            <h3 style="margin-bottom:8px;">
-                                📖 Morichjhapi
-                            </h3>
-
-                            <p>
-                                Morichjhapi is a site of historical and
-                                cultural memory in <i>The Hungry Tide</i>.
-                                Through Nirmal's journals, Kusum's
-                                experiences, and local recollections,
-                                the island preserves memories of
-                                displacement, suffering, resistance,
-                                and loss.
-                            </p>
-
-                            <p>
-                                The island also embodies Kusum's longing
-                                for the Sundarbans, homeland, belonging,
-                                and return.
-                            </p>
-
-                        </div>
-
-                    `);
-
-                }
-
-            }).addTo(map);
-
-
-            // ==========================================
-            // 🕊️ MEMORY + LONGING ICON
-            // ==========================================
-
-            var memoryLongingIcon = L.divIcon({
-
-                className: "memory-longing-icon",
-
-                html: "🕊️",
-
-                iconSize: [40, 40],
-
-                iconAnchor: [20, 20]
-
-            });
-
-
-            // ==========================================
-            // ADD 🕊️ AT MORICHJHAPI
-            // ==========================================
-
-            L.marker(
-
-                [
-                    feature.geometry.coordinates[1],
-                    feature.geometry.coordinates[0]
-                ],
-
-                {
-                    icon: memoryLongingIcon
-                }
-
-            )
-
-            .addTo(map)
-
-            .bindPopup(`
-
-                <div style="max-width:320px;">
-
-                    <h3 style="margin-bottom:8px;">
-                        🕊️ Morichjhapi — Memory & Longing
-                    </h3>
-
-                    <p>
-                        Morichjhapi represents historical and cultural
-                        memory in <i>The Hungry Tide</i>, preserving
-                        memories of displacement, suffering, resistance,
-                        and loss.
-                    </p>
-
-                    <p>
-                        For Kusum, the island also embodies a deep
-                        longing for the Sundarbans, homeland, belonging,
-                        and return.
-                    </p>
-
-                </div>
-
-            `);
-
-        }
-
-    });
-
-});
 
                 onEachFeature: function(feature, layer){
 
