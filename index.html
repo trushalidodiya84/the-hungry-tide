@@ -2354,21 +2354,31 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-                pointToLayer:function(feature,latlng){
+              pointToLayer:function(feature,latlng){
 
-    return L.marker(latlng,{
-        icon:L.divIcon({
-            className:"dolphin-circle",
-            html:`
-                <div class="dolphin-circle-inner">
-                    🐬
-                </div>
-            `,
-            iconSize:[40,40],
-            iconAnchor:[20,20]
-        })
+    var circle = L.circleMarker(latlng,{
+        radius:8,
+        color:"#2E7D32",
+        fillColor:"#66BB6A",
+        fillOpacity:0.8,
+        weight:2
     });
 
+    var dolphinIcon = L.divIcon({
+        className:"dolphin-symbol",
+        html:"🐬",
+        iconSize:[25,25],
+        iconAnchor:[12,12]
+    });
+
+    var dolphin = L.marker(latlng,{
+        icon:dolphinIcon,
+        interactive:false
+    });
+
+    dolphin.addTo(map);
+
+    return circle;
 },
 
                 onEachFeature:function(feature,layer){
