@@ -1025,119 +1025,87 @@ L.marker([19.10, 81.85], {
 }).addTo(migrationLayer);
 
 });
+/* ================= BANGLADESH : MIGRATION ================= */
 
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
 
-/* =========================================================
-   BANGLADESH PARTITION MIGRATION NETWORK
-   RED DOTTED LINES + DIRECTIONAL ARROWS
-   ========================================================= */
+    data.features.forEach(function(feature){
 
+        if(feature.properties.name === "Bangladesh"){
 
-/* ================= ARROW ICON ================= */
+            L.geoJSON(feature,{
 
-var partitionArrowIcon = L.divIcon({
+                pointToLayer: function(feature, latlng){
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#8B0000",
+                        fillColor:"#FF6B6B",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
+                },
 
-    className: "partition-arrow-icon",
+                onEachFeature: function(feature, layer){
 
-    html: '<span>➤</span>',
+layer.bindPopup(`
+<b>🚶 Bangladesh Partition Migration Network</b><br><br>
 
-    iconSize: [30, 30],
+The Partition of British India in 1947 profoundly shaped the lives of many characters in <i>The Hungry Tide</i>. Nirmal, originally from Dhaka, arrived in Calcutta as a student before Partition. The creation of the international border separated him from his family, forcing him to remain in India and begin a new life in Calcutta.
 
-    iconAnchor: [15, 15]
+<br><br>
 
-});
+As a lecturer at Ashutosh College, Nirmal met Nilima, one of his students, whom he later married. Their lives, however, continued to be influenced by the political upheavals of post-Independence South Asia. Nirmal's involvement with left-wing political movements and his association with anti-colonial struggles in Burma eventually led to his detention and later his relocation to Lusibari in the Sundarbans.
 
+<br><br>
 
-/* ================= ARROW CSS ================= */
+The migration of refugees from East Pakistan into India transformed the social and cultural landscape of the Sundarbans. Their search for land, livelihood, and belonging eventually culminated in the settlement at Morichjhapi, an event that occupies a central place in the novel's historical memory.
 
-/*
-   Add this CSS in your <style> section.
-*/
+<br><br>
 
+Through Nirmal's personal journey, Amitav Ghosh illustrates how political borders, displacement, and migration reshape individual lives while leaving enduring traces in the collective memory of the Sundarbans.
 
+`);
+                }
 
+            }).addTo(migrationLayer);
+
+        }
+
+    });
+
+});    
+
+ /* ================= PARTITION MIGRATION NETWORK ================= */
 
 fetch("Bangladesh Partition Migration Network.geojson")
-
-.then(function(response) {
-
-    if (!response.ok) {
-        throw new Error(
-            "Could not load Bangladesh Partition Migration Network.geojson"
-        );
-    }
-
-    return response.json();
-
-})
-
-
-.then(function(data) {
-
-
-    /* =====================================================
-       EXISTING PARTITION MIGRATION LINES
-       ===================================================== */
+.then(response => response.json())
+.then(data => {
 
     var partitionMigration = L.geoJSON(data, {
 
         style: function(feature) {
-
             return {
-
-                color: "#B22222",
-
+                color: "#B22222",      // Dark Red
                 weight: 3,
-
                 opacity: 0.9,
-
-                dashArray: "1,7",
-
+                dashArray: "1,7",      // Small dotted pattern
                 lineCap: "round",
-
                 lineJoin: "round"
-
             };
-
         },
-
-
-        /* ================= POPUP ================= */
 
         onEachFeature: function(feature, layer) {
 
             layer.bindPopup(`
+                <b>🚶 Bangladesh Partition Migration Network</b><br><br>
 
-                <div style="max-width:330px;">
+                The Partition of British India (1947) and the subsequent political upheavals in East Pakistan (present-day Bangladesh) resulted in one of the largest episodes of forced migration in modern South Asian history. Millions of displaced people crossed the international border into India in search of safety, livelihood, and resettlement.
 
-                    <h3 style="margin-bottom:10px;">
-                        🚶 Bangladesh Partition Migration Network
-                    </h3>
+                <br><br>
 
-                    <p>
-                        The Partition of British India (1947) and the
-                        subsequent political upheavals in East Pakistan
-                        (present-day Bangladesh) resulted in one of the
-                        largest episodes of forced migration in modern
-                        South Asian history.
-                    </p>
-
-                    <p>
-                        Millions of displaced people crossed the
-                        international border into India in search of
-                        safety, livelihood, and resettlement.
-                    </p>
-
-                    <p>
-                        This symbolic migration network illustrates the
-                        broad movement of refugees across the border rather
-                        than specific migration routes. It provides the
-                        historical context that informs the refugee
-                        narratives and cultural memory represented in
-                        <i>The Hungry Tide</i>.
-                    </p>
-
-                </div>
+                This symbolic migration network illustrates the broad movement of refugees across the border rather than specific migration routes. It provides the historical context that informs the refugee narratives and cultural memory represented in <i>The Hungry Tide</i>.
 
             `);
 
@@ -1145,200 +1113,9 @@ fetch("Bangladesh Partition Migration Network.geojson")
 
     });
 
-
-    /* =====================================================
-       ADD THE ORIGINAL RED DOTTED NETWORK
-       ===================================================== */
-
     partitionMigration.addTo(migrationLayer);
 
-
-
-    /* =====================================================
-       FUNCTION: ADD ARROWS TO A LINE
-       ===================================================== */
-
-    function addMigrationArrows(coords) {
-
-        if (!coords || coords.length < 2) {
-            return;
-        }
-
-
-        /*
-           Put arrows at 25%, 50% and 75%
-           of the existing line.
-        */
-
-        var positions = [0.25, 0.50, 0.75];
-
-
-        positions.forEach(function(position) {
-
-
-            /*
-               Find the position along the existing line.
-            */
-
-            var totalSegments = coords.length - 1;
-
-            var exactPosition = position * totalSegments;
-
-            var segmentIndex = Math.floor(exactPosition);
-
-            if (segmentIndex >= totalSegments) {
-                segmentIndex = totalSegments - 1;
-            }
-
-
-            var segmentFraction =
-                exactPosition - segmentIndex;
-
-
-            var start = coords[segmentIndex];
-
-            var end = coords[segmentIndex + 1];
-
-
-            /*
-               GeoJSON coordinates are:
-               [longitude, latitude]
-            */
-
-            var lng =
-                start[0] +
-                (end[0] - start[0]) * segmentFraction;
-
-            var lat =
-                start[1] +
-                (end[1] - start[1]) * segmentFraction;
-
-
-            var arrowMarker = L.marker(
-                [lat, lng],
-                {
-                    icon: partitionArrowIcon,
-                    interactive: false,
-                    zIndexOffset: 500
-                }
-            );
-
-
-            arrowMarker.addTo(migrationLayer);
-
-
-            /*
-               Calculate the direction of the existing line.
-            */
-
-            var startPoint = map.latLngToLayerPoint([
-                start[1],
-                start[0]
-            ]);
-
-            var endPoint = map.latLngToLayerPoint([
-                end[1],
-                end[0]
-            ]);
-
-
-            var angle = Math.atan2(
-                endPoint.y - startPoint.y,
-                endPoint.x - startPoint.x
-            ) * 180 / Math.PI;
-
-
-            /*
-               Rotate the arrow so that it follows
-               the direction of the existing line.
-            */
-
-            var element = arrowMarker.getElement();
-
-            if (element) {
-
-                var arrowSpan =
-                    element.querySelector("span");
-
-                if (arrowSpan) {
-
-                    arrowSpan.style.transform =
-                        "rotate(" + angle + "deg)";
-
-                }
-
-            }
-
-        });
-
-    }
-
-
-
-    /* =====================================================
-       READ EVERY EXISTING LINE
-       ===================================================== */
-
-    partitionMigration.eachLayer(function(layer) {
-
-
-        /*
-           LINESTRING
-        */
-
-        if (
-            layer.feature &&
-            layer.feature.geometry &&
-            layer.feature.geometry.type === "LineString"
-        ) {
-
-            addMigrationArrows(
-                layer.feature.geometry.coordinates
-            );
-
-        }
-
-
-        /*
-           MULTILINESTRING
-        */
-
-        if (
-            layer.feature &&
-            layer.feature.geometry &&
-            layer.feature.geometry.type === "MultiLineString"
-        ) {
-
-            layer.feature.geometry.coordinates.forEach(
-                function(lineCoords) {
-
-                    addMigrationArrows(lineCoords);
-
-                }
-            );
-
-        }
-
-    });
-
-
-    console.log(
-        "Partition Migration Network with directional arrows loaded."
-    );
-
-})
-
-
-.catch(function(error) {
-
-    console.error(
-        "Partition Migration Network Error:",
-        error
-    );
-
 });
-
- 
     
     /* ================= RAIPUR : CENTRAL REFUGEE CAMP ================= */
 
