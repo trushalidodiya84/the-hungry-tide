@@ -1769,32 +1769,33 @@ fetch("Salt Lake.geojson")
 .then(response => response.json())
 .then(data => {
 
-   L.geoJSON(data, {
+ L.geoJSON(data, {
 
-    style: {
-        color: "#2E7D32",
-        weight: 2,
-        fillColor: "#66BB6A",
-        fillOpacity: 0.4
-    }
+        style: {
+            color: "#2E7D32",
+            weight: 2,
+            fillColor: "#66BB6A",
+            fillOpacity: 0.4
+        }
 
-}).addTo(map);
+    }).addTo(map);
 
 
-/* ================= LAKE ICON ================= */
+    /* ================= LAKE ICON ================= */
 
-var lakeIcon = L.divIcon({
-    className: "lake-symbol",
-    html: "🏞️",
-    iconSize: [48, 48],
-    iconAnchor: [24, 24]
+    var lakeIcon = L.divIcon({
+        className: "lake-symbol",
+        html: "🏞️",
+        iconSize: [48, 48],
+        iconAnchor: [24, 24]
+    });
+
+    L.marker([22.57659, 88.41337], {
+        icon: lakeIcon,
+        interactive: false
+    }).addTo(map);
+
 });
-
-L.marker([22.57659, 88.41337], {
-    icon: lakeIcon,
-    interactive: false
-}).addTo(map);
-
         onEachFeature: function(feature, layer){
 
             layer.bindPopup(`
