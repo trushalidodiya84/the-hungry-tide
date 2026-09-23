@@ -2597,11 +2597,11 @@ fetch("Laos Boarder to Phnom Pehn.geojson")
 var dhanbad = L.circleMarker(
     [23.789347564946187, 86.42632199534648],
     {
-        radius:8,
-        color:"#B71C1C",
-        fillColor:"#E53935",
-        fillOpacity:0.85,
-        weight:2
+        radius: 8,
+        color: "#B71C1C",
+        fillColor: "#E53935",
+        fillOpacity: 0.85,
+        weight: 2
     }
 );
 
@@ -2609,17 +2609,17 @@ var dhanbad = L.circleMarker(
 /* ================= DHANBAD RAILWAY ICON ================= */
 
 var railwayIcon = L.divIcon({
-    className:"railway-symbol",
-    html:"🚉",
-    iconSize:[40,40],
-    iconAnchor:[20,20]
+    className: "railway-symbol",
+    html: "🚉",
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
 });
 
 var railway = L.marker(
     [23.789347564946187, 86.42632199534648],
     {
-        icon:railwayIcon,
-        interactive:false
+        icon: railwayIcon,
+        interactive: false
     }
 );
 
@@ -2646,12 +2646,23 @@ Although Kusum and Rajen marry, both continue to long for their homeland in the 
 
 Dhanbad therefore functions as a crucial node in Kusum's migration, linking forced displacement, urban exploitation, refugee movement, and eventual return to the tide country.
 
+<br><br>
+
+<b>Related Characters:</b> Kusum, Rajen, Fokir, Kusum's Mother, Dilip Choudhury
+
+<br><br>
+
+<b>Themes:</b> Migration, Human Trafficking, Displacement, Refugee Movement, Return Migration.
+
 `);
 
 
 /* ================= ADD DHANBAD TO MIGRATION LAYER ================= */
 
 dhanbad.addTo(migrationLayer);
+
+
+
     
     
 L.control.layers(
