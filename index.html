@@ -270,13 +270,7 @@ html,body{
     line-height:30px;
     white-space:nowrap;
 }
-.lake-symbol{
-    background: transparent;
-    border: none;
-    font-size: 40px;
-    text-align: center;
-    line-height: 48px;
-}
+
         
 </style>
 
@@ -1778,19 +1772,6 @@ fetch("Salt Lake.geojson")
             fillOpacity: 0.4
         },
 
-        /* ================= SALT LAKE ICON ================= */
-
-var lakeIcon = L.divIcon({
-    className: "lake-symbol",
-    html: "🏞️",
-    iconSize: [48, 48],
-    iconAnchor: [24, 24]
-});
-
-L.marker([22.57659, 88.41337], {
-    icon: lakeIcon,
-    interactive: false
-}).addTo(ecologyLayer);
 
         onEachFeature: function(feature, layer){
 
