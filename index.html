@@ -247,6 +247,13 @@ html,body{
     text-align: center;
     line-height: 30px;
 }
+    .migration-symbol {
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    text-align: center;
+    line-height: 35px;
+}
 </style>
 
 </head>
@@ -838,11 +845,18 @@ fetch("dandakaranya.geojson")
 
     L.geoJSON(data,{
 
-        style:{
-            color:"#8B4513",
-            weight:2,
-            fillOpacity:0.3
-        },
+/* ================= PEOPLE IN DANDAKARANYA ================= */
+
+var peopleIcon = L.divIcon({
+    className: "migration-symbol",
+    html: "👥",
+    iconSize: [35, 35],
+    iconAnchor: [17, 17]
+});
+
+L.marker([19.0337,81.6674], {
+    icon: peopleIcon
+})
 
         onEachFeature:function(feature,layer){
 
