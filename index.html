@@ -2275,15 +2275,32 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-                pointToLayer:function(feature,latlng){
-                    return L.circleMarker(latlng,{
-                        radius:8,
+                 pointToLayer:function(feature,latlng){
+
+    var circle = L.circleMarker(latlng,{
+        radius:8,
         color:"#2E7D32",
         fillColor:"#66BB6A",
         fillOpacity:0.8,
         weight:2
-                    });
-                },
+    });
+
+    var dolphinIcon = L.divIcon({
+        className:"dolphin-symbol",
+        html:"🐬",
+        iconSize:[50,50],
+        iconAnchor:[12,12]
+    });
+
+    var dolphin = L.marker(latlng,{
+        icon:dolphinIcon,
+        interactive:false
+    });
+
+    dolphin.addTo(map);
+
+    return circle;
+},
 
                 onEachFeature:function(feature,layer){
 
