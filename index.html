@@ -743,6 +743,7 @@ Morichjhapi represents one of the most significant migration narratives in <i>Th
 });
     /* ================= MORICHHJHAPI : MEMORY ================= */
 
+
 fetch("All places.geojson")
 .then(response => response.json())
 .then(data => {
@@ -752,7 +753,7 @@ fetch("All places.geojson")
         if(feature.properties.name === "Morichjhapi"){
 
             // ==========================================
-            // EXISTING MORICHJHAPI BLUE MARKER
+            // EXISTING MORICHJHAPI MARKER
             // ==========================================
 
             L.geoJSON(feature,{
@@ -774,6 +775,7 @@ fetch("All places.geojson")
 
             // ==========================================
             // 🕊️ MEMORY + LONGING ICON
+            // SAME EXACT COORDINATES
             // ==========================================
 
             var memoryIcon = L.divIcon({
@@ -782,17 +784,17 @@ fetch("All places.geojson")
 
                 html: "🕊️",
 
-                iconSize: [40,40],
+                iconSize: [40, 40],
 
-                iconAnchor: [20,20],
+                iconAnchor: [20, 20],
 
-                popupAnchor: [0,-20]
+                popupAnchor: [0, -20]
 
             });
 
 
             // ==========================================
-            // GET MORICHJHAPI COORDINATES
+            // GET EXACT MORICHJHAPI COORDINATES
             // ==========================================
 
             var morichLat =
@@ -803,15 +805,12 @@ fetch("All places.geojson")
 
 
             // ==========================================
-            // ADD DOVE ICON
+            // ADD DOVE AT EXACT SAME LOCATION
             // ==========================================
 
             L.marker(
 
-                [
-                    morichLat + 0.08,
-                    morichLng
-                ],
+                [morichLat, morichLng],
 
                 {
                     icon: memoryIcon,
