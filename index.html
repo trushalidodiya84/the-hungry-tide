@@ -1792,7 +1792,7 @@ fetch("All places.geojson")
 });
 
 
-/* ================= HAMILTON 🏠 ================= */
+/* ================= HAMILTON 🏠 ICON ================= */
 
 fetch("All places.geojson")
 .then(response => response.json())
@@ -1808,27 +1808,6 @@ fetch("All places.geojson")
             var hamiltonLng =
                 feature.geometry.coordinates[0];
 
-            /* Existing blue circle */
-
-            L.geoJSON(feature,{
-
-                pointToLayer: function(feature, latlng){
-
-                    return L.circleMarker(latlng,{
-                        radius:8,
-                        color:"#00008B",
-                        fillColor:"#4169E1",
-                        fillOpacity:0.8,
-                        weight:2
-                    });
-
-                }
-
-            }).addTo(memoryLayer);
-
-
-            /* 🏠 Hamilton icon */
-
             var hamiltonIcon = L.divIcon({
                 className: "hamilton-icon",
                 html: "🏠",
@@ -1840,17 +1819,34 @@ fetch("All places.geojson")
                 [hamiltonLat, hamiltonLng],
                 {
                     icon: hamiltonIcon,
-                    zIndexOffset: 1000,
-                    interactive: false
+                    zIndexOffset: 1000
                 }
-            ).addTo(memoryLayer);
+            )
+            .addTo(memoryLayer)
+
+            .bindPopup(`
+                <b>🏝️ Gosaba: Hamilton's Cooperative Settlement</b><br><br>
+
+                Gosaba formed the centre of Sir Daniel Hamilton's ambitious settlement project in the Sundarbans. Beginning in 1903, Hamilton purchased thousands of acres of forested land and established a cooperative community that included Gosaba, Satjelia, Rangabelia, Lusibari, Jameshpur, Annapur, and Emilybari.
+
+                <br><br>
+
+                The settlement sought to create a self-sufficient society based on cooperation rather than caste hierarchy. Settlers arrived from different regions of Bengal, Orissa, and the Santhal Parganas, transforming the mangrove wilderness into inhabited land through collective labour.
+
+                <br><br>
+
+                Gosaba became an important centre of administration, agriculture, trade, and community life within the Hamilton Estate. The project represented an early experiment in rural reconstruction and social reform in the tide country.
+
+                <br><br>
+
+                In <i>The Hungry Tide</i>, the history of Hamilton's settlement survives as part of the cultural memory of the Sundarbans, reflecting the region's long history of migration, settlement, and adaptation to a challenging environment.
+            `);
 
         }
 
     });
 
 });
-    
 /* ================= KOLKATA BOTANICAL GARDEN : HISTORY OF CETACEAN RESEARCH ================= */
 
 fetch("All places.geojson")
