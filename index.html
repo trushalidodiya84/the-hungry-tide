@@ -300,6 +300,14 @@ html,body{
     text-align: center;
     line-height: 34px;
 }
+    .hamilton-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 26px;
+    text-align: center;
+    line-height: 34px;
+}
         
 </style>
 
@@ -1750,6 +1758,22 @@ fetch("All places.geojson")
                     });
 
                 },
+
+        if(feature.properties.name === "Hamilton"){
+
+    var hamiltonIcon = L.divIcon({
+        className: "hamilton-icon",
+        html: "🏠",
+        iconSize: [34, 34],
+        iconAnchor: [17, 17]
+    });
+
+    L.marker(latlng, {
+        icon: hamiltonIcon,
+        zIndexOffset: 1000
+    }).addTo(map);
+
+}
 
                 onEachFeature: function(feature, layer){
 
