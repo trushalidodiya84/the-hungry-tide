@@ -292,6 +292,14 @@ html,body{
     text-align: center;
     line-height: 40px;
 }
+    .medina-icon {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 26px;
+    text-align: center;
+    line-height: 34px;
+}
         
 </style>
 
@@ -2233,13 +2241,28 @@ ecologyLayer.addLayer(basantiRoute);
 
  /* ================= MEDINA ================= */
 
-var medina = L.circleMarker([24.46953,39.61270], {
+var medinaIcon = L.divIcon({
+    className: "medina-icon",
+    html: "🕌",
+    iconSize: [34, 34],
+    iconAnchor: [17, 17]
+});
+
+var medina = L.circleMarker([24.46953, 39.61270], {
     radius: 8,
     color: "#B8860B",
     fillColor: "#FFD700",
     fillOpacity: 0.9,
     weight: 2
-});
+}).addTo(map);
+
+
+// 🕌 Medina icon at the EXACT same coordinates
+L.marker([24.46953, 39.61270], {
+    icon: medinaIcon,
+    zIndexOffset: 1000
+}).addTo(map);
+    
 
 medina.bindPopup(`
 <b>🕌 Medina (Arabia)</b><br><br>
