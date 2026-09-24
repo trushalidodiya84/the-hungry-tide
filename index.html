@@ -1742,91 +1742,65 @@ fetch("All places.geojson")
     data.features.forEach(function(feature) {
 
 
-        /* ================= GOSABA ================= */
+      /* ================= HAMILTON ================= */
 
-        if (feature.properties.name === "Gosaba") {
+if(feature.properties.name === "Hamilton"){
 
-            L.geoJSON(feature, {
+    L.geoJSON(feature,{
 
-                pointToLayer: function(feature, latlng) {
+        pointToLayer: function(feature, latlng){
 
-                    return L.circleMarker(latlng, {
-                        radius: 8,
-                        color: "#00008B",
-                        fillColor: "#4169E1",
-                        fillOpacity: 0.8,
-                        weight: 2
-                    });
-
-                }
-
-            }).addTo(map);
-
-        }
-
-
-
-        /* ================= HAMILTON ================= */
-
-        if (feature.properties.name === "Hamilton") {
-
-            /* ---------- BLUE CIRCLE ---------- */
-
-            L.geoJSON(feature, {
-
-                pointToLayer: function(feature, latlng) {
-
-                    return L.circleMarker(latlng, {
-                        radius: 8,
-                        color: "#00008B",
-                        fillColor: "#4169E1",
-                        fillOpacity: 0.8,
-                        weight: 2
-                    });
-
-                }
-
-            }).addTo(map);
-
-
-
-            /* ---------- 🏠 HOUSE ICON ---------- */
-
-            var hamiltonIcon = L.divIcon({
-
-                className: "hamilton-icon",
-
-                html: "🏠",
-
-                iconSize: [34, 34],
-
-                iconAnchor: [17, 17]
-
+            return L.circleMarker(latlng,{
+                radius:8,
+                color:"#00008B",
+                fillColor:"#4169E1",
+                fillOpacity:0.8,
+                weight:2
             });
 
+        },
 
-            /* Use the EXACT coordinates from GeoJSON */
+        onEachFeature: function(feature, layer){
 
-            var hamiltonLat =
-                feature.geometry.coordinates[1];
+            layer.bindPopup(`
+            
+            /* YOUR ORIGINAL HAMILTON DESCRIPTION
+               GOES HERE — UNCHANGED */
 
-            var hamiltonLng =
-                feature.geometry.coordinates[0];
-
-
-            L.marker(
-                [hamiltonLat, hamiltonLng],
-                {
-                    icon: hamiltonIcon,
-                    zIndexOffset: 1000
-                }
-            ).addTo(map);
+            `);
 
         }
 
+    }).addTo(memoryLayer);
+
+
+    /* ================= 🏠 HAMILTON ICON ================= */
+
+    var hamiltonIcon = L.divIcon({
+        className: "hamilton-icon",
+        html: "🏠",
+        iconSize: [34, 34],
+        iconAnchor: [17, 17]
     });
 
-});
+
+    var hamiltonLat =
+        feature.geometry.coordinates[1];
+
+    var hamiltonLng =
+        feature.geometry.coordinates[0];
+
+
+    L.marker(
+        [hamiltonLat, hamiltonLng],
+        {
+            icon: hamiltonIcon,
+            zIndexOffset: 1000,
+            interactive: false
+        }
+    ).addTo(memoryLayer);
+
+}
                 onEachFeature: function(feature, layer){
 
                     layer.bindPopup(`
