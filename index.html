@@ -1897,12 +1897,15 @@ L.marker([22.57659, 88.41337], {
     interactive: false
 }).addTo(ecologyLayer);
     
-var encounterZone = L.circleMarker([22.00796, 88.73735],{
-    radius:8,
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0.8,
-    weight:2
+var dolphinIcon = L.divIcon({
+    className: "dolphin-icon",
+    html: "🐬",
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+});
+
+var encounterZone = L.marker([22.00796, 88.73735], {
+    icon: dolphinIcon
 });
 
 encounterZone.bindPopup(`
