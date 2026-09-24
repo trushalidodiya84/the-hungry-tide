@@ -1739,38 +1739,17 @@ fetch("All places.geojson")
 
             L.geoJSON(feature,{
 
-               pointToLayer: function(feature, latlng){
+                pointToLayer: function(feature, latlng){
 
-    // Existing blue circle marker
-    var circle = L.circleMarker(latlng,{
-        radius: 8,
-        color: "#00008B",
-        fillColor: "#4169E1",
-        fillOpacity: 0.8,
-        weight: 2
-    });
+                    return L.circleMarker(latlng,{
+                        radius:8,
+                        color:"#00008B",
+                        fillColor:"#4169E1",
+                        fillOpacity:0.8,
+                        weight:2
+                    });
 
-    // 🏠 Resettlement icon at EXACT same location
-    var resettlementIcon = L.divIcon({
-        className: "resettlement-icon",
-        html: "🏠",
-        iconSize: [34, 34],
-        iconAnchor: [17, 17]
-    });
-
-    var icon = L.marker(latlng,{
-        icon: resettlementIcon,
-        zIndexOffset: 1000
-    });
-
-    // Return both at the SAME coordinates
-    var group = L.featureGroup([
-        circle,
-        icon
-    ]);
-
-    return group;
-}
+                },
 
                 onEachFeature: function(feature, layer){
 
