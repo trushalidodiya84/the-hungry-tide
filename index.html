@@ -2460,8 +2460,6 @@ Rather than simply representing movement through space, the route illustrates th
 
 ecologyLayer.addLayer(basantiRoute);
 
- /* ================= MEDINA ================= */
-
 /* ================= MEDINA ================= */
 
 var medinaIcon = L.divIcon({
@@ -2482,12 +2480,12 @@ var medina = L.circleMarker([24.46953, 39.61270], {
 
 
 // 🕌 Medina icon at the EXACT same coordinates — CLICKABLE
-L.marker([24.46953, 39.61270], {
+var medinaMarker = L.marker([24.46953, 39.61270], {
     icon: medinaIcon,
     zIndexOffset: 1000,
     interactive: true
-})
-.addTo(map);
+}).addTo(map);
+
 
 medina.bindPopup(`
 <b>🕌 Medina (Arabia)</b><br><br>
