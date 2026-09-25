@@ -2087,19 +2087,11 @@ var dolphinIcon = L.divIcon({
     iconAnchor: [20, 20]
 });
 
-var encounterZone = L.circleMarker([22.00796, 88.73735], {
-    radius: 8,
-    color: "#2E7D32",
-    fillColor: "#66BB6A",
-    fillOpacity: 0.8,
-    weight: 2
-}).addTo(map);
-
-
-// 🐬 Dolphin at the EXACT same coordinates — CLICKABLE
-L.marker([22.00796, 88.73735], {
+// 🐬 CLICKABLE DOLPHIN ENCOUNTER
+var dolphinEncounter = L.marker([22.00796, 88.73735], {
     icon: dolphinIcon,
-    zIndexOffset: 1000
+    zIndexOffset: 2000,
+    interactive: true
 })
 .addTo(map)
     
@@ -2114,6 +2106,15 @@ Following an accident in the river, Fokir rescues Piya. She chooses to leave the
 `);
 
 encounterZone.addTo(ecologyLayer);    
+    // 🟢 Green encounter zone — NOT CLICKABLE
+var encounterZone = L.circleMarker([22.00796, 88.73735], {
+    radius: 8,
+    color: "#2E7D32",
+    fillColor: "#66BB6A",
+    fillOpacity: 0.8,
+    weight: 2,
+    interactive: false
+}).addTo(map);
 /* ================= CHAMPAHATI : ECOLOGY ================= */
 
 fetch("All places.geojson")
