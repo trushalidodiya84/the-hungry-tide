@@ -317,6 +317,22 @@ html,body{
     line-height: 30px;
     cursor: pointer;
 }
+    /* ================= MYTHICAL JOURNEY SYMBOLS ================= */
+
+var farishtaIcon = L.divIcon({
+    className: "farishta-icon",
+    html: "🪽",
+    iconSize: [34, 34],
+    iconAnchor: [17, 17]
+});
+
+var sufiIcon = L.divIcon({
+    className: "sufi-icon",
+    html: "👳‍♂️",
+    iconSize: [34, 34],
+    iconAnchor: [17, 17]
+});
+    
 </style>
 
 </head>
@@ -2549,7 +2565,64 @@ var medinaRoute = L.polyline([
     opacity: 0.9,
     dashArray: "8,6"
 });
+/* ================= MYTHICAL JOURNEY SYMBOLS ================= */
 
+var farishtaIcon = L.divIcon({
+    className: "medina-icon",
+    html: "🪽",
+    iconSize: [34, 34],
+    iconAnchor: [17, 17]
+});
+
+var sufiIcon = L.divIcon({
+    className: "medina-icon",
+    html: "👳‍♂️",
+    iconSize: [34, 34],
+    iconAnchor: [17, 17]
+});
+
+
+/* 🪽 Divine / spiritual presence */
+
+L.marker([23.85, 45.50], {
+    icon: farishtaIcon,
+    interactive: false,
+    zIndexOffset: 500
+}).addTo(mythLayer);
+
+
+/* 👳‍♂️ Sufi mendicant — Bon Bibi & Shah Jangoli */
+
+L.marker([23.25, 52.00], {
+    icon: sufiIcon,
+    interactive: false,
+    zIndexOffset: 500
+}).addTo(mythLayer);
+
+L.marker([22.65, 61.50], {
+    icon: sufiIcon,
+    interactive: false,
+    zIndexOffset: 500
+}).addTo(mythLayer);
+
+
+/* 🪽 Divine / spiritual presence */
+
+L.marker([22.20, 72.00], {
+    icon: farishtaIcon,
+    interactive: false,
+    zIndexOffset: 500
+}).addTo(mythLayer);
+
+
+/* 👳‍♂️ Approaching Bhatir Desh */
+
+L.marker([21.95, 82.00], {
+    icon: sufiIcon,
+    interactive: false,
+    zIndexOffset: 500
+}).addTo(mythLayer);
+    
 medinaRoute.bindPopup(`
 <b>🛤️ Mythic Journey: Medina → Bhatir Desh</b><br><br>
 
