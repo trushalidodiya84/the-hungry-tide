@@ -1677,6 +1677,23 @@ The journey brings together scientific inquiry, traditional ecological knowledge
 `);
 
 ecologyLayer.addLayer(piyaDolphinRoute);
+    /* ================= ⛵ PIYA'S BOAT ================= */
+
+var boatIcon = L.divIcon({
+    className: "boat-icon",
+    html: "⛵",
+    iconSize: [28, 28],
+    iconAnchor: [14, 14]
+});
+
+L.marker(
+    [21.81000, 89.04000],
+    {
+        icon: boatIcon,
+        zIndexOffset: 500,
+        interactive: false
+    }
+).addTo(migrationLayer);
 
    /* ================= GERAFITOLA : DOLPHIN SYMBOL ================= */
 
