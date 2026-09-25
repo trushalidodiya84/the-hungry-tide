@@ -347,9 +347,9 @@ var map = L.map('map').setView([22.05, 88.90], 9);
     /* ================= BASE MAPS ================= */
 
 var standard = L.tileLayer(
-'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 {
-    attribution:'© OpenStreetMap © CARTO'
+    attribution:'© OpenStreetMap contributors'
 }).addTo(map);
 
 var waterways = L.tileLayer(
