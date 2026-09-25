@@ -2462,6 +2462,8 @@ ecologyLayer.addLayer(basantiRoute);
 
  /* ================= MEDINA ================= */
 
+/* ================= MEDINA ================= */
+
 var medinaIcon = L.divIcon({
     className: "medina-icon",
     html: "🕌",
@@ -2474,16 +2476,18 @@ var medina = L.circleMarker([24.46953, 39.61270], {
     color: "#B8860B",
     fillColor: "#FFD700",
     fillOpacity: 0.9,
-    weight: 2
+    weight: 2,
+    interactive: false
 }).addTo(map);
 
 
-// 🕌 Medina icon at the EXACT same coordinates
+// 🕌 Medina icon at the EXACT same coordinates — CLICKABLE
 L.marker([24.46953, 39.61270], {
     icon: medinaIcon,
-    zIndexOffset: 1000
-}).addTo(map);
-    
+    zIndexOffset: 1000,
+    interactive: true
+})
+.addTo(map);
 
 medina.bindPopup(`
 <b>🕌 Medina (Arabia)</b><br><br>
