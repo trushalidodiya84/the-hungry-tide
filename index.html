@@ -2521,17 +2521,7 @@ They were sent to the Country of Eighteen Tides (Bhatir Desh) to establish a bal
 
 Their journey symbolizes the movement of stories, beliefs, and cultural traditions across regions and seas.
 
-<br><br>
-
-<i>
-"The setting was Medina, one of the holiest places in Islam; here lived a man called Ibrahim, a childless but pious Muslim who led the austere life of a Sufi faqir. Through the intervention of the archangel Gabriel, Ibrahim became the father of blessed twins, Bon Bibi and Shah Jongoli."
-</i>
-<br>
-Page no. 103
-
 `);
-
-/* ================= BHATIR DESH ================= */
 
 fetch("Bhatir Desh.geojson")
 .then(response => response.json())
@@ -2549,33 +2539,17 @@ fetch("Bhatir Desh.geojson")
         onEachFeature: function(feature, layer) {
 
             layer.bindPopup(`
-<b>🌿 Bhatir Desh (Country of Eighteen Tides)</b><br><br>
+                <b>🌿 Bhatir Desh (Country of Eighteen Tides)</b><br><br>
 
-Bhatir Desh, or the Country of Eighteen Tides, is the mythical landscape where the legend of Bon Bibi unfolds. In the folklore of the Sundarbans, Bon Bibi and her twin brother Shah Jangoli arrive here from Medina to establish harmony between humans and the natural world.
+                Bhatir Desh, or the Country of Eighteen Tides, is the mythical landscape where the legend of Bon Bibi unfolds. In the folklore of the Sundarbans, Bon Bibi and her twin brother Shah Jangoli arrive here from Medina to establish harmony between humans and the natural world.
 
-<br><br>
+                <br><br>
 
-The region is portrayed as a sacred ecological space where human survival depends on respecting the balance between the forest, its wildlife, and supernatural guardians such as Bon Bibi and Dokkhin Rai.
+                The region is portrayed as a sacred ecological space where human survival depends on respecting the balance between the forest, its wildlife, and supernatural guardians such as Bon Bibi and Dokkhin Rai.
 
-<br><br>
+                <br><br>
 
-In <i>The Hungry Tide</i>, this mythic landscape continues to shape the cultural memory, beliefs, and ecological consciousness of the island communities.
-
-<br><br>
-
-<i>
-"The jungles of 'the country of eighteen tides' were then the realm of Dokkhin Rai, a powerful demon king, who held sway over every being that lived there - every animal as well as every ghoul, ghost and malevolent spirit."
-</i>
-<br>
-Page no. 103
-
-<br><br>
-
-<i>
-"Thus order was brought to the land of eighteen tides, with its two halves, the wild and the sown, being held in careful balance."
-</i>
-<br>
-Page no. 103
+                In <i>The Hungry Tide</i>, this mythic landscape continues to shape the cultural memory, beliefs, and ecological consciousness of the island communities.
 
             `);
 
@@ -2665,7 +2639,7 @@ L.marker(pointOnRoute(0.88), {
     zIndexOffset: 500
 }).addTo(mythLayer);
     
-.bindPopup(`
+medinaRoute.bindPopup(`
 <b>🛤️ Mythic Journey: Medina → Bhatir Desh</b><br><br>
 
 According to the Bon Bibi legend, Bon Bibi and her twin brother Shah Jangoli journeyed from Medina, Arabia, to Bhatir Desh (the Country of Eighteen Tides) under divine command.
@@ -2678,13 +2652,6 @@ Their journey marks the symbolic movement of sacred beliefs across geographical 
 
 Rather than representing a historical migration, this route visualizes the transmission of mythology, cultural memory, and ecological ethics that continue to shape the identity of the Sundarbans and its communities.
 
-<br><br>
-
-<i>
-"When the twins came of age, the archangel brought them word that they had been chosen for a divine mission: they were to travel from Arabia to 'the country of eighteen tides - athhero bhatir desh - in order to make it fit for human habitation. Thus charged, Bon Bibi and Shah Jongoli set off for the mangrove forests of Bengal, dressed in the simple robes of Sufi mendicants."
-</i>
-<br>
-Page no. 103
 
 `);
 
