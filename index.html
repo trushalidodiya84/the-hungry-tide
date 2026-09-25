@@ -1637,6 +1637,38 @@ This route traces the intellectual and emotional journey that led Nirmal to docu
 `);
 
 memoryLayer.addLayer(nirmalJourney);
+    /* ================= 🛶 NIRMAL'S JOURNEY BOATS ================= */
+
+var nirmalBoatIcon = L.divIcon({
+    className: "boat-icon",
+    html: "🛶",
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+});
+
+
+/* Boat 1 — Lusibari → Kumirmari */
+
+L.marker(
+    [22.14700, 88.92200],
+    {
+        icon: nirmalBoatIcon,
+        zIndexOffset: 500,
+        interactive: false
+    }
+).addTo(migrationLayer);
+
+
+/* Boat 2 — Kumirmari → Morichjhapi */
+
+L.marker(
+    [22.15500, 88.93500],
+    {
+        icon: nirmalBoatIcon,
+        zIndexOffset: 500,
+        interactive: false
+    }
+).addTo(migrationLayer);
   
 /* ================= PIYA'S DOLPHIN EXPEDITION ================= */
 
