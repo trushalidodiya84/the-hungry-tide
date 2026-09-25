@@ -1679,15 +1679,44 @@ The journey brings together scientific inquiry, traditional ecological knowledge
 ecologyLayer.addLayer(piyaDolphinRoute);
     /* ================= ⛵ PIYA'S BOAT ================= */
 
+/* ================= 🛶 PIYA'S BOATS ================= */
+
 var boatIcon = L.divIcon({
     className: "boat-icon",
-    html: "⛵",
-    iconSize: [28, 28],
-    iconAnchor: [14, 14]
+    html: "🛶",
+    iconSize: [36, 36],
+    iconAnchor: [18, 18]
 });
+
+
+/* Boat 1 — near Lusibari */
+
+L.marker(
+    [22.04500, 88.90700],
+    {
+        icon: boatIcon,
+        zIndexOffset: 500,
+        interactive: false
+    }
+).addTo(migrationLayer);
+
+
+/* Boat 2 — near Gerafitola */
 
 L.marker(
     [21.81000, 89.04000],
+    {
+        icon: boatIcon,
+        zIndexOffset: 500,
+        interactive: false
+    }
+).addTo(migrationLayer);
+
+
+/* Boat 3 — towards Mohona / Sea */
+
+L.marker(
+    [21.78000, 89.04800],
     {
         icon: boatIcon,
         zIndexOffset: 500,
