@@ -2096,11 +2096,12 @@ var encounterZone = L.circleMarker([22.00796, 88.73735], {
 }).addTo(map);
 
 
-// 🐬 Dolphin at the EXACT same coordinates
+// 🐬 Dolphin at the EXACT same coordinates — CLICKABLE
 L.marker([22.00796, 88.73735], {
     icon: dolphinIcon,
     zIndexOffset: 1000
-}).addTo(map);
+})
+.addTo(map)
     
 encounterZone.bindPopup(`
 <b>🐬 Encounter Zone (Approximate)</b><br><br>
