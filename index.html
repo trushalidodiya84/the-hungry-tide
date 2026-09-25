@@ -317,6 +317,13 @@ html,body{
     line-height: 30px;
     cursor: pointer;
 }
+    .tiger-icon {
+    background: transparent;
+    border: none;
+    font-size: 36px;
+    text-align: center;
+    line-height: 40px;
+}
 </style>
 
 </head>
@@ -1604,57 +1611,71 @@ Kumirmari therefore serves as a threshold between memory and history, linking Ni
     });
 
 });
-  /* ================= TIGER HABITAT ZONE ================= */
+ /* ================= TIGER HABITAT ZONE ================= */
 
 L.polygon([
-    [22.30,88.75],
-    [22.28,89.20],
-    [22.05,89.45],
-    [21.82,89.40],
-    [21.70,89.10],
-    [21.78,88.78],
-    [22.05,88.65]
-],{
-    color:"#2E7D32",
-    fillColor:"#66BB6A",
-    fillOpacity:0,
-    weight:2,
-    dashArray:"6,4"
-})
-.addTo(ecologyLayer)
+    [22.30, 88.75],
+    [22.28, 89.20],
+    [22.05, 89.45],
+    [21.82, 89.40],
+    [21.70, 89.10],
+    [21.78, 88.78],
+    [22.05, 88.65]
+], {
+    color: "#2E7D32",
+    fillColor: "#66BB6A",
+    fillOpacity: 0,
+    weight: 2,
+    dashArray: "6,4"
+}).addTo(ecologyLayer);
+
+
+/* ================= TIGER ICON ================= */
+
+var tigerIcon = L.divIcon({
+    className: "tiger-icon",
+    html: "🐅",
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+});
+
+L.marker([22.05, 89.05], {
+    icon: tigerIcon,
+    zIndexOffset: 1000,
+    interactive: false
+}).addTo(ecologyLayer);
 .bindPopup(
-"<b>🐅 Tiger Habitat Zone</b><br><br>" +
+    "<b>🐅 Tiger Habitat Zone</b><br><br>" +
 
-"The Sundarbans is one of the principal habitats of the Royal Bengal Tiger, where dense mangrove forests, tidal creeks, and river channels support one of the world's largest tiger populations. In <i>The Hungry Tide</i>, the tiger symbolizes both ecological power and the precarious relationship between humans and the natural world.<br><br>" +
+    "The Sundarbans is one of the principal habitats of the Royal Bengal Tiger, where dense mangrove forests, tidal creeks, and river channels support one of the world's largest tiger populations. In <i>The Hungry Tide</i>, the tiger symbolizes both ecological power and the precarious relationship between humans and the natural world.<br><br>" +
 
-"<b>Ecological & Historical Context</b><br>" +
-"• Historical records compiled by J. Fayrer documented 4,218 deaths caused by tiger attacks in Lower Bengal between 1860 and 1866.<br>" +
-"• Human–tiger encounters were frequent, with one or two fatalities reported almost every month in some parts of the Sundarbans.<br>" +
-"• Unlike most big cats, Royal Bengal Tigers are strong swimmers and frequently cross tidal rivers, making water an unreliable refuge for local inhabitants.<br><br>" +
+    "<b>Ecological & Historical Context</b><br>" +
+    "• Historical records compiled by J. Fayrer documented 4,218 deaths caused by tiger attacks in Lower Bengal between 1860 and 1866.<br>" +
+    "• Human–tiger encounters were frequent, with one or two fatalities reported almost every month in some parts of the Sundarbans.<br>" +
+    "• Unlike most big cats, Royal Bengal Tigers are strong swimmers and frequently cross tidal rivers, making water an unreliable refuge for local inhabitants.<br><br>" +
 
-"<b>Literary Significance</b><br>" +
-"• Kusum's father is killed by a tiger, illustrating the constant risks faced by communities living at the forest edge.<br>" +
-"• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country.<br><br>" +
+    "<b>Literary Significance</b><br>" +
+    "• Kusum's father is killed by a tiger, illustrating the constant risks faced by communities living at the forest edge.<br>" +
+    "• The novel portrays the tiger not merely as a predator but as an integral part of the fragile ecological balance of the tide country.<br><br>" +
 
-"<b>📖 Textual Evidence</b><br><br>" +
+    "<b>📖 Textual Evidence</b><br><br>" +
 
-"<i>\"Every year, dozens of people perish in the embrace of that dense foliage, killed by tigers, snakes and crocodiles.\"</i> p. 9<br><br>" +
+    "<i>\"Every year, dozens of people perish in the embrace of that dense foliage, killed by tigers, snakes and crocodiles.\"</i> p. 9<br><br>" +
 
-"Nilima explains the continuing scale of tiger attacks:<br><br>" +
+    "Nilima explains the continuing scale of tiger attacks:<br><br>" +
 
-"<i>\"My belief is that over a hundred people are killed by tigers here each year. And mind you, I'm just talking about the Indian part of the Sundarbans. If you include the Bangladesh side, the figure is probably twice that. If you put the figures together, it means that a human being is killed by a tiger every other day in the Sundarbans at the very least.\"</i><br><br>" +
+    "<i>\"My belief is that over a hundred people are killed by tigers here each year. And mind you, I'm just talking about the Indian part of the Sundarbans. If you include the Bangladesh side, the figure is probably twice that. If you put the figures together, it means that a human being is killed by a tiger every other day in the Sundarbans at the very least.\"</i><br><br>" +
 
-"Nilima further emphasizes that these attacks are not a recent phenomenon:<br><br>" +
+    "Nilima further emphasizes that these attacks are not a recent phenomenon:<br><br>" +
 
-"<i>\"These attacks have been going on for centuries; they were happening even when the population here was a fraction of what it is today.\"</i><br><br>" +
+    "<i>\"These attacks have been going on for centuries; they were happening even when the population here was a fraction of what it is today.\"</i><br><br>" +
 
-"The historical figure of <b>4,218</b> is then introduced through J. Fayrer's records:<br><br>" +
+    "The historical figure of <b>4,218</b> is then introduced through J. Fayrer's records:<br><br>" +
 
-"<i>\"That's the number of people who were killed by tigers in lower Bengal in a six-year period between the years 1860 and 1866.\"</i> pp. 240–241<br><br>" +
+    "<i>\"That's the number of people who were killed by tigers in lower Bengal in a six-year period between the years 1860 and 1866.\"</i> pp. 240–241<br><br>" +
 
-"<b>Textual References:</b> pp. 9, 240–241" 
- );
-    
+    "<b>Textual References:</b> pp. 9, 240–241"
+);
     /* ================= NIRMAL'S JOURNEY : MEMORY ROUTE ================= */
 
 var nirmalJourney = L.polyline([
