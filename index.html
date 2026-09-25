@@ -2531,6 +2531,8 @@ Page no. 103
 
 `);
 
+/* ================= BHATIR DESH ================= */
+
 fetch("Bhatir Desh.geojson")
 .then(response => response.json())
 .then(data => {
@@ -2547,7 +2549,7 @@ fetch("Bhatir Desh.geojson")
         onEachFeature: function(feature, layer) {
 
             layer.bindPopup(`
-                <b>🌿 Bhatir Desh (Country of Eighteen Tides)</b><br><br>
+<b>🌿 Bhatir Desh (Country of Eighteen Tides)</b><br><br>
 
 Bhatir Desh, or the Country of Eighteen Tides, is the mythical landscape where the legend of Bon Bibi unfolds. In the folklore of the Sundarbans, Bon Bibi and her twin brother Shah Jangoli arrive here from Medina to establish harmony between humans and the natural world.
 
@@ -2575,7 +2577,8 @@ Page no. 103
 <br>
 Page no. 103
 
-`);
+            `);
+
         }
 
     }).addTo(mythLayer);
