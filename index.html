@@ -308,14 +308,7 @@ html,body{
     font-size: 26px;
     text-align: center;
     line-height: 34px;
-}  
-    .dolphin-icon {
-    background: transparent;
-    border: none;
-    font-size: 32px;
-    text-align: center;
-    line-height: 36px;
-}
+}       
 </style>
 
 </head>
@@ -354,9 +347,9 @@ var map = L.map('map').setView([22.05, 88.90], 9);
     /* ================= BASE MAPS ================= */
 
 var standard = L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
 {
-    attribution:'© OpenStreetMap contributors'
+    attribution:'© OpenStreetMap © CARTO'
 }).addTo(map);
 
 var waterways = L.tileLayer(
@@ -2087,13 +2080,20 @@ var dolphinIcon = L.divIcon({
     iconAnchor: [20, 20]
 });
 
-// 🐬 CLICKABLE DOLPHIN ENCOUNTER
-var dolphinEncounter = L.marker([22.00796, 88.73735], {
+var encounterZone = L.circleMarker([22.00796, 88.73735], {
+    radius: 8,
+    color: "#2E7D32",
+    fillColor: "#66BB6A",
+    fillOpacity: 0.8,
+    weight: 2
+}).addTo(map);
+
+
+// 🐬 Dolphin at the EXACT same coordinates
+L.marker([22.00796, 88.73735], {
     icon: dolphinIcon,
-    zIndexOffset: 2000,
-    interactive: true
-})
-.addTo(map)
+    zIndexOffset: 1000
+}).addTo(map);
     
 encounterZone.bindPopup(`
 <b>🐬 Encounter Zone (Approximate)</b><br><br>
@@ -2106,15 +2106,6 @@ Following an accident in the river, Fokir rescues Piya. She chooses to leave the
 `);
 
 encounterZone.addTo(ecologyLayer);    
-    // 🟢 Green encounter zone — NOT CLICKABLE
-var encounterZone = L.circleMarker([22.00796, 88.73735], {
-    radius: 8,
-    color: "#2E7D32",
-    fillColor: "#66BB6A",
-    fillOpacity: 0.8,
-    weight: 2,
-    interactive: false
-}).addTo(map);
 /* ================= CHAMPAHATI : ECOLOGY ================= */
 
 fetch("All places.geojson")
