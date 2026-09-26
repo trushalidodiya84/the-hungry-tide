@@ -2144,57 +2144,48 @@ fetch("All places.geojson")
                 onEachFeature: function(feature, layer){
 
                     layer.bindPopup(`
-                   "<b>🐬 Kolkata Botanical Garden: Origins of Dolphin Research</b><br><br>" +
+                  var popup = `
+<b>🐬 Kolkata Botanical Garden: Origins of Dolphin Research</b><br><br>
 
-"In the nineteenth century, the Botanical Garden in Calcutta became an important centre for natural history and zoological research." +
+In the nineteenth century, the Botanical Garden in Calcutta became an important centre for natural history and zoological research.
 
-"<br><br>" +
+<br><br>
 
-"William Roxburgh, one of the Garden's leading naturalists, published a landmark study in 1801 describing the Gangetic Dolphin. He named the species <i>Delphinus gangeticus</i>, one of the earliest scientific descriptions of a river dolphin." +
+William Roxburgh, one of the Garden's leading naturalists, published a landmark study in 1801 describing the Gangetic Dolphin. He named the species <i>Delphinus gangeticus</i>, one of the earliest scientific descriptions of a river dolphin.
 
-"<br><br>" +
+<br><br>
 
-"Later zoological research revealed that the animal belonged to the genus <i>Platanista</i>, and it came to be classified as <i>Platanista gangetica</i>." +
+Later zoological research revealed that the animal belonged to the genus <i>Platanista</i>, and it came to be classified as <i>Platanista gangetica</i>.
 
-"<br><br>" +
+<br><br>
 
-"For Piya Roy, this history represents the beginning of a long scientific effort to understand the dolphins of the Ganges–Brahmaputra delta and the waters of the Sundarbans." +
+For Piya Roy, this history represents the beginning of a long scientific effort to understand the dolphins of the Ganges–Brahmaputra delta and the waters of the Sundarbans.
 
-"<br><br>" +
+<br><br>
 
-"<b>📖 Textual Evidence — Page 277</b><br><br>" +
+<b>📖 Textual Evidence — Page 277</b><br><br>
 
-"<i>" +
-"\"I'm listening,\" said Kanai. I'm willing to be persuaded." +
-"</i>" +
+<i>"I'm listening," said Kanai. I'm willing to be persuaded.</i>
 
-"<br><br>" +
+<br><br>
 
-"<i>" +
-"\"Why?\" Because some of the earliest specimens Piya said. \"How's that for were found in Calcutta, a reason?\" \"In Calcutta?\" Kanai said incredulously. \"You're telling me there were dolphins in Calcutta?\"" +
-"</i>" +
+<i>"Why?" Because some of the earliest specimens Piya said. "How's that for were found in Calcutta, a reason?" "In Calcutta?" Kanai said incredulously. "You're telling me there were dolphins in Calcutta?"</i>
 
-"<br><br>" +
+<br><br>
 
-"<i>" +
-"\"Oh yes,\" said Piya. \"Not just dolphins. Whales too.\"" +
-"</i>" +
+<i>"Oh yes," said Piya. "Not just dolphins. Whales too."</i>
 
-"<br><br>" +
+<br><br>
 
-"<i>" +
-"\"But it's true,\" Piya said, \"And let me tell you — last week when I was coming through Kolkata? I actually went on a cetacean pilgrimage.\"" +
-"</i>" +
+<i>"But it's true," Piya said, "And let me tell you — last week when I was coming through Kolkata? I actually went on a cetacean pilgrimage."</i>
 
-"<br><br>" +
+<br><br>
 
-"<i>" +
-"\"The Botanical Gardens! What are you going to do there?\"" +
-"</i>" +
+<i>"The Botanical Gardens! What are you going to do there?"</i>
 
-"<br><br>" +
+<br><br>
 
-"<b>— Page 277</b>"
+<b>— Page 277</b>
                     `);
 
                 }
