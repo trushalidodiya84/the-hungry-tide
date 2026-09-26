@@ -3525,9 +3525,36 @@ fetch("All places.geojson")
 
 }); 
    
- /* =========================================================
+/* =========================================================
    ECOLOGICAL HABITAT NETWORK
-   GREEN DASH + BLUE DOT + ARROW + RESEARCH ICON
+   SEATTLE → PHNOM PENH
+   SEATTLE → KRATIE
+   SEATTLE → TONLE SAP
+   SEATTLE → SUNDARBANS
+
+   ONE GREEN DASHED LINE
+   + SMALL BLUE DOTS ON THE SAME LINE
+   + SMALL ARROW ON THE SAME LINE
+   + SMALL RESEARCH ICON ON THE SAME LINE
+   ========================================================= */
+
+
+/* =========================================================
+   1. SEATTLE
+   ========================================================= */
+
+var seattlePoint = [47.60594060998454, -122.33119513137272];
+
+
+/* =========================================================
+   2. REPRESENTATIVE SUNDARBANS POINT
+   ========================================================= */
+
+var sundarbansPoint = [22.08918, 88.90773];
+
+
+/* =========================================================
+   3. FUNCTION TO FIND A POINT ON A ROUTE
    ========================================================= */
 
 function getPointOnLine(pointA, pointB, fraction) {
@@ -3541,7 +3568,7 @@ function getPointOnLine(pointA, pointB, fraction) {
 
 
 /* =========================================================
-   RESEARCH ICON
+   4. SMALL RESEARCH ICON
    ========================================================= */
 
 var researchRouteIcon = L.divIcon({
@@ -3550,91 +3577,174 @@ var researchRouteIcon = L.divIcon({
 
     html: "🔎",
 
-    iconSize: [28, 28],
+    iconSize: [24, 24],
 
-    iconAnchor: [14, 14]
+    iconAnchor: [12, 12]
 
 });
 
 
 /* =========================================================
-   CREATE ECOLOGICAL ROUTE
+   5. RESEARCH POPUP
    ========================================================= */
 
-function createEcologicalNetworkLine(
-    pointA,
-    pointB,
-    popupContent
-) {
+var researchPopup =
 
-    /* -----------------------------------------
-       GREEN DASHED BASE LINE
-       ----------------------------------------- */
+    '<div style="max-width:320px;">' +
+
+        '<h3 style="margin:0 0 10px 0;">' +
+            '🔎 Piya Roy\'s Cetacean Research' +
+        '</h3>' +
+
+        '<div style="margin-bottom:10px;">' +
+
+            'Piya Roy identifies herself as a ' +
+            '<b>cetologist</b>, a researcher who studies marine ' +
+            'mammals such as dolphins, whales, and dugongs.' +
+
+        '</div>' +
+
+        '<div style="margin-bottom:10px;">' +
+
+            'Her research takes her onto the water for extended ' +
+            'periods and leads her to different regions where she ' +
+            'studies marine and freshwater mammals.' +
+
+        '</div>' +
+
+        '<div style="margin-bottom:10px;">' +
+
+            'Her research journey connects the ecological habitats ' +
+            'of Southeast Asia with the Sundarbans, demonstrating ' +
+            'the transnational movement of scientific knowledge, ' +
+            'research and ecological observation.' +
+
+        '</div>' +
+
+        '<div>' +
+
+            '<b>Ecological Significance</b><br>' +
+
+            'The network represents the interconnected habitats ' +
+            'and research locations associated with Piya\'s study ' +
+            'of dolphins and aquatic ecosystems.' +
+
+        '</div>' +
+
+    '</div>';
+
+
+/* =========================================================
+   6. FUNCTION TO CREATE ONE ECOLOGICAL ROUTE
+   ========================================================= */
+
+function createEcologicalNetworkLine(pointA, pointB, popupContent) {
+
+
+    /* -----------------------------------------------------
+       GREEN DASHED LINE
+       ----------------------------------------------------- */
 
     L.polyline(
+
         [pointA, pointB],
+
         {
+
             color: "#2E7D32",
-            weight: 4,
+
+            weight: 3,
+
             opacity: 0.9,
+
             dashArray: "10,8",
+
             lineCap: "round",
+
             lineJoin: "round",
+
             interactive: false
+
         }
+
     ).addTo(ecologyLayer);
 
 
-    /* -----------------------------------------
-       BLUE DOTS EXACTLY ON THE GREEN LINE
-       ----------------------------------------- */
+
+    /* -----------------------------------------------------
+       SMALL BLUE DOTS
+       EXACTLY ON THE GREEN LINE
+       ----------------------------------------------------- */
 
     var dotPositions = [
-        0.20,
-        0.40,
+
+        0.18,
+        0.32,
+        0.46,
         0.60,
-        0.80
+        0.74,
+        0.88
+
     ];
 
 
     dotPositions.forEach(function(fraction) {
 
         var dotPoint = getPointOnLine(
+
             pointA,
             pointB,
             fraction
+
         );
 
 
         L.circleMarker(
+
             dotPoint,
+
             {
-                radius: 4,
+
+                radius: 3,
+
                 color: "#1976D2",
+
                 fillColor: "#1976D2",
+
                 fillOpacity: 1,
-                weight: 1,
+
+                weight: 0,
+
                 interactive: false
+
             }
+
         ).addTo(ecologyLayer);
 
     });
 
 
-    /* -----------------------------------------
-       SMALL ARROW EXACTLY ON THE LINE
-       ----------------------------------------- */
+
+    /* -----------------------------------------------------
+       SMALL ARROW
+       EXACTLY ON THE GREEN LINE
+       ----------------------------------------------------- */
 
     var arrowPoint = getPointOnLine(
+
         pointA,
         pointB,
         0.50
+
     );
 
 
     var angle = Math.atan2(
+
         -(pointB[0] - pointA[0]),
+
         pointB[1] - pointA[1]
+
     ) * 180 / Math.PI;
 
 
@@ -3643,50 +3753,310 @@ function createEcologicalNetworkLine(
         className: "eco-route-arrow",
 
         html:
-            '<div style="transform:rotate(' +
-            angle +
-            'deg);">➤</div>',
 
-        iconSize: [24, 24],
+            '<div style="' +
 
-        iconAnchor: [12, 12]
+                'transform:rotate(' + angle + 'deg);' +
+
+                'font-size:18px;' +
+
+                'line-height:20px;' +
+
+                'width:20px;' +
+
+                'height:20px;' +
+
+                'text-align:center;' +
+
+            '">' +
+
+                '➤' +
+
+            '</div>',
+
+        iconSize: [20, 20],
+
+        iconAnchor: [10, 10]
 
     });
 
 
     L.marker(
+
         arrowPoint,
+
         {
+
             icon: arrowIcon,
+
             interactive: false,
+
             zIndexOffset: 1500
+
         }
+
     ).addTo(ecologyLayer);
 
 
-    /* -----------------------------------------
-       RESEARCH ICON EXACTLY ON THE LINE
-       ----------------------------------------- */
+
+    /* -----------------------------------------------------
+       SMALL RESEARCH ICON
+       EXACTLY ON THE GREEN LINE
+       ----------------------------------------------------- */
 
     var researchPoint = getPointOnLine(
+
         pointA,
         pointB,
         0.68
+
     );
 
 
     L.marker(
+
         researchPoint,
+
         {
+
             icon: researchRouteIcon,
+
             interactive: true,
+
             zIndexOffset: 2000
+
         }
+
     )
+
     .addTo(ecologyLayer)
+
     .bindPopup(popupContent);
 
-}    
+}
+
+
+/* =========================================================
+   7. SEATTLE → SUNDARBANS
+   ========================================================= */
+
+createEcologicalNetworkLine(
+
+    seattlePoint,
+
+    sundarbansPoint,
+
+    researchPopup
+
+);
+
+
+/* =========================================================
+   8. GET PHNOM PENH
+   FROM YOUR EXISTING GEOJSON
+   ========================================================= */
+
+fetch("All places.geojson")
+
+.then(function(response) {
+
+    return response.json();
+
+})
+
+.then(function(data) {
+
+
+    data.features.forEach(function(feature) {
+
+
+        if (
+
+            feature.properties &&
+
+            feature.properties.name === "Phnom Penh"
+
+        ) {
+
+
+            var coordinates = feature.geometry.coordinates;
+
+
+            var phnomPenhPoint = [
+
+                coordinates[1],
+
+                coordinates[0]
+
+            ];
+
+
+            createEcologicalNetworkLine(
+
+                seattlePoint,
+
+                phnomPenhPoint,
+
+                researchPopup
+
+            );
+
+        }
+
+    });
+
+})
+
+.catch(function(error) {
+
+    console.error(
+
+        "Error loading Phnom Penh for ecological network:",
+
+        error
+
+    );
+
+});
+
+
+/* =========================================================
+   9. GET KRATIE
+   FROM YOUR EXISTING GEOJSON
+   ========================================================= */
+
+fetch("Kratie.geojson")
+
+.then(function(response) {
+
+    return response.json();
+
+})
+
+.then(function(data) {
+
+
+    data.features.forEach(function(feature) {
+
+
+        if (
+
+            feature.geometry &&
+
+            feature.geometry.coordinates
+
+        ) {
+
+
+            var coordinates = feature.geometry.coordinates;
+
+
+            var kratiePoint = [
+
+                coordinates[1],
+
+                coordinates[0]
+
+            ];
+
+
+            createEcologicalNetworkLine(
+
+                seattlePoint,
+
+                kratiePoint,
+
+                researchPopup
+
+            );
+
+        }
+
+    });
+
+})
+
+.catch(function(error) {
+
+    console.error(
+
+        "Error loading Kratie for ecological network:",
+
+        error
+
+    );
+
+});
+
+
+/* =========================================================
+   10. GET TONLE SAP
+   FROM YOUR EXISTING GEOJSON
+   ========================================================= */
+
+fetch("Tonle Sap.geojson")
+
+.then(function(response) {
+
+    return response.json();
+
+})
+
+.then(function(data) {
+
+
+    data.features.forEach(function(feature) {
+
+
+        if (
+
+            feature.geometry &&
+
+            feature.geometry.coordinates
+
+        ) {
+
+
+            var coordinates = feature.geometry.coordinates;
+
+
+            var tonleSapPoint = [
+
+                coordinates[1],
+
+                coordinates[0]
+
+            ];
+
+
+            createEcologicalNetworkLine(
+
+                seattlePoint,
+
+                tonleSapPoint,
+
+                researchPopup
+
+            );
+
+        }
+
+    });
+
+})
+
+.catch(function(error) {
+
+    console.error(
+
+        "Error loading Tonle Sap for ecological network:",
+
+        error
+
+    );
+
+});
+    
 L.control.layers(
 baseMaps,
 {
