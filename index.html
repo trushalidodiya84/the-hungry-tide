@@ -336,7 +336,64 @@ html,body{
     line-height: 34px;
     white-space: nowrap;
 }
-    
+    /* ================================
+   ECOLOGICAL HABITAT NETWORK
+   ================================ */
+
+/* Green ecological dot */
+.eco-green-dot {
+    background: #2E7D32;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 14px !important;
+    height: 14px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+/* Blue ecological dot */
+.eco-blue-dot {
+    background: #1976D2;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 14px !important;
+    height: 14px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+
+/* Research icon placed ON the route */
+.research-route-icon {
+    background: transparent;
+    border: none;
+    font-size: 27px;
+    text-align: center;
+    line-height: 32px;
+    width: 32px !important;
+    height: 32px !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+
+/* Directional arrow on ecological route */
+.eco-route-arrow {
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 30px;
+    width: 30px !important;
+    height: 30px !important;
+    color: #2E7D32;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+}
+
+/* Ecological Habitat Network line */
+.ecological-network-line {
+    stroke: #2E7D32;
+    stroke-width: 3;
+    stroke-dasharray: 10,8;
+    stroke-linecap: round;
+    opacity: 0.85;
+}
 </style>
 
 </head>
@@ -3467,6 +3524,237 @@ fetch("All places.geojson")
     );
 
 }); 
+    /* =========================================================
+   ECOLOGICAL HABITAT NETWORK
+   Seattle → Sundarbans
+   ========================================================= */
+
+var seattlePoint = [47.60594060998454, -122.33119513137272];
+
+var sundarbansPoint = [22.08918, 88.90773]; 
+// One representative Sundarbans research point
+// No separate Dhakuria / Champahati / Canning node here
+
+
+/* ---------------------------------------------------------
+   Helper: place a point exactly on the line
+   --------------------------------------------------------- */
+
+function getPointOnLine(pointA, pointB, fraction) {
+    return [
+        pointA[0] + (pointB[0] - pointA[0]) * fraction,
+        pointA[1] + (pointB[1] - pointA[1]) * fraction
+    ];
+}
+
+
+/* ---------------------------------------------------------
+   Research Icon
+   --------------------------------------------------------- */
+
+var researchRouteIcon = L.divIcon({
+    className: "research-route-icon",
+    html: "🔎",
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+});
+
+
+/* ---------------------------------------------------------
+   Green Dot
+   --------------------------------------------------------- */
+
+function addGreenEcoDot(point) {
+
+    L.marker(point, {
+        icon: L.divIcon({
+            className: "eco-green-dot",
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+        }),
+        interactive: false
+    }).addTo(ecologicalHabitatNetworkLayer);
+
+}
+
+
+/* ---------------------------------------------------------
+   Blue Dot
+   --------------------------------------------------------- */
+
+function addBlueEcoDot(point) {
+
+    L.marker(point, {
+        icon: L.divIcon({
+            className: "eco-blue-dot",
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+        }),
+        interactive: false
+    }).addTo(ecologicalHabitatNetworkLayer);
+
+}
+
+
+/* ---------------------------------------------------------
+   Directional Arrow
+   --------------------------------------------------------- */
+
+function addEcoArrow(pointA, pointB, fraction) {
+
+    var arrowPoint = getPointOnLine(pointA, pointB, fraction);
+
+    var angle = Math.atan2(
+        -(pointB[0] - pointA[0]),
+        pointB[1] - pointA[1]
+    ) * 180 / Math.PI;
+
+    var arrowIcon = L.divIcon({
+        className: "eco-route-arrow",
+        html: '<div style="transform:rotate(' + angle + 'deg);">➤</div>',
+        iconSize: [30, 30],
+        iconAnchor: [15, 15]
+    });
+
+    L.marker(arrowPoint, {
+        icon: arrowIcon,
+        interactive: false,
+        zIndexOffset: 1500
+    }).addTo(ecologicalHabitatNetworkLayer);
+
+}
+
+
+/* =========================================================
+   SEATTLE → SUNDARBANS
+   ========================================================= */
+
+var seattleToSundarbans = L.polyline(
+    [
+        seattlePoint,
+        sundarbansPoint
+    ],
+    {
+        color: "#2E7D32",
+        weight: 3,
+        opacity: 0.85,
+        dashArray: "10,8",
+        lineCap: "round",
+        className: "ecological-network-line"
+    }
+).addTo(ecologicalHabitatNetworkLayer);
+
+
+/* ---------------------------------------------------------
+   Points on the route
+   --------------------------------------------------------- */
+
+var greenPoint = getPointOnLine(
+    seattlePoint,
+    sundarbansPoint,
+    0.35
+);
+
+var researchPoint = getPointOnLine(
+    seattlePoint,
+    sundarbansPoint,
+    0.50
+);
+
+var bluePoint = getPointOnLine(
+    seattlePoint,
+    sundarbansPoint,
+    0.65
+);
+
+
+/* ---------------------------------------------------------
+   Green + Blue ecological dots
+   --------------------------------------------------------- */
+
+addGreenEcoDot(greenPoint);
+
+addBlueEcoDot(bluePoint);
+
+
+/* ---------------------------------------------------------
+   🔎 Research icon EXACTLY on the line
+   --------------------------------------------------------- */
+
+L.marker(researchPoint, {
+    icon: researchRouteIcon,
+    interactive: true,
+    zIndexOffset: 2000
+})
+.addTo(ecologicalHabitatNetworkLayer)
+.bindPopup(`
+    <div style="max-width:330px;">
+
+        <h3 style="margin:0 0 12px 0;">
+            🔎 Piya Roy's Cetacean Research
+        </h3>
+
+        <div style="margin-bottom:12px;">
+            Piya Roy identifies herself as a <b>cetologist</b>, a researcher who studies marine mammals such as dolphins, whales, and dugongs.
+        </div>
+
+        <div style="margin-bottom:12px;">
+            Her research takes her onto the water for extended periods and leads her to the Sundarbans, where she hopes to obtain permission to conduct a survey of the region's marine mammals.
+        </div>
+
+        <div style="margin-bottom:12px;">
+            Canning becomes an important entry point for this research journey. Piya specifically chooses to travel through Canning because of her research plans in the Sundarbans.
+        </div>
+
+        <div style="margin-bottom:12px;">
+            The novel also draws attention to the disappearance of the region's cetacean population from public view and the absence of a proper survey. This connects Piya's scientific research with the ecological knowledge of the Sundarbans.
+        </div>
+
+        <div style="margin-bottom:12px;">
+            <i>
+            "I'm a cetologist," she said. "That means ... I study marine mammals."
+            </i>
+            <br>
+            <b>Page 11</b>
+        </div>
+
+        <div style="margin-bottom:12px;">
+            <i>
+            "I'm hoping to wangle a permit to do a survey of the marine mammals of the Sundarbans."
+            </i>
+            <br>
+            <b>Page 11</b>
+        </div>
+
+        <div style="margin-bottom:12px;">
+            <i>
+            "The cetacean population has kind of disappeared from view. No one knows whether it's because they're gone or because they haven't been studied. There hasn't ever been a proper survey."
+            </i>
+            <br>
+            <b>Page 11</b>
+        </div>
+
+        <div style="margin-bottom:0;">
+            <i>
+            "Because of the river," she said. "It's changed."
+            </i>
+            <br>
+            <b>Page 23</b>
+        </div>
+
+    </div>
+`);
+
+
+/* ---------------------------------------------------------
+   Directional arrow
+   --------------------------------------------------------- */
+
+addEcoArrow(
+    seattlePoint,
+    sundarbansPoint,
+    0.75
+);
     
 L.control.layers(
 baseMaps,
