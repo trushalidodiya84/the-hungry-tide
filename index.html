@@ -3525,27 +3525,9 @@ fetch("All places.geojson")
 
 }); 
    
-    /* =========================================================
+ /* =========================================================
    ECOLOGICAL HABITAT NETWORK
-   Seattle → Phnom Penh
-   Seattle → Kratie
-   Seattle → Tonle Sap
-   Seattle → Sundarbans
-   ========================================================= */
-
-/* ---------- SEATTLE ---------- */
-
-var seattlePoint = [47.60594060998454, -122.33119513137272];
-
-
-/* ---------- SUNDARBANS ---------- */
-/* One representative Sundarbans point only */
-
-var sundarbansPoint = [22.08918, 88.90773];
-
-
-/* =========================================================
-   HELPER FUNCTIONS
+   GREEN DASH + BLUE DOT + ARROW + RESEARCH ICON
    ========================================================= */
 
 function getPointOnLine(pointA, pointB, fraction) {
@@ -3558,7 +3540,9 @@ function getPointOnLine(pointA, pointB, fraction) {
 }
 
 
-/* ---------- RESEARCH ICON ---------- */
+/* =========================================================
+   RESEARCH ICON
+   ========================================================= */
 
 var researchRouteIcon = L.divIcon({
 
@@ -3566,75 +3550,91 @@ var researchRouteIcon = L.divIcon({
 
     html: "🔎",
 
-    iconSize: [32, 32],
+    iconSize: [28, 28],
 
-    iconAnchor: [16, 16]
+    iconAnchor: [14, 14]
 
 });
 
 
-/* ---------- GREEN DOT ---------- */
+/* =========================================================
+   CREATE ECOLOGICAL ROUTE
+   ========================================================= */
 
-function addGreenEcoDot(point) {
+function createEcologicalNetworkLine(
+    pointA,
+    pointB,
+    popupContent
+) {
 
-    L.marker(point, {
+    /* -----------------------------------------
+       GREEN DASHED BASE LINE
+       ----------------------------------------- */
 
-        icon: L.divIcon({
-
-            className: "eco-green-dot",
-
-            iconSize: [14, 14],
-
-            iconAnchor: [7, 7]
-
-        }),
-
-        interactive: false
-
-    }).addTo(ecologyLayer);
-
-}
-
-
-/* ---------- BLUE DOT ---------- */
-
-function addBlueEcoDot(point) {
-
-    L.marker(point, {
-
-        icon: L.divIcon({
-
-            className: "eco-blue-dot",
-
-            iconSize: [14, 14],
-
-            iconAnchor: [7, 7]
-
-        }),
-
-        interactive: false
-
-    }).addTo(ecologyLayer);
-
-}
+    L.polyline(
+        [pointA, pointB],
+        {
+            color: "#2E7D32",
+            weight: 4,
+            opacity: 0.9,
+            dashArray: "10,8",
+            lineCap: "round",
+            lineJoin: "round",
+            interactive: false
+        }
+    ).addTo(ecologyLayer);
 
 
-/* ---------- DIRECTIONAL ARROW ---------- */
+    /* -----------------------------------------
+       BLUE DOTS EXACTLY ON THE GREEN LINE
+       ----------------------------------------- */
 
-function addEcoArrow(pointA, pointB, fraction) {
+    var dotPositions = [
+        0.20,
+        0.40,
+        0.60,
+        0.80
+    ];
+
+
+    dotPositions.forEach(function(fraction) {
+
+        var dotPoint = getPointOnLine(
+            pointA,
+            pointB,
+            fraction
+        );
+
+
+        L.circleMarker(
+            dotPoint,
+            {
+                radius: 4,
+                color: "#1976D2",
+                fillColor: "#1976D2",
+                fillOpacity: 1,
+                weight: 1,
+                interactive: false
+            }
+        ).addTo(ecologyLayer);
+
+    });
+
+
+    /* -----------------------------------------
+       SMALL ARROW EXACTLY ON THE LINE
+       ----------------------------------------- */
 
     var arrowPoint = getPointOnLine(
         pointA,
         pointB,
-        fraction
+        0.50
     );
 
+
     var angle = Math.atan2(
-
         -(pointB[0] - pointA[0]),
-
         pointB[1] - pointA[1]
-
     ) * 180 / Math.PI;
 
 
@@ -3647,387 +3647,46 @@ function addEcoArrow(pointA, pointB, fraction) {
             angle +
             'deg);">➤</div>',
 
-        iconSize: [30, 30],
+        iconSize: [24, 24],
 
-        iconAnchor: [15, 15]
+        iconAnchor: [12, 12]
 
     });
 
 
-    L.marker(arrowPoint, {
-
-        icon: arrowIcon,
-
-        interactive: false,
-
-        zIndexOffset: 1500
-
-    }).addTo(ecologyLayer);
-
-}
-
-
-/* =========================================================
-   CREATE ONE ECOLOGICAL NETWORK ROUTE
-   ========================================================= */
-
-function createEcologicalNetworkLine(
-    pointA,
-    pointB,
-    popupContent
-) {
-
-    /* ---------- DASHED GREEN LINE ---------- */
-
-    L.polyline(
-        [pointA, pointB],
+    L.marker(
+        arrowPoint,
         {
-
-            color: "#2E7D32",
-
-            weight: 3,
-
-            opacity: 0.85,
-
-            dashArray: "10,8",
-
-            lineCap: "round",
-
-            lineJoin: "round",
-
-            className: "ecological-network-line"
-
+            icon: arrowIcon,
+            interactive: false,
+            zIndexOffset: 1500
         }
-
     ).addTo(ecologyLayer);
 
 
-    /* ---------- GREEN DOT ---------- */
-
-    addGreenEcoDot(
-
-        getPointOnLine(
-            pointA,
-            pointB,
-            0.35
-        )
-
-    );
-
-
-    /* ---------- RESEARCH ICON IN THE MIDDLE ---------- */
+    /* -----------------------------------------
+       RESEARCH ICON EXACTLY ON THE LINE
+       ----------------------------------------- */
 
     var researchPoint = getPointOnLine(
         pointA,
         pointB,
-        0.50
+        0.68
     );
 
 
     L.marker(
         researchPoint,
         {
-
             icon: researchRouteIcon,
-
             interactive: true,
-
             zIndexOffset: 2000
-
         }
-
     )
-
     .addTo(ecologyLayer)
-
     .bindPopup(popupContent);
 
-
-    /* ---------- BLUE DOT ---------- */
-
-    addBlueEcoDot(
-
-        getPointOnLine(
-            pointA,
-            pointB,
-            0.65
-        )
-
-    );
-
-
-    /* ---------- ARROW ---------- */
-
-    addEcoArrow(
-        pointA,
-        pointB,
-        0.78
-    );
-
-}
-
-
-/* =========================================================
-   RESEARCH POPUP — SEATTLE → SUNDARBANS
-   ========================================================= */
-
-var sundarbansResearchPopup = `
-
-<b>🔎 Piya Roy — Ecological Research Journey</b>
-
-<br><br>
-
-Piya Roy's scientific journey connects marine mammal research with freshwater and estuarine ecological studies. Her research eventually brings her to the Sundarbans, where she develops her expertise as a cetologist.
-
-<br><br>
-
-<i>
-"She was a cetologist, a scientist who specialized in the study of whales, dolphins and other marine mammals."
-</i>
-
-<br>
-Page no. 11
-
-<br><br>
-
-<i>
-"She had spent years studying dolphins in different parts of the world, but the Sundarbans presented a completely different ecological environment."
-</i>
-
-<br>
-Page no. 23
-
-<br><br>
-
-The research route therefore represents the movement of scientific knowledge across different ecological regions and connects Piya's international research experience with her fieldwork in the Sundarbans.
-
-`;
-
-
-/* =========================================================
-   RESEARCH POPUP — PHNOM PENH
-   ========================================================= */
-
-var phnomPenhResearchPopup = `
-
-<b>🔎 Piya's Research Transition — Phnom Penh</b>
-
-<br><br>
-
-After completing a marine mammal survey in the South China Sea, Piya travelled to Phnom Penh. There she encountered a stranded Irrawaddy dolphin, an event that redirected her scientific work towards freshwater dolphin conservation.
-
-<br><br>
-
-<b>Ecological Significance</b><br>
-
-• Marks the beginning of Piya's involvement in freshwater Irrawaddy dolphin conservation.<br>
-
-• Connects marine mammal research with freshwater ecological research.<br>
-
-• Leads Piya towards the Mekong River and her later fieldwork in Kratie.
-
-`;
-
-
-/* =========================================================
-   RESEARCH POPUP — KRATIE
-   ========================================================= */
-
-var kratieResearchPopup = `
-
-<b>🔎 Piya's Ecological Research — Kratie</b>
-
-<br><br>
-
-Kratie became Piya Roy's principal field station during her survey of the endangered Irrawaddy dolphin.
-
-<br><br>
-
-Deep freshwater pools near Kratie served as important dry-season refuges for resident dolphin pods.
-
-<br><br>
-
-<b>Research Significance</b><br>
-
-• Piya conducts long-term dolphin surveys.<br>
-
-• She documents the behaviour and distribution of Irrawaddy dolphins.<br>
-
-• Her work in Kratie develops her expertise as a cetologist.<br>
-
-• Kratie forms an important stage in her scientific journey before her research in the Sundarbans.
-
-`;
-
-
-/* =========================================================
-   RESEARCH POPUP — TONLE SAP
-   ========================================================= */
-
-var tonleSapResearchPopup = `
-
-<b>🔎 Ecological Research — Tonle Sap</b>
-
-<br><br>
-
-Tonle Sap represents an important ecological site in the history of the Irrawaddy dolphin.
-
-<br><br>
-
-The lake once supported an abundant population of Irrawaddy dolphins, but the population disappeared by the time of Piya's research.
-
-<br><br>
-
-<b>Ecological Significance</b><br>
-
-• Former habitat of the freshwater Irrawaddy dolphin.<br>
-
-• Demonstrates the vulnerability of freshwater cetaceans.<br>
-
-• Illustrates the relationship between ecological degradation, human activity, and species decline.
-
-`;
-
-
-/* =========================================================
-   SEATTLE → SUNDARBANS
-   ========================================================= */
-
-createEcologicalNetworkLine(
-
-    seattlePoint,
-
-    sundarbansPoint,
-
-    sundarbansResearchPopup
-
-);
-
-
-/* =========================================================
-   LOAD PHNOM PENH
-   ========================================================= */
-
-fetch("All places.geojson")
-
-.then(response => response.json())
-
-.then(data => {
-
-    data.features.forEach(function(feature) {
-
-        if (
-            feature.properties.name === "Phnom Penh"
-        ) {
-
-            var coords =
-                feature.geometry.coordinates;
-
-            var phnomPenhPoint = [
-                coords[1],
-                coords[0]
-            ];
-
-
-            createEcologicalNetworkLine(
-
-                seattlePoint,
-
-                phnomPenhPoint,
-
-                phnomPenhResearchPopup
-
-            );
-
-        }
-
-    });
-
-});
-
-
-/* =========================================================
-   LOAD KRATIE
-   ========================================================= */
-
-fetch("Kratie.geojson")
-
-.then(response => response.json())
-
-.then(data => {
-
-    data.features.forEach(function(feature) {
-
-        var coords =
-            feature.geometry.coordinates;
-
-        var kratiePoint = [
-            coords[1],
-            coords[0]
-        ];
-
-
-        createEcologicalNetworkLine(
-
-            seattlePoint,
-
-            kratiePoint,
-
-            kratieResearchPopup
-
-        );
-
-    });
-
-});
-
-
-/* =========================================================
-   LOAD TONLE SAP
-   ========================================================= */
-
-fetch("Tonle Sap.geojson")
-
-.then(response => response.json())
-
-.then(data => {
-
-    data.features.forEach(function(feature) {
-
-        var coords =
-            feature.geometry.coordinates;
-
-        /*
-         * Tonle Sap is expected to be represented
-         * by a point in the existing GeoJSON.
-         */
-
-        if (
-            feature.geometry.type === "Point"
-        ) {
-
-            var tonleSapPoint = [
-                coords[1],
-                coords[0]
-            ];
-
-
-            createEcologicalNetworkLine(
-
-                seattlePoint,
-
-                tonleSapPoint,
-
-                tonleSapResearchPopup
-
-            );
-
-        }
-
-    });
-
-});
-    
+}    
 L.control.layers(
 baseMaps,
 {
