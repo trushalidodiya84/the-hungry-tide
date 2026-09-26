@@ -2921,6 +2921,108 @@ fetch("All places.geojson")
 
 });
 
+    /* ================= SEATTLE → VILLAGE NORTH OF MANDALAY ================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Village North to Mandalay"){
+
+            var coords = feature.geometry.coordinates;
+
+            // GeoJSON coordinates are [longitude, latitude]
+            var mandalayVillagePoint = [
+                coords[1],
+                coords[0]
+            ];
+
+            var seattlePoint = [
+                47.60594060998454,
+                -122.33119513137272
+            ];
+
+            createEcologicalNetworkLine(
+                seattlePoint,
+                mandalayVillagePoint,
+                `
+                <div style="max-width:360px;">
+
+                    <h3 style="margin:0 0 12px 0;">
+                        🐬 Seattle → Village North of Mandalay
+                    </h3>
+
+                    <b>🌿 Ecological Network</b>
+
+                    <br><br>
+
+                    This route connects Seattle with the
+                    Village North of Mandalay, Myanmar, where
+                    Piya Roy's early observations of Irrawaddy
+                    dolphins contribute to her understanding
+                    of freshwater dolphin ecology.
+
+                    <br><br>
+
+                    <b>🐬 Ecological Significance</b>
+
+                    <br><br>
+
+                    The village lies along the Irrawaddy River,
+                    where flood tides create shallow creeks and
+                    tidal pools that become important feeding
+                    grounds for Irrawaddy dolphins.
+
+                    <br><br>
+
+                    Piya observes the dolphins driving fish into
+                    these confined waters before hunting,
+                    demonstrating the relationship between
+                    animal behaviour and changing riverine
+                    environments.
+
+                    <br><br>
+
+                    <b>🧭 Migration & Ecological Connectivity</b>
+
+                    <br><br>
+
+                    The Seattle–Mandalay route forms part of the
+                    broader transnational ecological network
+                    represented in the novel, connecting
+                    different geographical locations through
+                    Piya's scientific study of dolphin habitats.
+
+                    <br><br>
+
+                    <b>🗺️ Cartographic Significance</b>
+
+                    <br><br>
+
+                    Mapping this route makes visible the
+                    geographical connection between Piya's
+                    research journey and the ecological habitats
+                    of Irrawaddy dolphins.
+
+                    <br><br>
+
+                    The route also establishes an ecological
+                    connection between the Irrawaddy River and
+                    the wider network of dolphin habitats that
+                    extends toward the Sundarbans.
+
+                </div>
+                `
+            );
+
+        }
+
+    });
+
+});
+
     /* ================= KRATIE ================= */
 
 fetch("Kratie.geojson")
