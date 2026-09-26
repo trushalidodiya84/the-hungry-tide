@@ -3527,8 +3527,20 @@ fetch("All places.geojson")
 /* =========================================================
    ECOLOGICAL HABITAT NETWORK
    SEATTLE → SUNDARBANS / CAMBODIA
-   GREEN DOTTED ROUTES + BLUE DOTS + ARROW + RESEARCH ICON
+
+   ONE GREEN DASHED LINE
+   🐬 DOLPHINS ON THE LINE
+   ➤ ARROW ON THE LINE
+   🔎 RESEARCH ICON ON THE LINE
    ========================================================= */
+
+
+/* =========================================================
+   IMPORTANT:
+   CLOSE KUSUM'S CATCH BLOCK BEFORE STARTING THIS SECTION
+   ========================================================= */
+
+});
 
 
 /* =========================================================
@@ -3543,7 +3555,6 @@ var seattlePoint = [
 
 /* =========================================================
    2. SUNDARBANS COORDINATES
-   One representative Sundarbans research point
    ========================================================= */
 
 var sundarbansPoint = [
@@ -3557,6 +3568,7 @@ var sundarbansPoint = [
    ========================================================= */
 
 var researchPopup = `
+
 <div style="max-width:330px;">
 
     <h3 style="margin:0 0 12px 0;">
@@ -3564,28 +3576,28 @@ var researchPopup = `
     </h3>
 
     <div style="margin-bottom:12px;">
-        Piya Roy identifies herself as a <b>cetologist</b>, 
-        a researcher who studies marine mammals such as 
+        Piya Roy identifies herself as a <b>cetologist</b>,
+        a researcher who studies marine mammals such as
         dolphins, whales, and dugongs.
     </div>
 
     <div style="margin-bottom:12px;">
-        Her research takes her onto the water for extended 
-        periods and leads her to the Sundarbans, where she 
-        hopes to obtain permission to conduct a survey of 
+        Her research takes her onto the water for extended
+        periods and leads her to the Sundarbans, where she
+        hopes to obtain permission to conduct a survey of
         the region's marine mammals.
     </div>
 
     <div style="margin-bottom:12px;">
-        Canning becomes an important entry point for this 
-        research journey. Piya specifically chooses to travel 
-        through Canning because of her research plans in the 
+        Canning becomes an important entry point for this
+        research journey. Piya specifically chooses to travel
+        through Canning because of her research plans in the
         Sundarbans.
     </div>
 
     <div style="margin-bottom:12px;">
-        The novel also draws attention to the disappearance 
-        of the region's cetacean population from public view 
+        The novel also draws attention to the disappearance
+        of the region's cetacean population from public view
         and the absence of a proper survey.
     </div>
 
@@ -3599,7 +3611,7 @@ var researchPopup = `
 
     <div style="margin-bottom:12px;">
         <i>
-        "I'm hoping to wangle a permit to do a survey of 
+        "I'm hoping to wangle a permit to do a survey of
         the marine mammals of the Sundarbans."
         </i>
         <br>
@@ -3608,8 +3620,8 @@ var researchPopup = `
 
     <div style="margin-bottom:0;">
         <i>
-        "The cetacean population has kind of disappeared 
-        from view. No one knows whether it's because they're 
+        "The cetacean population has kind of disappeared
+        from view. No one knows whether it's because they're
         gone or because they haven't been studied."
         </i>
         <br>
@@ -3617,28 +3629,31 @@ var researchPopup = `
     </div>
 
 </div>
+
 `;
 
 
 /* =========================================================
-   4. FUNCTION TO FIND A POINT ON THE ROUTE
+   4. FUNCTION TO FIND EXACT POINT ON ROUTE
    ========================================================= */
 
 function getPointOnLine(pointA, pointB, fraction) {
 
     return [
+
         pointA[0] +
         (pointB[0] - pointA[0]) * fraction,
 
         pointA[1] +
         (pointB[1] - pointA[1]) * fraction
+
     ];
 
 }
 
 
 /* =========================================================
-   5. CREATE ONE ECOLOGICAL ROUTE
+   5. CREATE ECOLOGICAL ROUTE
    ========================================================= */
 
 function createEcologicalNetworkLine(
@@ -3649,26 +3664,25 @@ function createEcologicalNetworkLine(
 
 
     /* =====================================================
-       GREEN DOTTED LINE
+       ONE SINGLE GREEN DASHED LINE
        ===================================================== */
 
-    var ecologicalRoute = L.polyline(
+    L.polyline(
+
         [
             pointA,
             pointB
         ],
+
         {
 
             color: "#2E7D32",
 
-            weight: 3,
+            weight: 4,
 
             opacity: 0.9,
 
-            /*
-             * VERY SMALL GREEN DOTS
-             */
-            dashArray: "1,7",
+            dashArray: "10,8",
 
             lineCap: "round",
 
@@ -3677,80 +3691,128 @@ function createEcologicalNetworkLine(
             interactive: false
 
         }
+
     ).addTo(ecologyLayer);
 
 
 
     /* =====================================================
-       BLUE DOTS
-       EXACTLY ON THE ROUTE
+       🐬 DOLPHIN ICON
+       EXACTLY ON THE SAME LINE
        ===================================================== */
 
-    var blueDotPositions = [
-        0.18,
-        0.32,
-        0.46,
+    var dolphinIcon = L.divIcon({
+
+        className: "",
+
+        html:
+            '<div style="' +
+
+                'width:24px;' +
+                'height:24px;' +
+
+                'font-size:20px;' +
+
+                'line-height:24px;' +
+
+                'text-align:center;' +
+
+            '">' +
+
+                '🐬' +
+
+            '</div>',
+
+        iconSize: [
+            24,
+            24
+        ],
+
+        /*
+         * CENTRE OF ICON = LINE
+         */
+
+        iconAnchor: [
+            12,
+            12
+        ]
+
+    });
+
+
+    var dolphinPositions = [
+
+        0.20,
+        0.40,
         0.60,
-        0.74,
-        0.88
+        0.80
+
     ];
 
 
-    blueDotPositions.forEach(
+    dolphinPositions.forEach(
+
         function(fraction) {
 
-            var bluePoint =
+
+            var dolphinPoint =
                 getPointOnLine(
+
                     pointA,
                     pointB,
                     fraction
+
                 );
 
 
-            L.circleMarker(
-                bluePoint,
+            L.marker(
+
+                dolphinPoint,
+
                 {
 
-                    radius: 3,
+                    icon: dolphinIcon,
 
-                    color: "#1976D2",
+                    interactive: false,
 
-                    fillColor: "#1976D2",
-
-                    fillOpacity: 1,
-
-                    weight: 0,
-
-                    interactive: false
+                    zIndexOffset: 1500
 
                 }
+
             ).addTo(ecologyLayer);
 
+
         }
+
     );
 
 
 
     /* =====================================================
-       SMALL ARROW
-       EXACTLY ON THE ROUTE
+       ➤ SMALL ARROW
+       EXACTLY ON THE SAME LINE
        ===================================================== */
 
     var arrowPoint =
         getPointOnLine(
+
             pointA,
             pointB,
             0.50
+
         );
 
 
     /*
-     * Calculate direction of route
+     * Calculate route direction
      */
 
     var angle = Math.atan2(
+
         -(pointB[0] - pointA[0]),
+
         pointB[1] - pointA[1]
+
     ) * 180 / Math.PI;
 
 
@@ -3759,6 +3821,7 @@ function createEcologicalNetworkLine(
         className: "",
 
         html:
+
             '<div style="' +
 
                 'width:16px;' +
@@ -3778,6 +3841,8 @@ function createEcologicalNetworkLine(
                 angle +
                 'deg);' +
 
+                'transform-origin:center center;' +
+
             '">' +
 
                 '➤' +
@@ -3789,6 +3854,10 @@ function createEcologicalNetworkLine(
             16
         ],
 
+        /*
+         * CENTRE OF ARROW = LINE
+         */
+
         iconAnchor: [
             8,
             8
@@ -3798,7 +3867,9 @@ function createEcologicalNetworkLine(
 
 
     L.marker(
+
         arrowPoint,
+
         {
 
             icon: arrowIcon,
@@ -3808,20 +3879,23 @@ function createEcologicalNetworkLine(
             zIndexOffset: 3000
 
         }
+
     ).addTo(ecologyLayer);
 
 
 
     /* =====================================================
-       SMALL RESEARCH ICON
-       EXACTLY ON THE ROUTE
+       🔎 RESEARCH ICON
+       EXACTLY ON THE SAME LINE
        ===================================================== */
 
     var researchPoint =
         getPointOnLine(
+
             pointA,
             pointB,
             0.68
+
         );
 
 
@@ -3830,6 +3904,7 @@ function createEcologicalNetworkLine(
         className: "",
 
         html:
+
             '<div style="' +
 
                 'width:20px;' +
@@ -3852,6 +3927,10 @@ function createEcologicalNetworkLine(
             20
         ],
 
+        /*
+         * CENTRE OF SEARCH ICON = LINE
+         */
+
         iconAnchor: [
             10,
             10
@@ -3861,7 +3940,9 @@ function createEcologicalNetworkLine(
 
 
     L.marker(
+
         researchPoint,
+
         {
 
             icon: researchIcon,
@@ -3871,14 +3952,16 @@ function createEcologicalNetworkLine(
             zIndexOffset: 4000
 
         }
+
     )
 
     .addTo(ecologyLayer)
 
     .bindPopup(
-        popupContent
-    );
 
+        popupContent
+
+    );
 
 }
 
@@ -3898,35 +3981,45 @@ createEcologicalNetworkLine(
 );
 
 
+
 /* =========================================================
    7. SEATTLE → PHNOM PENH
-   Get exact Phnom Penh coordinates from existing GeoJSON
+   Get exact Phnom Penh coordinates
    ========================================================= */
 
 fetch(
+
     "All places.geojson"
+
 )
 
 .then(
+
     function(response) {
 
         return response.json();
 
     }
+
 )
 
 .then(
+
     function(data) {
 
 
         data.features.forEach(
+
             function(feature) {
 
 
                 if (
+
                     feature.properties &&
+
                     feature.properties.name ===
                     "Phnom Penh"
+
                 ) {
 
 
@@ -3956,20 +4049,27 @@ fetch(
                 }
 
             }
+
         );
 
     }
+
 )
 
 .catch(
+
     function(error) {
 
         console.error(
+
             "Seattle → Phnom Penh route error:",
+
             error
+
         );
 
     }
+
 );
 
 
@@ -3980,28 +4080,34 @@ fetch(
    ========================================================= */
 
 fetch(
+
     "Kratie.geojson"
+
 )
 
 .then(
+
     function(response) {
 
         return response.json();
 
     }
+
 )
 
 .then(
+
     function(data) {
 
 
-        /*
-         * Handle a normal GeoJSON Feature
-         */
+        /* NORMAL GEOJSON FEATURE */
 
         if (
+
             data.geometry &&
+
             data.geometry.coordinates
+
         ) {
 
 
@@ -4031,20 +4137,22 @@ fetch(
         }
 
 
-        /*
-         * Handle GeoJSON FeatureCollection
-         */
+        /* FEATURE COLLECTION */
 
         if (data.features) {
 
 
             data.features.forEach(
+
                 function(feature) {
 
 
                     if (
+
                         feature.geometry &&
+
                         feature.geometry.coordinates
+
                     ) {
 
 
@@ -4074,22 +4182,29 @@ fetch(
                     }
 
                 }
+
             );
 
         }
 
     }
+
 )
 
 .catch(
+
     function(error) {
 
         console.error(
+
             "Seattle → Kratie route error:",
+
             error
+
         );
 
     }
+
 );
 
 
@@ -4100,28 +4215,34 @@ fetch(
    ========================================================= */
 
 fetch(
+
     "Tonle Sap.geojson"
+
 )
 
 .then(
+
     function(response) {
 
         return response.json();
 
     }
+
 )
 
 .then(
+
     function(data) {
 
 
-        /*
-         * Normal Feature
-         */
+        /* NORMAL GEOJSON FEATURE */
 
         if (
+
             data.geometry &&
+
             data.geometry.coordinates
+
         ) {
 
 
@@ -4151,20 +4272,22 @@ fetch(
         }
 
 
-        /*
-         * FeatureCollection
-         */
+        /* FEATURE COLLECTION */
 
         if (data.features) {
 
 
             data.features.forEach(
+
                 function(feature) {
 
 
                     if (
+
                         feature.geometry &&
+
                         feature.geometry.coordinates
+
                     ) {
 
 
@@ -4194,28 +4317,69 @@ fetch(
                     }
 
                 }
+
             );
 
         }
 
     }
+
 )
 
 .catch(
+
     function(error) {
 
         console.error(
+
             "Seattle → Tonle Sap route error:",
+
             error
+
         );
 
     }
+
 );
+
 
 
 /* =========================================================
    END OF ECOLOGICAL HABITAT NETWORK
    ========================================================= */
+
+
+/* =========================================================
+   LAYER CONTROL
+   ========================================================= */
+
+L.control.layers(
+
+    baseMaps,
+
+    {
+
+        "🟢 Ecological Habitat Networks":
+            ecologyLayer,
+
+        "🔴 Migration & Mobility Networks":
+            migrationLayer,
+
+        "🔵 Spatial & Cultural Memory":
+            memoryLayer,
+
+        "🟡 Bon Bibi Myth":
+            mythLayer
+
+    },
+
+    {
+
+        collapsed: false
+
+    }
+
+).addTo(map);
 L.control.layers(
 baseMaps,
 {
