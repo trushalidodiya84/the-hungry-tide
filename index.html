@@ -336,7 +336,16 @@ html,body{
     line-height: 34px;
     white-space: nowrap;
 }
-    
+   /* ================= PIYA RESEARCH ICON ================= */
+
+.research-icon {
+    background: transparent;
+    border: none;
+    font-size: 30px;
+    text-align: center;
+    line-height: 36px;
+    white-space: nowrap;
+} 
 </style>
 
 </head>
@@ -1057,6 +1066,358 @@ Piya's grandparents were Bengali settlers in Burma. During the upheavals of the 
 This route illustrates a transnational history of displacement and migration that connects South Asia to the global Bengali diaspora. Piya's later return to the Sundarbans represents a symbolic reconnection with the landscapes and histories from which her family had once been displaced.
 `);
     migrationLayer.addLayer(piyaFamilyMigration);
+    /* =========================================================
+   🔎 PIYA'S RESEARCH NETWORK
+   Seattle → Research Locations
+   ========================================================= */
+
+
+/* ================= RESEARCH NETWORK LAYER ================= */
+
+var piyaResearchNetworkLayer = L.layerGroup().addTo(ecologyLayer);
+
+
+/* ================= RESEARCH ICON ================= */
+
+var researchIcon = L.divIcon({
+    className: "research-icon",
+    html: "🔎",
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+});
+
+
+/* ================= SEATTLE : CENTRAL RESEARCH POINT ================= */
+
+var seattleLat = 47.60594060998454;
+var seattleLng = -122.33119513137272;
+
+L.marker(
+    [seattleLat, seattleLng],
+    {
+        icon: researchIcon,
+        zIndexOffset: 3000,
+        interactive: true
+    }
+)
+.addTo(piyaResearchNetworkLayer)
+.bindPopup(`
+<b>🔎 Seattle — Piya Roy's Research Base</b><br><br>
+
+Seattle represents Piya Roy's academic and professional base in the United States.
+
+<br><br>
+
+From Seattle, her research connects with important ecological and cetological research locations across South and Southeast Asia.
+
+<br><br>
+
+The network visualizes the transnational geographical connections of Piya's scientific research, linking her work on dolphins and aquatic ecosystems to the Sundarbans and the Mekong region.
+`);
+
+
+/* =========================================================
+   FUNCTION TO CREATE RESEARCH CONNECTION
+   ========================================================= */
+
+function addPiyaResearchConnection(lat, lng, placeName, description){
+
+    /* -------- DASHED RESEARCH LINE -------- */
+
+    L.polyline(
+        [
+            [seattleLat, seattleLng],
+            [lat, lng]
+        ],
+        {
+            color: "#6A1B9A",
+            weight: 2.5,
+            opacity: 0.75,
+            dashArray: "8,8",
+            lineCap: "round"
+        }
+    )
+    .addTo(piyaResearchNetworkLayer);
+
+
+    /* -------- RESEARCH SEARCH ICON -------- */
+
+    L.marker(
+        [lat, lng],
+        {
+            icon: researchIcon,
+            zIndexOffset: 2000,
+            interactive: true
+        }
+    )
+    .addTo(piyaResearchNetworkLayer)
+    .bindPopup(`
+        <b>🔎 ${placeName}</b><br><br>
+        ${description}
+    `);
+}
+
+
+/* =========================================================
+   1. DHAKURIA STATION
+   ========================================================= */
+
+addPiyaResearchConnection(
+    22.50812,
+    88.37256,
+    "Dhakuria Station",
+    `
+    Dhakuria Station marks the beginning of Piya Roy's journey toward the Sundarbans.
+
+    <br><br>
+
+    Piya meets Kanai Dutt here before travelling towards Canning.
+
+    <br><br>
+
+    This location connects Piya's urban journey with her later ecological fieldwork in the tide country.
+    `
+);
+
+
+/* =========================================================
+   2. CHAMPAHATI
+   ========================================================= */
+
+addPiyaResearchConnection(
+    22.40272,
+    88.49161,
+    "Champahati",
+    `
+    Champahati forms part of Piya Roy's railway journey from Calcutta toward Canning.
+
+    <br><br>
+
+    It represents the transitional movement from metropolitan Kolkata toward the ecological landscape of the Sundarbans.
+    `
+);
+
+
+/* =========================================================
+   3. CANNING
+   ========================================================= */
+
+addPiyaResearchConnection(
+    22.31490,
+    88.66270,
+    "Canning",
+    `
+    Canning functions as the principal gateway to the Sundarbans.
+
+    <br><br>
+
+    From Canning, Piya enters the riverine environment of the tide country and begins her field research with the Forest Department expedition.
+    `
+);
+
+
+/* =========================================================
+   4. PIYA'S ENCOUNTER ZONE
+   ========================================================= */
+
+addPiyaResearchConnection(
+    22.00796,
+    88.73735,
+    "Piya's Dolphin Encounter Zone",
+    `
+    This represents the approximate area where Piya encounters Fokir and Tutul during her first dolphin survey in the Sundarbans.
+
+    <br><br>
+
+    The encounter transforms Piya's research journey and brings scientific investigation into dialogue with Fokir's traditional ecological knowledge.
+    `
+);
+
+
+/* =========================================================
+   5. GARJANTOLA
+   ========================================================= */
+
+addPiyaResearchConnection(
+    21.93696,
+    88.90604,
+    "Garjantola",
+    `
+    Garjantola is an important field site for Piya's dolphin research.
+
+    <br><br>
+
+    The location is associated with dolphin habitat, tidal pools, mangrove ecology, and local ecological knowledge.
+
+    <br><br>
+
+    Piya's observations here contribute to her understanding of dolphin behaviour and environmental change.
+    `
+);
+
+
+/* =========================================================
+   6. LUSIBARI
+   ========================================================= */
+
+addPiyaResearchConnection(
+    22.08918,
+    88.90773,
+    "Lusibari",
+    `
+    Lusibari becomes an important base for Piya's fieldwork in the Sundarbans.
+
+    <br><br>
+
+    Her research in the surrounding waterways connects scientific observation with the ecological knowledge of the local communities.
+    `
+);
+
+
+/* =========================================================
+   7. PHNOM PENH
+   ========================================================= */
+
+fetch("All places.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        if(feature.properties.name === "Phnom Penh"){
+
+            var lat = feature.geometry.coordinates[1];
+            var lng = feature.geometry.coordinates[0];
+
+            addPiyaResearchConnection(
+                lat,
+                lng,
+                "Phnom Penh, Cambodia",
+                `
+                Phnom Penh marks an important stage in Piya's development as a researcher of freshwater dolphins.
+
+                <br><br>
+
+                After a marine mammal survey, Piya travels to Phnom Penh and becomes involved with research concerning the endangered Irrawaddy dolphin population.
+
+                <br><br>
+
+                Her work here leads toward her longer-term research in the Mekong region.
+                `
+            );
+
+        }
+
+    });
+
+});
+
+
+/* =========================================================
+   8. KRATIE
+   ========================================================= */
+
+fetch("Kratie.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        var lat;
+        var lng;
+
+        if(feature.geometry.type === "Point"){
+
+            lng = feature.geometry.coordinates[0];
+            lat = feature.geometry.coordinates[1];
+
+        } 
+        else {
+
+            var bounds = L.geoJSON(feature).getBounds();
+            var center = bounds.getCenter();
+
+            lat = center.lat;
+            lng = center.lng;
+
+        }
+
+        addPiyaResearchConnection(
+            lat,
+            lng,
+            "Kratie, Cambodia",
+            `
+            Kratie becomes Piya Roy's principal field station during her research on the endangered Irrawaddy dolphin.
+
+            <br><br>
+
+            Situated along the Mekong River, the area contains deep freshwater pools that provide important habitat for dolphin populations.
+
+            <br><br>
+
+            Piya conducts long-term dolphin surveys from Kratie and develops her expertise as a cetologist.
+            `
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   9. TONLE SAP
+   ========================================================= */
+
+fetch("Tonle Sap.geojson")
+.then(response => response.json())
+.then(data => {
+
+    data.features.forEach(function(feature){
+
+        var lat;
+        var lng;
+
+        if(feature.geometry.type === "Point"){
+
+            lng = feature.geometry.coordinates[0];
+            lat = feature.geometry.coordinates[1];
+
+        }
+        else{
+
+            var bounds = L.geoJSON(feature).getBounds();
+            var center = bounds.getCenter();
+
+            lat = center.lat;
+            lng = center.lng;
+
+        }
+
+        addPiyaResearchConnection(
+            lat,
+            lng,
+            "Tonle Sap Lake, Cambodia",
+            `
+            Tonle Sap represents another important ecological research location connected with Piya's study of freshwater dolphins.
+
+            <br><br>
+
+            During her research, Piya observes the relationship between flood tides, shallow creeks, tidal pools, fish, and dolphin behaviour.
+
+            <br><br>
+
+            These observations contribute to her wider understanding of freshwater dolphin ecology and later provide an ecological parallel with the Sundarbans.
+            `
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   END OF PIYA'S RESEARCH NETWORK
+   ========================================================= */
 
 
 fetch("dandakaranya.geojson")
