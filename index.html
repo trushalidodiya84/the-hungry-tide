@@ -932,26 +932,95 @@ Nirmal's presence at Morichjhapi also transforms the place into a site of memory
     });
 
 });
-    /* ================= MORICHHJHAPI : MEMORY ================= */
-
+  /* ================= MORICHHJHAPI : MEMORY ================= */
 
 fetch("All places.geojson")
 .then(response => response.json())
 .then(data => {
 
-    data.features.forEach(function(feature){
+    data.features.forEach(function(feature) {
 
-        if(feature.properties.name === "Morichjhapi"){
+        if (
+            feature.properties &&
+            feature.properties.name === "Morichjhapi"
+        ) {
 
             // ==========================================
-            // EXISTING MORICHJHAPI MARKER
+            // MEMORY POPUP CONTENT
+            // SHARED BY BLUE CIRCLE AND DOVE ICON
             // ==========================================
 
-            L.geoJSON(feature,{
+            var memoryPopupContent = `
 
-                pointToLayer: function(feature, latlng){
+                <div style="max-width:320px;">
 
-                    return L.circleMarker(latlng,{
+                    <h3 style="margin:0 0 12px 0;">
+                        🕊️ Morichjhapi — Memory & Longing
+                    </h3>
+
+                    <div style="margin-bottom:12px;">
+                        Morichjhapi is a site of historical and cultural memory in <i>The Hungry Tide</i>, preserving memories of displacement, suffering, resistance and loss. Located near Lusibari on the banks of the Bagna River, Morichjhapi was a forested island within the Sundarbans Reserved Forest. The island became the site of a major conflict between human settlement and environmental conservation.
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        In 1979, thousands of refugees displaced from East Pakistan/Bangladesh and later resettled in Dandakaranya migrated to Morichjhapi in search of land and livelihood. However, the authorities declared the island a protected forest reserved for tiger conservation and ordered the settlers' eviction.
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        In 1978, some refugees organized themselves and broke out of the camp, travelling eastward toward the Sundarbans in search of a place to settle.
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        The settlers' primary aim was to find land where they could establish a home and rebuild their lives. Their struggle at Morichjhapi was therefore closely connected with the search for land, settlement, and livelihood.
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <i>
+                        "No, not at all. Their aims were quite straightforward. They just wanted a little land to settle on. But for that they were willing to pit themselves against the government. They were prepared to resist until the end."
+                        </i>
+                        <br>
+                        Page no. 119
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        Morichjhapi highlights the complex relationship between ecology, conservation policies, human survival, and the fragile mangrove environment of the Sundarbans. In <i>The Hungry Tide</i>, it serves as a powerful example of how environmental space is shaped by both natural forces and political decisions.
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <i>
+                        "Morichjhapi," said Nilima, "was a tide country island, a couple of hours from Lusibari by boat. It fell within a part of the Sundarbans reserved forest, but unlike many of the islands it was relatively easily accessible from the mainland."
+                        </i>
+                        <br>
+                        Page no. 119
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        Nirmal's presence at Morichjhapi transforms the place into a site of memory and testimony. As a writer, he attempts to preserve a record of the events unfolding around him, hoping that what happens at Morichjhapi will leave a trace in the memory of the world.
+                    </div>
+
+                    <div style="margin-bottom:0;">
+                        <i>
+                        "There is nothing I can do to stop what lies ahead. But I was once a writer; perhaps I can make sure at least that what happened here leaves some trace, some hold upon the memory of the world. The thought of this, along with the fear that preceded it, has made it possible for me to do what I have not been able to for the last thirty years - to put my pen to paper again."
+                        </i>
+                        <br>
+                        Page no. 69
+                    </div>
+
+                </div>
+
+            `;
+
+
+            // ==========================================
+            // 1. BLUE MEMORY CIRCLE
+            // LAYER: SPATIAL & CULTURAL MEMORY
+            // ==========================================
+
+            L.geoJSON(feature, {
+
+                pointToLayer: function(feature, latlng) {
+
+                    return L.circleMarker(latlng, {
                         radius: 8,
                         color: "#00008B",
                         fillColor: "#4169E1",
@@ -959,14 +1028,21 @@ fetch("All places.geojson")
                         weight: 2
                     });
 
+                },
+
+                onEachFeature: function(feature, layer) {
+
+                    layer.bindPopup(memoryPopupContent);
+
                 }
 
-            }).addTo(map);
+            }).addTo(memoryLayer);
 
 
             // ==========================================
-            // 🕊️ MEMORY + LONGING ICON
+            // 2. DOVE MEMORY ICON
             // SAME EXACT COORDINATES
+            // SAME LAYER
             // ==========================================
 
             var memoryIcon = L.divIcon({
@@ -984,20 +1060,12 @@ fetch("All places.geojson")
             });
 
 
-            // ==========================================
-            // GET EXACT MORICHJHAPI COORDINATES
-            // ==========================================
-
             var morichLat =
                 feature.geometry.coordinates[1];
 
             var morichLng =
                 feature.geometry.coordinates[0];
 
-
-            // ==========================================
-            // ADD DOVE AT EXACT SAME LOCATION
-            // ==========================================
 
             L.marker(
 
@@ -1010,76 +1078,23 @@ fetch("All places.geojson")
 
             )
 
-            .addTo(map)
+            .addTo(memoryLayer)
 
-       
-.bindPopup(`
+            .bindPopup(memoryPopupContent);
 
-    <div style="max-width:320px;">
-
-        <h3 style="margin:0 0 12px 0;">
-            🕊️ Morichjhapi — Memory & Longing
-        </h3>
-
-        <div style="margin-bottom:12px;">
-            Morichjhapi is a site of historical and cultural memory in <i>The Hungry Tide</i>, preserving memories of displacement, suffering, resistance and loss. Located near Lusibari on the banks of the Bagna River, Morichjhapi was a forested island within the Sundarbans Reserved Forest. The island became the site of a major conflict between human settlement and environmental conservation.
-        </div>
-
-        <div style="margin-bottom:12px;">
-            In 1979, thousands of refugees displaced from East Pakistan/Bangladesh and later resettled in Dandakaranya migrated to Morichjhapi in search of land and livelihood. However, the authorities declared the island a protected forest reserved for tiger conservation and ordered the settlers' eviction.
-        </div>
-
-       
-        <div style="margin-bottom:12px;">
-            In 1978, some refugees organized themselves and broke out of the camp, travelling eastward toward the Sundarbans in search of a place to settle.
-        </div>
-
-    
-        <div style="margin-bottom:12px;">
-            The settlers' primary aim was to find land where they could establish a home and rebuild their lives. Their struggle at Morichjhapi was therefore closely connected with the search for land, settlement, and livelihood.
-        </div>
-
-        <div style="margin-bottom:12px;">
-            <i>
-            "No, not at all. Their aims were quite straightforward. They just wanted a little land to settle on. But for that they were willing to pit themselves against the government. They were prepared to resist until the end."
-            </i>
-            <br>
-            Page no. 119
-        </div>
-
-        <div style="margin-bottom:12px;">
-            Morichjhapi highlights the complex relationship between ecology, conservation policies, human survival, and the fragile mangrove environment of the Sundarbans. In <i>The Hungry Tide</i>, it serves as a powerful example of how environmental space is shaped by both natural forces and political decisions.
-        </div>
-
-        <div style="margin-bottom:12px;">
-            <i>
-            "Morichjhapi," said Nilima, "was a tide country island, a couple of hours from Lusibari by boat. It fell within a part of the Sundarbans reserved forest, but unlike many of the islands it was relatively easily accessible from the mainland."
-            </i>
-            <br>
-            Page no. 119
-        </div>
-
-        <div style="margin-bottom:12px;">
-            Nirmal's presence at Morichjhapi transforms the place into a site of memory and testimony. As a writer, he attempts to preserve a record of the events unfolding around him, hoping that what happens at Morichjhapi will leave a trace in the memory of the world.
-        </div>
-
-        <div style="margin-bottom:0;">
-            <i>
-            "There is nothing I can do to stop what lies ahead. But I was once a writer; perhaps I can make sure at least that what happened here leaves some trace, some hold upon the memory of the world. The thought of this, along with the fear that preceded it, has made it possible for me to do what I have not been able to for the last thirty years - to put my pen to paper again."
-            </i>
-            <br>
-            Page no. 69
-        </div>
-
-    </div>
-
-`);
         }
 
     });
 
-});
+})
+.catch(function(error) {
 
+    console.error(
+        "Error loading Morichjhapi memory marker:",
+        error
+    );
+
+});
     /* ================= MALTA RIVER ================= */
 
 fetch("Malta River.geojson")
