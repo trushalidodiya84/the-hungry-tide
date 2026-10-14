@@ -3454,18 +3454,22 @@ fetch("Laos Boarder to Phnom Pehn.geojson")
 });
 
 
+```javascript
 /* ================= DHANBAD ================= */
 
 var dhanbad = L.circleMarker(
     [23.789347564946187, 86.42632199534648],
     {
         radius: 8,
-        color: "#B71C1C",
-        fillColor: "#E53935",
+        color: "#1565C0",
+        fillColor: "#2196F3",
         fillOpacity: 0.85,
-        weight: 2
+        weight: 2,
+        interactive: false
     }
 );
+
+dhanbad.addTo(migrationLayer);
 
 
 /* ================= DHANBAD RAILWAY ICON ================= */
@@ -3481,16 +3485,15 @@ var railway = L.marker(
     [23.789347564946187, 86.42632199534648],
     {
         icon: railwayIcon,
-        interactive: false
+        interactive: true,
+        zIndexOffset: 1000
     }
 );
-
-railway.addTo(migrationLayer);
 
 
 /* ================= DHANBAD POPUP ================= */
 
-dhanbad.bindPopup(`
+railway.bindPopup(`
 
 <b>🚉 Dhanbad Junction</b><br><br>
 
@@ -3517,6 +3520,8 @@ Dhanbad therefore functions as a crucial node in Kusum's migration, linking forc
 <b>Themes:</b> Migration, Human Trafficking, Displacement, Refugee Movement, Return Migration.
 
 `);
+
+railway.addTo(migrationLayer);
 
 
 // ==========================================
