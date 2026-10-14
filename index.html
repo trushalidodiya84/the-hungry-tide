@@ -2664,7 +2664,40 @@ The route illustrates the movement from metropolitan Kolkata into the riverine w
 <br><br>
 `);
 
-memoryLayer.addLayer(kanaiJourney);
+    /* ================= KANAI'S JOURNEY TO LUSIBARI ================= */
+
+var kanaiJourney = L.polyline([
+    [22.55820, 88.28923],   // Kolkata
+    [22.50812, 88.37256],   // Dhakuria Station
+    [22.31490, 88.66270],   // Canning
+    [22.08918, 88.90773]    // Lusibari
+],{
+    color:"#8B4513",
+    weight:4,
+    dashArray:"8,8"
+});
+
+kanaiJourney.bindPopup(`
+<b>🚉 Kanai's Journey to Lusibari</b><br><br>
+
+<b>Route:</b> Kolkata → Dhakuria Station → Canning → Lusibari
+
+<br><br>
+
+Kanai Dutt travels from Kolkata to the Sundarbans after receiving an invitation from Nilima. His journey begins in the city and continues through Dhakuria Station toward Canning, the traditional gateway to the tide country.
+
+<br><br>
+
+At Dhakuria Station he encounters Piya Roy, whose research expedition becomes intertwined with his own visit to Lusibari.
+
+<br><br>
+
+The route illustrates the movement from metropolitan Kolkata into the riverine world of the Sundarbans, linking urban modernity with the ecological and cultural landscape of the tide country.
+
+<br><br>
+`);
+
+migrationLayer.addLayer(kanaiJourney);
 
     /* ================= ALTERNATIVE ROUTE VIA BASANTI ================= */
 
