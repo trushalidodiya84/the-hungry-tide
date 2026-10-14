@@ -3526,12 +3526,13 @@ railway.addTo(migrationLayer);
 // ==========================================
 // KUSUM'S MIGRATION ROUTE
 // SATJELIA → DHANBAD → MORICHJHAPI
+// NO GIRL ICONS
 // ==========================================
 
 
 // ==========================================
 // 1. DHANBAD COORDINATES
-// Existing Dhanbad marker coordinates
+// EXISTING COORDINATES PRESERVED
 // ==========================================
 
 var dhanbadRoute = [
@@ -3541,24 +3542,7 @@ var dhanbadRoute = [
 
 
 // ==========================================
-// 2. GIRL MIGRANT ICON
-// ==========================================
-
-var girlMigrationIcon = L.divIcon({
-
-    className: "girl-migrant-icon",
-
-    html: "👧",
-
-    iconSize: [40, 40],
-
-    iconAnchor: [20, 20]
-
-});
-
-
-// ==========================================
-// 3. GET SATJELIA AND MORICHJHAPI
+// 2. GET SATJELIA AND MORICHJHAPI
 // FROM EXISTING GEOJSON
 // ==========================================
 
@@ -3577,7 +3561,6 @@ fetch("All places.geojson")
 .then(function(data) {
 
     var satjeliaCoords = null;
-
     var morichjhapiCoords = null;
 
 
@@ -3586,7 +3569,6 @@ fetch("All places.geojson")
     // ==========================================
 
     data.features.forEach(function(feature) {
-
 
         // SATJELIA
 
@@ -3647,8 +3629,10 @@ fetch("All places.geojson")
 
 
     // ==========================================
-    // 4. SATJELIA → DHANBAD
-    // STRAIGHT RED DASHED LINE
+    // 3. SATJELIA → DHANBAD
+    // RED ROUTE
+    // LAYER: MIGRATION & MOBILITY
+    // CLICK ROUTE TO OPEN POPUP
     // ==========================================
 
     var satjeliaDhanbadLine = L.polyline(
@@ -3660,9 +3644,9 @@ fetch("All places.geojson")
 
         {
 
-           color: "#1565C0",
+            color: "#F44336",
 
-            weight: 4,
+            weight: 5,
 
             opacity: 0.9,
 
@@ -3670,43 +3654,16 @@ fetch("All places.geojson")
 
             lineCap: "round",
 
-            lineJoin: "round"
+            lineJoin: "round",
+
+            interactive: true
 
         }
 
-    ).addTo(map);
+    );
 
 
-    // ==========================================
-    // 5. GIRL ICON ON
-    // SATJELIA → DHANBAD
-    // ==========================================
-
-    var girl1Lat =
-        (satjeliaCoords[0] + dhanbadRoute[0]) / 2;
-
-    var girl1Lng =
-        (satjeliaCoords[1] + dhanbadRoute[1]) / 2;
-
-
-    L.marker(
-
-        [
-            girl1Lat,
-            girl1Lng
-        ],
-
-        {
-
-            icon: girlMigrationIcon
-
-        }
-
-    )
-
-    .addTo(map)
-
-    .bindPopup(`
+    satjeliaDhanbadLine.bindPopup(`
 
         <div style="max-width:320px;">
 
@@ -3727,14 +3684,30 @@ fetch("All places.geojson")
                 tide country and travels towards Dhanbad.
             </p>
 
+            <p>
+                <b>Route:</b> Satjelia → Dhanbad
+            </p>
+
+            <p>
+                <b>Themes:</b> Migration, Displacement,
+                Poverty, Human Trafficking.
+            </p>
+
         </div>
 
     `);
 
 
+    // Add ONLY to Migration & Mobility layer
+
+    satjeliaDhanbadLine.addTo(migrationLayer);
+
+
     // ==========================================
-    // 6. DHANBAD → MORICHJHAPI
-    // STRAIGHT RED DASHED LINE
+    // 4. DHANBAD → MORICHJHAPI
+    // BLUE ROUTE
+    // LAYER: SPATIAL & CULTURAL MEMORY
+    // CLICK ROUTE TO OPEN POPUP
     // ==========================================
 
     var dhanbadMorichjhapiLine = L.polyline(
@@ -3748,7 +3721,7 @@ fetch("All places.geojson")
 
             color: "#1565C0",
 
-            weight: 4,
+            weight: 5,
 
             opacity: 0.9,
 
@@ -3756,43 +3729,16 @@ fetch("All places.geojson")
 
             lineCap: "round",
 
-            lineJoin: "round"
+            lineJoin: "round",
+
+            interactive: true
 
         }
 
-    ).addTo(map);
+    );
 
 
-    // ==========================================
-    // 7. GIRL ICON ON
-    // DHANBAD → MORICHJHAPI
-    // ==========================================
-
-    var girl2Lat =
-        (dhanbadRoute[0] + morichjhapiCoords[0]) / 2;
-
-    var girl2Lng =
-        (dhanbadRoute[1] + morichjhapiCoords[1]) / 2;
-
-
-    L.marker(
-
-        [
-            girl2Lat,
-            girl2Lng
-        ],
-
-        {
-
-            icon: girlMigrationIcon
-
-        }
-
-    )
-
-    .addTo(map)
-
-    .bindPopup(`
+    dhanbadMorichjhapiLine.bindPopup(`
 
         <div style="max-width:320px;">
 
@@ -3815,30 +3761,31 @@ fetch("All places.geojson")
                 own people.
             </p>
 
+            <p>
+                <b>Route:</b> Dhanbad → Morichjhapi
+            </p>
+
+            <p>
+                <b>Themes:</b> Spatial Memory, Cultural Memory,
+                Homeland, Belonging, Refugee Movement.
+            </p>
+
         </div>
 
     `);
 
 
-    // ==========================================
-    // 8. OPTIONAL: ROUTE LAYER GROUP
-    // ==========================================
+    // Add ONLY to Spatial & Cultural Memory layer
 
-    var kusumMigrationRoute = L.featureGroup([
-
-        satjeliaDhanbadLine,
-
-        dhanbadMorichjhapiLine
-
-    ]);
+    dhanbadMorichjhapiLine.addTo(memoryLayer);
 
 
     // ==========================================
-    // 9. CONSOLE CONFIRMATION
+    // 5. CONSOLE CONFIRMATION
     // ==========================================
 
     console.log(
-        "Kusum's migration route added successfully."
+        "Kusum's migration routes added to their respective thematic layers."
     );
 
 })
@@ -3849,7 +3796,8 @@ fetch("All places.geojson")
         "Error loading Kusum's migration route:",
         error
     );
- });
+
+});
 
 /* =========================================================
    ECOLOGICAL HABITAT NETWORK
